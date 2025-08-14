@@ -1,0 +1,1 @@
+// Vaubia minimal JS — OK
