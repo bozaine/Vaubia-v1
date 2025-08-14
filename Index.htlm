@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vaubia — Protégez l’essentiel</title>
+  <meta name="description" content="Vaubia — Protégez l’essentiel.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <img src="assets/logo.svg" alt="Vaubia" width="150" height="34">
+  </header>
+  <main class="wrap">
+    <div class="card">
+      <div class="badge">Déploiement OK</div>
+      <h1>✅ Vaubia est en ligne</h1>
+      <p>Build statique prêt — <span id="ts"></span></p>
+      <button class="btn" onclick="location.href='/'">Recharger</button>
+    </div>
+  </main>
+  <footer>© <span id="y"></span> Vaubia — Protégez l’essentiel</footer>
+  <script src="app.js"></script>
+</body>
+</html>
