@@ -1,81 +1,79 @@
 <!doctype html>
-<html lang="fr"><head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="assets/img/logo.svg">
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" href="/assets/logo.svg">
+<title>Contact — Vaubia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script defer src="/app.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="Vaubia"><strong>Vaubia</strong></a>
+    <div class="menu">
+      <a href="/services.html" >Services</a>
+      <a href="/pricing.html" >Tarifs</a>
+      <a href="/contact.html" class='active'>Contact</a>
+      <a href="/demo.html" >Démo</a>
+      <a href="/legal.html">Mentions</a>
+      <button class="btn neon cta" onclick="location.href='/contact.html#demo'">Essai gratuit</button>
+    </div>
+    <button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="sheet">
+    <a href="/services.html">Services</a>
+    <a href="/pricing.html">Tarifs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/demo.html">Démo</a>
+    <a href="/legal.html">Mentions</a>
+  </div>
+</nav>
 
-<title>Contact — Vaubia</title></head><body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<header class="nav">
-  <a class="brand" href="index.html">
-    <img src="assets/img/logo.svg" alt="Vaubia" class="logo">
-    <span>Vaubia</span>
-  </a>
-  <nav class="desktop-only">
-    <a href="features.html">Fonctionnalités</a>
-    <a href="pricing.html">Tarifs</a>
-    <a href="demo.html">Démo</a>
-    <a href="contact.html">Contact</a>
-    <div class="menu-divider"></div>
-    <a class="btn ghost" href="login.html">Se connecter</a>
-    <a class="btn" href="pricing.html#plans">Essai gratuit</a>
-  </nav>
-  <button class="burger mobile-only" aria-label="Ouvrir le menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+<header class="page-hero">
+  <h1>Contact</h1>
+  <p class="lead">Une question ? Un besoin spécifique ? Écrivez‑nous.</p>
 </header>
-<div id="mobileMenu" class="mobile-menu">
-  <a href="features.html">Fonctionnalités</a>
-  <a href="pricing.html">Tarifs</a>
-  <a href="demo.html">Démo</a>
-  <a href="contact.html">Contact</a>
-  <a href="legal.html">Mentions légales</a>
-  <a href="privacy.html">Vie privée</a>
-  <a href="cookies.html">Cookies</a>
-  <div class="menu-actions">
-    <a class="btn ghost w100" href="login.html">Se connecter</a>
-    <a class="btn w100" href="pricing.html#plans">Essai gratuit</a>
+<section class="section" id="demo">
+  <div class="wrap">
+    <form class="card" onsubmit="event.preventDefault(); alert('Merci ! Nous revenons vers vous rapidement.');">
+      <div class="grid">
+        <div><label>Prénom</label><input required></div>
+        <div><label>Nom</label><input required></div>
+        <div><label>Email</label><input type="email" required></div>
+        <div><label>Entreprise</label><input></div>
+      </div>
+      <label>Message</label>
+      <textarea rows="6" placeholder="Parlez-nous de votre contexte…"></textarea>
+      <div style="margin-top:14px; display:flex; gap:10px">
+        <button class="btn">Envoyer</button>
+        <button type="reset" class="btn ghost">Effacer</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap grid">
+    <div>© 2025 Vaubia — Protégez l’essentiel</div>
+    <div style="text-align:right">
+      <a href="/privacy.html">Politique de confidentialité</a> ·
+      <a href="/cookies.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie" role="dialog" aria-live="polite">
+  <h4>🍪 Cookies</h4>
+  <p>Nous utilisons uniquement des cookies essentiels pour faire fonctionner le site et améliorer votre expérience.</p>
+  <div class="row">
+    <button class="btn" data-accept>Accepter</button>
+    <button class="btn ghost" data-prefs>Paramètres</button>
   </div>
 </div>
-
-<main class="container narrow">
-  <h1>Contact</h1>
-  <form class="form" action="https://formspree.io/f/mwkgeqrl" method="POST">
-    <label>Nom<input required name="name" placeholder="Prénom Nom"></label>
-    <label>E‑mail<input required type="email" name="email" placeholder="vous@exemple.com"></label>
-    <label>Message<textarea required name="message" rows="5" placeholder="Comment pouvons‑nous vous aider ?"></textarea></label>
-    <button class="btn" type="submit">Envoyer</button>
-  </form>
-</main>
-<footer class="footer">
-  <div class="grid">
-    <div>
-      <div class="brand mark">
-        <img src="assets/img/logo.svg" class="logo" alt="Vaubia"> Vaubia
-      </div>
-      <p class="muted">Protégez l’essentiel : surveillez vos identités, alertes en temps réel, conformité RGPD.</p>
-      <button class="link" onclick="openCookiePrefs()">Paramètres cookies</button>
-    </div>
-    <div>
-      <h4>Produit</h4>
-      <a href="features.html">Fonctionnalités</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="demo.html">Démo</a>
-    </div>
-    <div>
-      <h4>Entreprise</h4>
-      <a href="contact.html">Contact</a>
-      <a href="legal.html">Mentions légales</a>
-      <a href="privacy.html">Vie privée</a>
-    </div>
-  </div>
-  <p class="tiny muted">© 2025 Vaubia — Tous droits réservés.</p>
-</footer>
-<script src="assets/js/app.js"></script>
-
 </body></html>
+

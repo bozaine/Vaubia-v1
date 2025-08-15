@@ -1,66 +1,71 @@
-
-<!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fonctionnalités — Vaubia</title>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" href="/assets/logo.svg">
+<title>Services — Vaubia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
-</head><body>
-
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="brand"><img src="/assets/logo.svg" alt="Vaubia" width="24" height="24"> Vaubia</a>
-    <span class="badge">Protégez l’essentiel</span>
-    <nav class="menu">
-      <div class="dropdown">
-        <a href="/services.html" onclick="return false" id="featuresBtn">Fonctionnalités ▾</a>
-        <div class="dropdown-menu">
-          <a href="/services.html#monitoring">Monitoring</a>
-          <a href="/services.html#alerts">Alertes</a>
-          <a href="/services.html#reports">Rapports</a>
-          <a href="/services.html#compliance">Conformité</a>
-        </div>
-      </div>
-      <a href="/pricing.html">Tarifs</a>
-      <a href="/docs/legal.html">Mentions légales</a>
-      <a href="/docs/privacy-policy.html">Confidentialité</a>
-      <a href="/contact.html">Contact</a>
-      <a href="#" class="pill">FAQ</a>
-    </nav>
-    <div class="nav-spacer"></div>
-    <a class="btn small ghost" href="#">Se connecter</a>
-    <a class="btn small" href="#">Essai gratuit</a>
+<script defer src="/app.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="Vaubia"><strong>Vaubia</strong></a>
+    <div class="menu">
+      <a href="/services.html" class='active'>Services</a>
+      <a href="/pricing.html" >Tarifs</a>
+      <a href="/contact.html" >Contact</a>
+      <a href="/demo.html" >Démo</a>
+      <a href="/legal.html">Mentions</a>
+      <button class="btn neon cta" onclick="location.href='/contact.html#demo'">Essai gratuit</button>
+    </div>
+    <button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
+  <div class="sheet">
+    <a href="/services.html">Services</a>
+    <a href="/pricing.html">Tarifs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/demo.html">Démo</a>
+    <a href="/legal.html">Mentions</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <h1>Nos Services</h1>
+  <p class="lead">De la surveillance des fuites à la conformité — choisissez ce dont vous avez besoin.</p>
 </header>
+<section class="section">
+  <div class="wrap cards">
+    <article class="card"><h3>Surveillance des fuites</h3><p>Scan des sources publiques pour détecter vos identifiants exposés.</p></article>
+    <article class="card"><h3>Protection e-mail</h3><p>Bloquez les tentatives d’usurpation et renforcez l’authentification.</p></article>
+    <article class="card"><h3>Conformité & RGPD</h3><p>Registre, DPIA, politiques — tout centralisé.</p></article>
+    <article class="card"><h3>Conseil & intégration</h3><p>Accompagnement sur mesure pour vos équipes.</p></article>
+    <article class="card"><h3>Formation</h3><p>Ateliers anti‑phishing et bonnes pratiques sécurité.</p></article>
+    <article class="card"><h3>API & Webhooks</h3><p>Intégrez Vaubia à vos outils (Slack, Teams, SIEM).</p></article>
+  </div>
+</section>
 
-<div class="container section stack">
-  <h1>Fonctionnalités</h1>
-  <section id="monitoring" class="card"><h2>Monitoring des surfaces d’attaque</h2><p class="lead">Surveillez e‑mails, domaines et signaux publics pour repérer en avance les compromissions.</p></section>
-  <section id="alerts" class="card"><h2>Alertes temps réel</h2><p class="lead">Notifications immédiates par e‑mail quand une fuite vous touche. Réglage de la sensibilité.</p></section>
-  <section id="reports" class="card"><h2>Rapports hebdomadaires</h2><p class="lead">Un résumé clair envoyé chaque semaine avec le score de risque et les actions à entreprendre.</p></section>
-  <section id="compliance" class="card"><h2>Conformité et sécurité par défaut</h2><p class="lead">Bannière cookie consent, mentions légales et politique de confidentialité générées, plus en-têtes de sécurité (CSP, HSTS).</p></section>
-</div>
-
-<footer class="footer">
-  <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+<footer>
+  <div class="wrap grid">
     <div>© 2025 Vaubia — Protégez l’essentiel</div>
-    <div class="list">
-      <a class="pill" href="/docs/privacy-policy.html">Confidentialité</a>
-      <a class="pill" href="/docs/legal.html">Mentions légales</a>
-      <a class="pill" href="/contact.html">Support</a>
-      <a class="pill" href="#" id="openConsent">Paramètres cookies</a>
+    <div style="text-align:right">
+      <a href="/privacy.html">Politique de confidentialité</a> ·
+      <a href="/cookies.html">Cookies</a>
     </div>
   </div>
 </footer>
-<script src="/consent.js"></script>
-<script>
-// Simple dropdown
-const dd = document.querySelector('.dropdown');
-const btn = document.getElementById('featuresBtn');
-if (btn && dd){ btn.addEventListener('click',()=> dd.classList.toggle('open')); }
-document.addEventListener('click', (e)=>{
-  if(!dd.contains(e.target)) dd.classList.remove('open');
-});
-// open cookie modal
-document.getElementById('openConsent')?.addEventListener('click', (e)=>{ e.preventDefault(); window.openConsent?.(); });
-</script>
 
+<div class="cookie" role="dialog" aria-live="polite">
+  <h4>🍪 Cookies</h4>
+  <p>Nous utilisons uniquement des cookies essentiels pour faire fonctionner le site et améliorer votre expérience.</p>
+  <div class="row">
+    <button class="btn" data-accept>Accepter</button>
+    <button class="btn ghost" data-prefs>Paramètres</button>
+  </div>
+</div>
 </body></html>
+
