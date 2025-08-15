@@ -1,9 +1,8 @@
 
 <!doctype html><html lang="fr"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vaubia — Protégez l’essentiel</title>
+<title>Contact — Vaubia</title>
 <link rel="stylesheet" href="/styles.css">
-<meta name="description" content="Le tableau de bord de sécurité qui veille sur vos comptes, vos fuites de données et votre conformité.">
 </head><body>
 
 <header class="nav">
@@ -32,42 +31,18 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="container h-grid">
-    <div>
-      <div class="pill">Vaubia • Protégez l’essentiel</div>
-      <h1>Simulez, surveillez et décidez<br>en sécurité — en quelques secondes.</h1>
-      <p class="lead">Un cockpit unique pour suivre vos comptes sensibles, détecter les fuites, recevoir des alertes temps réel et rester conforme au RGPD.</p>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        <a class="btn" href="/pricing.html">Commencer gratuitement</a>
-        <a class="btn ghost" href="/services.html">Voir les fonctionnalités</a>
-      </div>
-      <div class="kpis">
-        <div class="kpi"><strong>~60s</strong><br>Onboarding moyen</div>
-        <div class="kpi"><strong>99.9%</strong><br>Uptime (Vercel)</div>
-        <div class="kpi"><strong>RGPD</strong><br>Conformité par défaut</div>
-      </div>
+<div class="container section">
+  <h1>Contact</h1>
+  <p class="lead">Une question ? Écrivez‑nous, on répond vite.</p>
+  <form onsubmit="event.preventDefault(); window.location='mailto:support@vaubia.com?subject=Contact%20site&body='+encodeURIComponent(document.getElementById('msg').value)">
+    <textarea id="msg" rows="6" style="width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:var(--card);color:var(--text)"
+      placeholder="Votre message..."></textarea>
+    <div style="margin-top:12px">
+      <button class="btn">Envoyer</button>
+      <a class="btn ghost" href="mailto:support@vaubia.com">Ouvrir dans mon client mail</a>
     </div>
-    <div class="h-card">
-      <img src="/assets/placeholder-hero.png" alt="Aperçu Vaubia" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.06)">
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <span class="pill">Alertes compromises</span>
-        <span class="pill">Rapports hebdomadaires</span>
-        <span class="pill">CSP/HSTS</span>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <h2>Ce que vous obtenez dès aujourd’hui</h2>
-    <div class="grid-3" style="margin-top:14px">
-      <div class="card"><h3>Alertes en temps réel</h3><p class="lead">Notifications immédiates en cas de fuite d’e‑mail, activité suspecte ou exposition de mot de passe.</p></div>
-      <div class="card"><h3>Rapports hebdo</h3><p class="lead">Un digest clair dans votre boîte mail avec l’état de vos risques et les actions recommandées.</p></div>
-      <div class="card"><h3>Conformité RGPD</h3><p class="lead">Bannière cookie, préférences, mentions légales et politique de confidentialité incluses.</p></div>
-    </div>
-  </div>
-</section>
+  </form>
+</div>
 
 <footer class="footer">
   <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">

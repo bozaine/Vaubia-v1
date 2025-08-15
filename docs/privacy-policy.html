@@ -1,1 +1,77 @@
-<!doctype html><meta charset="utf-8"><title>Confidentialité — Vaubia</title><link rel="stylesheet" href="../styles.css"><div class="container section"><h1>Politique de confidentialité</h1><p>Version courte intégrée. La version complète est fournie dans le bundle conformité.</p></div>
+
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Politique de confidentialité — Vaubia</title>
+<link rel="stylesheet" href="/styles.css">
+</head><body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand"><img src="/assets/logo.svg" alt="Vaubia" width="24" height="24"> Vaubia</a>
+    <span class="badge">Protégez l’essentiel</span>
+    <nav class="menu">
+      <div class="dropdown">
+        <a href="/services.html" onclick="return false" id="featuresBtn">Fonctionnalités ▾</a>
+        <div class="dropdown-menu">
+          <a href="/services.html#monitoring">Monitoring</a>
+          <a href="/services.html#alerts">Alertes</a>
+          <a href="/services.html#reports">Rapports</a>
+          <a href="/services.html#compliance">Conformité</a>
+        </div>
+      </div>
+      <a href="/pricing.html">Tarifs</a>
+      <a href="/docs/legal.html">Mentions légales</a>
+      <a href="/docs/privacy-policy.html">Confidentialité</a>
+      <a href="/contact.html">Contact</a>
+      <a href="#" class="pill">FAQ</a>
+    </nav>
+    <div class="nav-spacer"></div>
+    <a class="btn small ghost" href="#">Se connecter</a>
+    <a class="btn small" href="#">Essai gratuit</a>
+  </div>
+</header>
+
+<div class="container section stack">
+  <h1>Politique de confidentialité</h1>
+  <p class="lead">Version 1.0 — Services offerts par Vaubia. Responsable de traitement : Vaubia SAS (à compléter).</p>
+  <h2>Données collectées</h2>
+  <ul class="check">
+    <li>Cookies strictement nécessaires (consentement non requis).</li>
+    <li>Cookies analytiques (désactivés par défaut, opt‑in dans « Paramètres cookies »).</li>
+    <li>Données de contact si vous nous écrivez (adresse e‑mail, contenu du message).</li>
+  </ul>
+  <h2>Bases légales & durées</h2>
+  <p>Intérêt légitime pour le bon fonctionnement du site (cookies nécessaires). Consentement pour l’analytics. Conservation limitée au strict nécessaire.</p>
+  <h2>Vos droits</h2>
+  <p>Accès, rectification, effacement, opposition, limitation, portabilité. Contact : privacy@vaubia.com.</p>
+  <h2>Transferts</h2>
+  <p>Hébergement en UE (Vercel/OVH si applicable). S’il y a transfert hors UE, clauses contractuelles types (CCT) mises en place.</p>
+  <h2>Sécurité</h2>
+  <p>Chiffrement TLS, en‑têtes de sécurité (CSP/HSTS), principe de minimisation.</p>
+</div>
+
+<footer class="footer">
+  <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+    <div>© 2025 Vaubia — Protégez l’essentiel</div>
+    <div class="list">
+      <a class="pill" href="/docs/privacy-policy.html">Confidentialité</a>
+      <a class="pill" href="/docs/legal.html">Mentions légales</a>
+      <a class="pill" href="/contact.html">Support</a>
+      <a class="pill" href="#" id="openConsent">Paramètres cookies</a>
+    </div>
+  </div>
+</footer>
+<script src="/consent.js"></script>
+<script>
+// Simple dropdown
+const dd = document.querySelector('.dropdown');
+const btn = document.getElementById('featuresBtn');
+if (btn && dd){ btn.addEventListener('click',()=> dd.classList.toggle('open')); }
+document.addEventListener('click', (e)=>{
+  if(!dd.contains(e.target)) dd.classList.remove('open');
+});
+// open cookie modal
+document.getElementById('openConsent')?.addEventListener('click', (e)=>{ e.preventDefault(); window.openConsent?.(); });
+</script>
+
+</body></html>
