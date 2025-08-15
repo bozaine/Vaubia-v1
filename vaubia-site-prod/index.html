@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaubia — Protégez l’essentiel</title>
+  <meta name="description" content="Vaubia, votre bouclier digital : surveillez les risques, recevez des alertes, restez conforme RGPD.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="left"><img src="assets/logo.svg" alt="Vaubia" width="150" height="34"></div>
+      <div class="right">
+        <a href="#features">Fonctionnalités</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn ghost" href="#login">Se connecter</a>
+        <a class="btn primary" href="#signup">Essai gratuit</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="badge">Vaubia • Protégez l’essentiel</span>
+      <h1>Le tableau de bord qui veille sur votre sécurité</h1>
+      <p class="lead">Surveillez vos comptes, détectez les fuites, recevez des alertes, et suivez votre conformité en un seul endroit — simplement.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#signup">Commencer</a>
+        <a class="btn ghost" href="#demo">Voir une démo</a>
+      </div>
+      <div class="trust">
+        <span>Hébergement Vercel</span>•
+        <span>Conformité RGPD</span>•
+        <span>Chiffrement TLS</span>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="grid">
+        <div class="card"><h3>Alertes en temps réel</h3><p>Notifications immédiates en cas d’activité suspecte ou d’e‑mail compromis.</p></div>
+        <div class="card"><h3>Rapport hebdomadaire</h3><p>Un digest clair des risques détectés et actions recommandées.</p></div>
+        <div class="card"><h3>Confidentialité</h3><p>Politique RGPD stricte, données minimisées, contrôle complet.</p></div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="pricing">
+        <div class="tier">
+          <h3>Starter</h3>
+          <div class="price">0€/mois</div>
+          <div class="small">Surveillance basique • Alertes e‑mail</div>
+          <button class="btn primary" style="margin-top:10px">Choisir</button>
+        </div>
+        <div class="tier">
+          <h3>Pro</h3>
+          <div class="price">12€/mois</div>
+          <div class="small">Alertes avancées • Rapports hebdo • Support</div>
+          <button class="btn primary" style="margin-top:10px">Choisir</button>
+        </div>
+        <div class="tier">
+          <h3>Business</h3>
+          <div class="price">29€/mois</div>
+          <div class="small">Équipe • Passkeys • Export conformité</div>
+          <button class="btn primary" style="margin-top:10px">Choisir</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="grid">
+        <div class="q"><strong>Vaubia stocke‑t‑il mes mots de passe ?</strong><br><span class="small">Non. Nous ne stockons pas vos secrets. Nous détectons les risques et vous guidons pour agir.</span></div>
+        <div class="q"><strong>Êtes‑vous compatibles RGPD ?</strong><br><span class="small">Oui. Données minimisées, consentement cookies, droits utilisateurs.</span></div>
+        <div class="q"><strong>Comment résilier ?</strong><br><span class="small">À tout moment, depuis votre espace compte. Suppression automatique des données.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container small">© <span id="y"></span> Vaubia — Protégez l’essentiel • <a href="docs/privacy-policy.html">Confidentialité</a> • <a href="docs/legal.html">Mentions légales</a></div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="banner" id="cookie-banner" role="dialog" aria-live="polite">
+    <div class="content">
+      <div class="txt">Nous utilisons uniquement des cookies techniques. Les cookies d’audience ne seront activés qu’après votre consentement.</div>
+      <div class="actions">
+        <button id="btn-reject" class="btn ghost">Refuser</button>
+        <button id="btn-accept" class="btn primary">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
