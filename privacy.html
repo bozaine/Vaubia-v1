@@ -1,72 +1,66 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Politique de confidentialité • Vaubia</title>
-  <meta name="description" content="Vaubia — Protégez l’essentiel. Sécurité numérique, conformité et alertes en temps réel.">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="app.js"></script>
-</head>
-<body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="logo" href="index.html">
-        <span class="logo-badge"></span> Vaubia
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="features.html">Fonctionnalités</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="demo.html">Démo</a>
-        <a href="contact.html">Contact</a>
-        <a class="nav-cta" href="login.html">Se connecter</a>
-      </div>
-      <button class="hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">☰</button>
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Politique de confidentialité — Vaubia</title><link rel="stylesheet" href="assets/css/style.css"/></head><body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="Vaubia logo"/><span>Vaubia</span></a>
+    <div class="menu">
+      <a href="features.html">Fonctionnalités</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="demo.html">Démo</a>
+      <a href="contact.html">Contact</a>
+      <a href="legal.html">Mentions légales</a>
+      <a class="cta" href="#signup">Se connecter</a>
     </div>
-  </nav>
-  <div class="mobile-drawer" id="drawer" onclick="toggleMenu()">
-    <div class="mobile-sheet" onclick="event.stopPropagation()">
-      <div class="logo" style="margin-bottom:8px"><span class="logo-badge"></span> Vaubia</div>
-      <a class="mobile-link" href="index.html">Accueil</a>
-      <a class="mobile-link" href="features.html">Fonctionnalités</a>
-      <a class="mobile-link" href="pricing.html">Tarifs</a>
-      <a class="mobile-link" href="demo.html">Démo</a>
-      <a class="mobile-link" href="contact.html">Contact</a>
-      <a class="mobile-link" href="legal.html">Mentions légales</a>
-      <a class="mobile-link" href="privacy.html">Politique de confidentialité</a>
-      <div style="margin-top:auto" class="small">© 2025 Vaubia — Protégez l’essentiel</div>
+    <button class="hamb" onclick="toggleDrawer()">☰ Menu</button>
+  </div>
+  <div id="drawer" class="drawer">
+    <button class="btn btn-ghost close" onclick="toggleDrawer()">✕</button>
+    <a href="index.html">Accueil</a>
+    <a href="features.html">Fonctionnalités</a>
+    <a href="pricing.html">Tarifs</a>
+    <a href="demo.html">Démo</a>
+    <a href="contact.html">Contact</a>
+    <a href="legal.html">Mentions légales</a>
+    <a href="privacy.html">Vie privée</a>
+    <a href="cookies.html">Cookies</a>
+  </div>
+</nav>
+
+<main class="container section"><h1>Politique de confidentialité</h1>
+<p class="small">Nous traitons vos données dans le cadre de la fourniture de nos services, conformément au RGPD. Données traitées : identification, usage du site, logs techniques. Bases légales : exécution du contrat, intérêt légitime, consentement pour les cookies optionnels.</p>
+<h3>Vos droits</h3><p class="small">Accès, rectification, suppression, opposition, limitation, portabilité. Exercices via <a href="contact.html">contact</a>.</p>
+</main>
+<footer class="footer">
+  <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+    <div>© 2025 Vaubia — <em>Protégez l’essentiel</em></div>
+    <div style="display:flex;gap:12px">
+      <a href="privacy.html">Vie privée</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="legal.html">Mentions légales</a>
     </div>
   </div>
-
-  <section class="container hero" style="padding-top:28px">
-    <h1>Politique de confidentialité</h1>
-    <div class="card">
-      <p class="small"><strong>Base légale</strong> : intérêt légitime et/ou consentement. <strong>Données</strong> : identité, contact, logs. <strong>Durée</strong> : 3 ans après dernier contact ou exigences légales.</p>
-      <p class="small"><strong>Vos droits</strong> : accès, rectification, effacement, opposition, portabilité. Contact : privacy@vaubia.com. Autorité de contrôle : CNIL.</p>
-      <p class="small"><strong>Cookies</strong> : essentiels (exemptés) et mesure d’audience (nécessitent consentement). Vous pouvez modifier votre choix via la bannière.</p>
-      <p class="small"><strong>Traitements</strong> : surveillance de fuites, alertes, rapports, facturation et support.</p>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <div>© 2025 Vaubia — Protégez l’essentiel</div>
-      <div style="display:flex;gap:14px">
-        <a href="legal.html">Mentions légales</a>
-        <a href="privacy.html">Confidentialité</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <div class="cookie-bar" id="cookieBar">
-    <p>Nous utilisons des cookies pour mesurer l’audience et améliorer votre expérience. <a href="privacy.html">En savoir plus</a>.</p>
-    <div class="cookie-actions">
-      <button class="btn" onclick="acceptCookies()">Accepter</button>
-      <button class="btn secondary" onclick="rejectCookies()">Refuser</button>
+</footer>
+<div id="cookieBanner" class="cookie-banner">
+  <div><strong>🍪 Cookies</strong> — Nous utilisons des cookies pour améliorer votre expérience et mesurer l’audience.</div>
+  <div class="cookie-actions">
+    <button class="btn btn-ghost" onclick="openPrefs()">Paramètres</button>
+    <button class="btn btn-primary" onclick="acceptAll()">Tout accepter</button>
+    <button class="btn btn-ghost" onclick="rejectAll()">Tout refuser</button>
+  </div>
+</div>
+<div id="cookieModal" class="modal" role="dialog" aria-modal="true">
+  <div class="panel">
+    <h3>Préférences cookies</h3>
+    <p class="small">Activez uniquement ce qui est nécessaire. Les cookies essentiels sont toujours actifs.</p>
+    <label style="display:flex;justify-content:space-between;align-items:center;margin:8px 0"><span>Mesure d’audience (anonyme)</span><input id="c_analytics" type="checkbox"></label>
+    <label style="display:flex;justify-content:space-between;align-items:center;margin:8px 0"><span>Améliorations UX</span><input id="c_ux" type="checkbox"></label>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn btn-ghost" onclick="closePrefs()">Annuler</button>
+      <button class="btn btn-primary" onclick="savePrefs()">Enregistrer</button>
     </div>
   </div>
-</body>
-</html>
+</div>
+<script src="assets/js/app.js"></script>
+</body></html>
