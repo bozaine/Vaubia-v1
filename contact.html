@@ -1,63 +1,88 @@
-<!doctype html><meta charset='utf-8'><title>Contact — Vaubia</title><link rel='stylesheet' href='/styles.css'>
-<header>
-  <div class="container nav">
-    <a class="brand" href="/"><span class="dot"></span> Vaubia</a>
-    <nav class="nav-links">
-      <a href="/" class="active">Accueil</a>
-      <a href="/features.html">Fonctionnalités</a>
-      <a href="/pricing.html">Tarifs</a>
-      <a href="/demo.html">Démo</a>
-      <a href="/legal.html">Légal</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="btn secondary" href="/login.html">Se connecter</a>
-      <button class="burger" aria-label="menu"><span></span></button>
-    </div>
-  </div>
-</header>
-<div class="overlay"></div>
-<aside class="mobile-drawer" aria-hidden="true">
-  <header>
-    <div class="brand"><span class="dot"></span> Vaubia</div>
-    <button id="close-drawer" class="btn secondary" style="padding:.5rem .75rem">Fermer</button>
-  </header>
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact – Vaubia</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg">
+</head>
+<body>
   <nav>
-    <a href="/">Accueil</a>
-    <a href="/features.html">Fonctionnalités</a>
-    <a href="/pricing.html">Tarifs</a>
-    <a href="/demo.html">Démo</a>
-    <a href="/legal.html">Légal</a>
-    <a href="/contact.html">Contact</a>
-    <a class="btn" style="margin-top:.6rem" href="/signup.html">Essayer gratuitement</a>
+    <a class="brand" href="index.html"><span class="dot"></span>Vaubia</a>
+    <div class="actions">
+      <a class="btn ghost" href="pricing.html">Tarifs</a>
+      <div class="burger" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+    </div>
   </nav>
-</aside>
-<section class='container' style='padding:4rem 0'><h1>Contact</h1><p class='lead'>Écrivez‑nous à support@vaubia.com</p></section>
-<footer>
-  <div class="container wrap">
-    <div>
-      <div class="brand"><span class="dot"></span> Vaubia</div>
-      <p class="note">Protégez l’essentiel. Veille de sécurité, conformité RGPD, alertes & rapports.</p>
+
+  <aside class="drawer" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div class="brand"><span class="dot"></span>Vaubia</div>
+      <button class="btn ghost close-drawer">Fermer</button>
     </div>
-    <div>
-      <h4>Produit</h4>
-      <a href="/features.html">Fonctionnalités</a><br>
-      <a href="/pricing.html">Tarifs</a><br>
-      <a href="/demo.html">Démo</a>
+    <a href="index.html">Accueil</a>
+    <a href="features.html">Fonctionnalités</a>
+    <a href="pricing.html">Tarifs</a>
+    <a href="demo.html">Démo</a>
+    <a href="legal.html">Légal</a>
+    <a href="contact.html">Contact</a>
+  </aside>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Contactez‑nous</h1>
+      <p class="p">Une question, une démo personnalisée ou un besoin spécifique ? Écrivez‑nous via ce formulaire — réponse sous 24h ouvrées.</p>
+    </section>
+
+    <section class="panel">
+      <form id="contactForm" action="https://formspree.io/f/XXXXXXXX" method="POST">
+        <div class="form-row">
+          <div><label>Prénom<input name="first_name" required></label></div>
+          <div><label>Nom<input name="last_name" required></label></div>
+        </div>
+        <div class="form-row">
+          <div><label>E‑mail<input type="email" name="email" required></label></div>
+          <div><label>Entreprise (optionnel)<input name="company"></label></div>
+        </div>
+        <label>Sujet<select name="subject">
+          <option value="demo">Demande de démo</option>
+          <option value="support">Support</option>
+          <option value="sales">Commercial</option>
+          <option value="other">Autre</option>
+        </select></label>
+        <label>Message<textarea name="message" rows="6" placeholder="Expliquez votre besoin…" required></textarea></label>
+        <label style="display:flex;gap:8px;align-items:center">
+          <input type="checkbox" name="consent" required>
+          J’accepte que Vaubia traite mes informations pour répondre à ma demande (cf. <a href="legal.html">Politique de confidentialité</a>).
+        </label>
+        <input type="hidden" name="origin" value="vaubia.com/contact.html">
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+      <div class="small" style="margin-top:10px">Ce formulaire est propulsé par Formspree. Remplacez l’URL d’action <code>/f/XXXXXXXX</code> par votre endpoint.</div>
+    </section>
+
+    <section style="margin-top:18px" class="panel">
+      <h3>Coordonnées</h3>
+      <p class="p">Support : <a href="mailto:support@vaubia.com">support@vaubia.com</a> — Commercial : <a href="mailto:sales@vaubia.com">sales@vaubia.com</a><br>DPO : <a href="mailto:dpo@vaubia.com">dpo@vaubia.com</a></p>
+    </section>
+
+    <footer>
+      © 2025 Vaubia — Protégez l’essentiel · <a href="legal.html">Légal</a>
+    </footer>
+  </main>
+
+  <div class="cookie-banner" role="dialog" aria-live="polite">
+    <div><strong>Cookies</strong> — nous utilisons des cookies essentiels, et avec votre accord, des cookies d’analyse. </div>
+    <div class="cookie-actions">
+      <button id="acceptAll" class="btn">Tout accepter</button>
+      <button id="declineAll" class="btn ghost">Essentiels uniquement</button>
+      <a href="legal.html" class="btn ghost">En savoir plus</a>
     </div>
-    <div>
-      <h4>Entreprise</h4>
-      <a href="/about.html">À propos</a><br>
-      <a href="/contact.html">Contact</a><br>
-      <a href="/careers.html">Carrières</a>
-    </div>
-    <div>
-      <h4>Légal</h4>
-      <a href="/legal.html#terms">CGU</a><br>
-      <a href="/legal.html#privacy">Confidentialité</a><br>
-      <a href="/legal.html#cookies">Cookies</a>
-    </div>
+    <div class="small">Vous pourrez revenir sur votre choix à tout moment.</div>
   </div>
-  <div class="copy">© 2025 Vaubia — Protégez l’essentiel</div>
-</footer>
-<script src='/app.js'></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
