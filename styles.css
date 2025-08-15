@@ -12,7 +12,9 @@ body{margin:0; color:var(--text); font:16px/1.5 Inter, ui-sans-serif, system-ui,
 .brand{display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:800}
 .brand img{width:28px; height:28px; filter: drop-shadow(0 8px 20px rgba(90,103,255,.25))}
 .nav{margin-left:auto; display:none; gap:18px; align-items:center}
-.nav a{color:var(--muted); text-decoration:none} .nav a:hover{color:var(--text)}
+.nav a{color:var(--muted); text-decoration:none; position:relative}
+.nav a:hover{color:var(--text)}
+.nav a:hover::after{content:""; position:absolute; left:10px; right:10px; bottom:6px; height:2px; background:linear-gradient(90deg,var(--teal),var(--indigo)); border-radius:2px}
 .burger{margin-left:auto; width:42px;height:42px; display:grid; place-items:center; background:rgba(255,255,255,.05); border:1px solid var(--stroke); border-radius:10px}
 .burger span,.burger span::before,.burger span::after{content:""; display:block; width:18px; height:2px; background:#d7e9ff; position:relative; border-radius:2px}
 .burger span::before{position:absolute; top:-6px} .burger span::after{position:absolute; top:6px}
@@ -54,9 +56,11 @@ p.tagline{color:var(--muted); margin:10px 0 0; font-size: clamp(15px, 2.2vw, 18p
 .tabs button{background:transparent; color:var(--muted); border:0; padding:10px 14px; border-radius:10px; cursor:pointer}
 .tabs button.active{background:linear-gradient(90deg, var(--teal), var(--indigo)); color:#07121c; font-weight:800}
 .pricing-grid{display:grid; gap:16px} @media(min-width:900px){ .pricing-grid{grid-template-columns: repeat(3, 1fr)} }
-.price-card{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid var(--stroke); border-radius:18px; padding:18px; position:relative}
+.price-card{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid var(--stroke); border-radius:18px; padding:18px; position:relative; transition: transform .15s ease, box-shadow .15s ease}
+.price-card:hover{transform: translateY(-4px); box-shadow: 0 18px 60px rgba(90,103,255,.22)}
 .ribbon{position:absolute; top:10px; right:10px; background:linear-gradient(90deg, var(--teal), var(--indigo)); color:#07121c; padding:6px 10px; border-radius:999px; font-weight:800}
-.price{font-size:36px; font-weight:900}
+.price{font-size:36px; font-weight:900; display:flex;align-items:baseline;gap:6px}
+.per{opacity:.7;font-size:14px}
 ul.list{margin:10px 0 0; padding:0 0 0 16px; color:var(--muted)}
 .w100{display:block; width:100%; text-align:center; margin-top:12px}
 
@@ -67,12 +71,12 @@ ul.list{margin:10px 0 0; padding:0 0 0 16px; color:var(--muted)}
 
 /* Cookie center */
 .cookie-banner{position:fixed; left:16px; right:16px; bottom:16px; z-index:70; display:none; gap:12px; align-items:center;
-  background:rgba(8,18,26,.9); border:1px solid var(--stroke); border-radius:14px; padding:14px; backdrop-filter: blur(10px)}
+  background:rgba(8,18,26,.9); border:1px solid var(--stroke); border-radius:14px; padding:14px; backdrop-filter: blur(10px); box-shadow: 0 18px 60px rgba(0,0,0,.45)}
 .cookie-banner.show{display:flex} .cookie-banner p{margin:0; color:var(--muted)}
 .cookie-actions{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
 .cookie-modal{position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; z-index:80; place-items:center}
 .cookie-modal.show{display:grid}
-.cookie-panel{width:min(620px, 92vw); background:#0a1825; border:1px solid var(--stroke); border-radius:16px; padding:16px}
+.cookie-panel{width:min(620px, 92vw); background:#0a1825; border:1px solid var(--stroke); border-radius:16px; padding:16px; box-shadow: 0 18px 60px rgba(0,0,0,.45)}
 .cookie-panel header{display:flex; align-items:center; justify-content:space-between}
 .switch{display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--stroke); padding:12px 0}
 .switch small{color:var(--muted)} .toggle{appearance:none; width:52px; height:30px; border-radius:999px; background:#173246; position:relative; border:1px solid var(--stroke)}
@@ -81,3 +85,8 @@ ul.list{margin:10px 0 0; padding:0 0 0 16px; color:var(--muted)}
 
 /* Demo canvas */
 .demo-canvas{width:100%; border:1px solid var(--stroke); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))}
+
+/* FAQ */
+.faq{display:grid;gap:12px}
+.faq .q{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid var(--stroke); border-radius:14px; padding:14px}
+.faq .q summary{cursor:pointer; font-weight:800}

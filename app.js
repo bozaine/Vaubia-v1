@@ -65,23 +65,18 @@
     attack={x,y,vx:(center.x-x)*.32,vy:(center.y-y)*.32}; }
   function draw(){
     const w=canvas.clientWidth, h=380; ctx.clearRect(0,0,w,h);
-    // edges
     ctx.lineWidth=1.2; edges.forEach(e=>{ const a=e[0]==='c'?{x:w*center.x,y:h*center.y}:{x:w*nodes[e[0]].x,y:h*nodes[e[0]].y};
       const b=e[1]==='c'?{x:w*center.x,y:h*center.y}:{x:w*nodes[e[1]].x,y:h*nodes[e[1]].y};
       const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y); g.addColorStop(0,'rgba(90,103,255,0)'); g.addColorStop(.5,'rgba(90,103,255,.35)'); g.addColorStop(1,'rgba(90,103,255,0)');
       ctx.strokeStyle=g; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
     });
-    // nodes
     nodes.forEach(n=>{ ctx.fillStyle='#9fd4ff'; ctx.globalAlpha=.12; ctx.beginPath(); ctx.arc(w*n.x,h*n.y,n.r*4,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; ctx.beginPath(); ctx.arc(w*n.x,h*n.y,n.r,0,Math.PI*2); ctx.fill(); });
-    // pulses
     pulses.forEach((p,i)=>{ p.t=(p.t+p.s*.016*p.dir)%1; if(p.t<0)p.t+=1; const e=edges[i];
       const a=e[0]==='c'?{x:w*center.x,y:h*center.y}:{x:w*nodes[e[0]].x,y:h*nodes[e[0]].y};
       const b=e[1]==='c'?{x:w*center.x,y:h*center.y}:{x:w*nodes[e[1]].x,y:h*nodes[e[1]].y};
       const x=a.x+(b.x-a.x)*p.t, y=a.y+(b.y-a.y)*p.t; ctx.fillStyle='#13e2c2'; ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
     });
-    // shield
     const R=Math.min(w,h)*.12; ctx.strokeStyle='rgba(19,226,194,.65)'; ctx.lineWidth=1.6; ctx.beginPath(); ctx.arc(w*center.x,h*center.y,R,0,Math.PI*2); ctx.stroke();
-    // attack
     const now=performance.now()/1000; if(!attack && now>next){ launch(); next=now+5+Math.random()*3; }
     if(attack){ attack.x+=attack.vx*.016; attack.y+=attack.vy*.016; const ax=w*attack.x, ay=h*attack.y;
       ctx.fillStyle='#ff6677'; ctx.shadowColor='#ff6677'; ctx.shadowBlur=14; ctx.beginPath(); ctx.arc(ax,ay,3,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
