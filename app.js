@@ -1,82 +1,110 @@
 
-// Drawer
+// Drawer (burger)
+const burger = document.querySelector('.burger');
 const drawer = document.getElementById('drawer');
-const openDrawer = document.getElementById('openDrawer');
-if(openDrawer){
-  openDrawer.addEventListener('click', ()=> drawer.classList.add('active'));
-  drawer?.querySelector('.backdrop')?.addEventListener('click', ()=> drawer.classList.remove('active'));
-}
-
-// Ambient visual: add orbiting dots
-function addDots(container){
-  if(!container) return;
-  const count = 8;
-  for(let i=0;i<count;i++){
-    const d = document.createElement('div');
-    d.className='dot';
-    // Random orbit radius angle
-    const r = 36 + Math.random()*28; // %
-    const angle = Math.random()*360;
-    d.style.transform = `rotate(${angle}deg) translate(${r}%)`;
-    // spin animation with slightly different durations
-    const dur = 7 + Math.random()*9;
-    d.style.animation = `spin ${dur}s linear infinite`;
-    container.appendChild(d);
-  }
-}
-document.querySelectorAll('.radar').forEach(addDots);
-
-// Cookie banner with preferences
-const STORAGE_KEY = 'vaubia_cookie_prefs_v1';
-function getPrefs(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }catch{ return {}; } }
-function savePrefs(p){ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
-
-const banner = document.getElementById('cookieBanner');
-const prefs = getPrefs();
-if(!('accepted' in prefs)){ banner?.classList.add('active'); }
-
-document.getElementById('acceptCookies')?.addEventListener('click', ()=>{
-  savePrefs({ accepted:true, analytics:true, improve:true, date:Date.now() });
-  banner?.classList.remove('active');
-});
-document.getElementById('declineCookies')?.addEventListener('click', ()=>{
-  savePrefs({ accepted:false, analytics:false, improve:false, date:Date.now() });
-  banner?.classList.remove('active');
-});
-
-// Modal
-const modal = document.getElementById('prefsModal');
-document.getElementById('openPrefs')?.addEventListener('click', ()=> modal?.classList.add('active'));
-document.getElementById('closePrefs')?.addEventListener('click', ()=> modal?.classList.remove('active'));
-
-function bindSwitch(id, key){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const p = getPrefs();
-  if(p[key]) el.classList.add('active');
-  el.addEventListener('click', ()=> el.classList.toggle('active'));
-}
-bindSwitch('toggleAnalytics','analytics');
-bindSwitch('toggleImprove','improve');
-
-document.getElementById('savePrefs')?.addEventListener('click', ()=>{
-  const p = getPrefs();
-  p.accepted = true;
-  p.analytics = document.getElementById('toggleAnalytics')?.classList.contains('active');
-  p.improve = document.getElementById('toggleImprove')?.classList.contains('active');
-  savePrefs(p);
-  modal?.classList.remove('active');
-  banner?.classList.remove('active');
-});
-
-// Pricing toggle
-function setYearly(on){
-  document.querySelectorAll('.price').forEach(el=>{
-    const y = el.getAttribute('data-y');
-    const m = el.getAttribute('data-m');
-    el.textContent = (on ? y : m) + '€';
+if (burger && drawer){
+  burger.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    const opened = drawer.classList.contains('open');
+    burger.setAttribute('aria-expanded', opened);
+    drawer.setAttribute('aria-hidden', !opened);
   });
 }
-document.getElementById('toggleYear')?.addEventListener('click', ()=>setYearly(true));
-document.getElementById('togglePlan')?.addEventListener('click', ()=>setYearly(false));
 
+// Billing toggle
+const toggle = document.getElementById('billingToggle');
+if (toggle){
+  const amounts = document.querySelectorAll('.amount');
+  const perEls = document.querySelectorAll('.per');
+  const update = () => {
+    amounts.forEach(a => {
+      const v = toggle.checked ? a.dataset.y : a.dataset.m;
+      a.textContent = v;
+    });
+    perEls.forEach(p => p.textContent = toggle.checked ? '/mois (annuel)' : '/mois');
+  };
+  toggle.addEventListener('change', update);
+  update();
+}
+
+// Cookie banner
+const storageKey = 'vaubia_cookies_v1';
+const banner = document.getElementById('cookie-banner');
+const modal = document.getElementById('cookie-modal');
+const getPrefs = () => JSON.parse(localStorage.getItem(storageKey) || 'null');
+const savePrefs = (prefs) => localStorage.setItem(storageKey, JSON.stringify(prefs));
+
+const showBannerIfNeeded = () => {
+  if (!getPrefs()) banner.classList.add('show');
+};
+showBannerIfNeeded();
+
+document.querySelectorAll('[data-cookie="accept"]').forEach(btn => btn.onclick = () => {
+  savePrefs({essential:true, analytics:true, improve:true, ts:Date.now()});
+  banner.classList.remove('show'); modal.classList.remove('show');
+});
+document.querySelectorAll('[data-cookie="deny"]').forEach(btn => btn.onclick = () => {
+  savePrefs({essential:true, analytics:false, improve:false, ts:Date.now()});
+  banner.classList.remove('show');
+});
+document.querySelectorAll('[data-cookie="settings"]').forEach(btn => btn.onclick = () => {
+  modal.classList.add('show');
+  const prefs = getPrefs() || {analytics:false, improve:false};
+  const a = document.getElementById('pref-analytics'); if(a) a.checked = !!prefs.analytics;
+  const i = document.getElementById('pref-improve'); if(i) i.checked = !!prefs.improve;
+});
+document.querySelectorAll('[data-cookie="close"]').forEach(btn => btn.onclick = () => modal.classList.remove('show'));
+document.querySelectorAll('[data-cookie="save"]').forEach(btn => btn.onclick = () => {
+  const prefs = {
+    essential:true,
+    analytics: document.getElementById('pref-analytics')?.checked || false,
+    improve: document.getElementById('pref-improve')?.checked || false,
+    ts: Date.now()
+  };
+  savePrefs(prefs); modal.classList.remove('show'); banner.classList.remove('show');
+});
+
+// Canvas orbits (subtle floating dots)
+(function(){
+  const c = document.getElementById('orbits');
+  if(!c) return;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const ctx = c.getContext('2d');
+  const resize = () => {
+    c.width = c.clientWidth * dpr;
+    c.height = 200 * dpr;
+  };
+  const initSize = () => {
+    c.style.width = '100%';
+    c.style.height = '200px';
+    resize();
+  };
+  initSize();
+  window.addEventListener('resize', resize);
+
+  const dots = Array.from({length: 24}, (_,i)=> ({
+    r: 50 + i*4,
+    a: Math.random()*Math.PI*2,
+    s: (0.002 + Math.random()*0.002) * (i%2?1:-1)
+  }));
+  function frame(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.save();
+    ctx.translate(c.width/2, c.height/2);
+    dots.forEach((d,i)=>{
+      d.a += d.s;
+      const x = Math.cos(d.a)*d.r*dpr;
+      const y = Math.sin(d.a)*d.r*dpr*0.5;
+      const hue = i%2 ? 180 : 210;
+      ctx.fillStyle = `hsla(${hue}, 90%, 70%, .85)`;
+      ctx.shadowBlur = 12*dpr;
+      ctx.shadowColor = ctx.fillStyle;
+      ctx.beginPath();
+      ctx.arc(x,y, 2.5*dpr, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.restore();
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
