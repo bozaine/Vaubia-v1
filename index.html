@@ -1,96 +1,159 @@
-
-<!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vaubia — Protégez l’essentiel</title>
-<link rel="stylesheet" href="/styles.css">
-<meta name="description" content="Le tableau de bord de sécurité qui veille sur vos comptes, vos fuites de données et votre conformité.">
-</head><body>
-
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="brand"><img src="/assets/logo.svg" alt="Vaubia" width="24" height="24"> Vaubia</a>
-    <span class="badge">Protégez l’essentiel</span>
-    <nav class="menu">
-      <div class="dropdown">
-        <a href="/services.html" onclick="return false" id="featuresBtn">Fonctionnalités ▾</a>
-        <div class="dropdown-menu">
-          <a href="/services.html#monitoring">Monitoring</a>
-          <a href="/services.html#alerts">Alertes</a>
-          <a href="/services.html#reports">Rapports</a>
-          <a href="/services.html#compliance">Conformité</a>
-        </div>
-      </div>
-      <a href="/pricing.html">Tarifs</a>
-      <a href="/docs/legal.html">Mentions légales</a>
-      <a href="/docs/privacy-policy.html">Confidentialité</a>
-      <a href="/contact.html">Contact</a>
-      <a href="#" class="pill">FAQ</a>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vaubia — Protégez l’essentiel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/"><span class="logo-dot"></span> Vaubia</a>
+    <nav class="primary-nav">
+      <a href="services.html">Fonctionnalités</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="docs/legal.html">Légal</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn ghost" href="#">Se connecter</a>
+      <a class="btn primary" href="#demo">Voir une démo</a>
     </nav>
-    <div class="nav-spacer"></div>
-    <a class="btn small ghost" href="#">Se connecter</a>
-    <a class="btn small" href="#">Essai gratuit</a>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-drawer" hidden>
+    <a href="services.html">Fonctionnalités</a>
+    <a href="pricing.html">Tarifs</a>
+    <a href="docs/legal.html">Légal</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn ghost" href="#">Se connecter</a>
+    <a class="btn primary" href="#demo">Voir une démo</a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container h-grid">
-    <div>
-      <div class="pill">Vaubia • Protégez l’essentiel</div>
-      <h1>Simulez, surveillez et décidez<br>en sécurité — en quelques secondes.</h1>
-      <p class="lead">Un cockpit unique pour suivre vos comptes sensibles, détecter les fuites, recevoir des alertes temps réel et rester conforme au RGPD.</p>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        <a class="btn" href="/pricing.html">Commencer gratuitement</a>
-        <a class="btn ghost" href="/services.html">Voir les fonctionnalités</a>
+<main>
+  <!-- HERO à la Runway -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Vaubia • Protégez l’essentiel</p>
+        <h1>Simulez, surveillez et décidez en quelques secondes</h1>
+        <p class="lead">Un tableau de bord qui détecte les fuites de données, suit vos risques et vous alerte en temps réel. Clair, rapide, actionnable.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="pricing.html">Commencer gratuitement</a>
+          <a class="btn ghost" href="#demo">Voir en action</a>
+        </div>
+        <div class="trust-row">
+          <span>Hébergement Vercel</span>
+          <span>•</span>
+          <span>Conformité RGPD</span>
+          <span>•</span>
+          <span>Chiffrement TLS</span>
+        </div>
       </div>
-      <div class="kpis">
-        <div class="kpi"><strong>~60s</strong><br>Onboarding moyen</div>
-        <div class="kpi"><strong>99.9%</strong><br>Uptime (Vercel)</div>
-        <div class="kpi"><strong>RGPD</strong><br>Conformité par défaut</div>
+      <div class="hero-visual">
+        <div class="browser-chrome">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="address">vaubia.com/demo</div>
+        </div>
+        <div class="mock-window">
+          <div class="mock-top">
+            <div class="pill">Risques</div>
+            <div class="pill alt">Conformité</div>
+            <div class="pill">Alertes</div>
+          </div>
+          <div class="mock-body">
+            <div class="mini-card">
+              <h4>Comptes surveillés</h4>
+              <p><strong>24</strong> connectés</p>
+              <div class="sparkline"></div>
+            </div>
+            <div class="mini-card">
+              <h4>Incidents 30j</h4>
+              <p><strong>2</strong> détectés</p>
+              <div class="sparkline alt"></div>
+            </div>
+            <div class="mini-card">
+              <h4>Score sécurité</h4>
+              <p><strong>92</strong>/100</p>
+              <div class="sparkline"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="h-card">
-      <img src="/assets/placeholder-hero.png" alt="Aperçu Vaubia" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.06)">
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <span class="pill">Alertes compromises</span>
-        <span class="pill">Rapports hebdomadaires</span>
-        <span class="pill">CSP/HSTS</span>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <h2>Ce que vous obtenez dès aujourd’hui</h2>
-    <div class="grid-3" style="margin-top:14px">
-      <div class="card"><h3>Alertes en temps réel</h3><p class="lead">Notifications immédiates en cas de fuite d’e‑mail, activité suspecte ou exposition de mot de passe.</p></div>
-      <div class="card"><h3>Rapports hebdo</h3><p class="lead">Un digest clair dans votre boîte mail avec l’état de vos risques et les actions recommandées.</p></div>
-      <div class="card"><h3>Conformité RGPD</h3><p class="lead">Bannière cookie, préférences, mentions légales et politique de confidentialité incluses.</p></div>
-    </div>
-  </div>
-</section>
 
-<footer class="footer">
-  <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-    <div>© 2025 Vaubia — Protégez l’essentiel</div>
-    <div class="list">
-      <a class="pill" href="/docs/privacy-policy.html">Confidentialité</a>
-      <a class="pill" href="/docs/legal.html">Mentions légales</a>
-      <a class="pill" href="/contact.html">Support</a>
-      <a class="pill" href="#" id="openConsent">Paramètres cookies</a>
+    <div class="logos">
+      <div class="container logos-row">
+        <span class="logo">myfitnesspal</span>
+        <span class="logo">AngelList</span>
+        <span class="logo">Lambda</span>
+        <span class="logo">Kit</span>
+        <span class="logo">Spintg</span>
+        <span class="logo">KICK</span>
+      </div>
     </div>
+  </section>
+
+  <!-- Section features rapide -->
+  <section class="features">
+    <div class="container features-grid">
+      <div class="feature">
+        <h3>Alertes en temps réel</h3>
+        <p>Notifications immédiates en cas d’activité suspecte ou d’e‑mail compromis.</p>
+      </div>
+      <div class="feature">
+        <h3>Rapport hebdomadaire</h3>
+        <p>Un digest clair des risques, améliorations et recommandations concrètes.</p>
+      </div>
+      <div class="feature">
+        <h3>Conformité continue</h3>
+        <p>Suivi RGPD, export DPA, registre des traitements simplifié.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo anchor -->
+  <section id="demo" class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <h2>Prêt à essayer ?</h2>
+        <p>Lancez la démo guidée et voyez comment Vaubia sécurise vos comptes en 90 secondes.</p>
+      </div>
+      <a class="btn primary" href="demo.html">Lancer la démo</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand brand--footer"><span class="logo-dot"></span> Vaubia</div>
+      <p>© 2025 Vaubia — Protégez l’essentiel</p>
+    </div>
+    <nav>
+      <a href="services.html">Fonctionnalités</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="docs/legal.html">Mentions légales</a>
+      <a href="docs/privacy-policy.html">Politique de confidentialité</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </div>
 </footer>
-<script src="/consent.js"></script>
-<script>
-// Simple dropdown
-const dd = document.querySelector('.dropdown');
-const btn = document.getElementById('featuresBtn');
-if (btn && dd){ btn.addEventListener('click',()=> dd.classList.toggle('open')); }
-document.addEventListener('click', (e)=>{
-  if(!dd.contains(e.target)) dd.classList.remove('open');
-});
-// open cookie modal
-document.getElementById('openConsent')?.addEventListener('click', (e)=>{ e.preventDefault(); window.openConsent?.(); });
-</script>
 
-</body></html>
+<script>
+// Menu mobile
+const btn = document.querySelector('.hamburger');
+const drawer = document.querySelector('.mobile-drawer');
+btn?.addEventListener('click', () => {
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!open));
+  drawer.hidden = open;
+});
+</script>
+</body>
+</html>
