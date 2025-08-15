@@ -1,71 +1,127 @@
-<!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tarifs · Vaubia</title>
-<meta name="description" content="Vaubia. Protégez l’essentiel."/>
-<link rel="icon" href="assets/logo.svg"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"/><script defer src="app.js"></script>
-</head><body>
-<header class="topbar">
-  <a class="brand" href="index.html"><img src="assets/logo.svg" alt="">Vaubia</a>
-  <nav class="nav">
-    <a href="services.html">Fonctionnalités</a><a href="pricing.html">Tarifs</a><a href="demo.html">Démo</a><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions</a>
-  </nav>
-  <button class="burger" aria-label="Menu"><span></span></button>
-</header>
-<section class="page-hero">
-  <h1>Tarifs</h1><p class="tagline">Des offres claires et sans surprise</p>
-  <div class="tabs"><button class="active" data-mode="monthly">Mensuel</button><button data-mode="yearly">Annuel -17%</button></div>
-</section>
-<section class="container pricing-grid" style="align-items:stretch">
-  <article class="price-card">
-    <h3>Essentiel</h3><div class="price"><span data-price data-m="9" data-y="7">9</span>€<span class="per">/mois</span></div>
-    <ul class="list"><li>Surveillance 1 e-mail</li><li>Alertes basiques</li><li>Rapport mensuel</li></ul>
-    <a class="btn w100" href="#">Souscrire</a></article>
-  <article class="price-card"><span class="ribbon">Recommandé</span>
-    <h3>Pro</h3><div class="price"><span data-price data-m="19" data-y="15">19</span>€<span class="per">/mois</span></div>
-    <ul class="list"><li>Alertes en temps réel</li><li>Rapport hebdomadaire</li><li>Centre de conformité</li><li>Exports PDF</li></ul>
-    <a class="btn primary w100" href="#">Essayer</a></article>
-  <article class="price-card">
-    <h3>Entreprise</h3><div class="price"><span data-price data-m="49" data-y="41">49</span>€<span class="per">/mois</span></div>
-    <ul class="list"><li>SLA et support dédié</li><li>SSO et audit avancé</li><li>Intégrations personnalisées</li></ul>
-    <a class="btn w100" href="contact.html">Demander un devis</a></article>
-</section>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vaubia — Tarifs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-text">Vaubia</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a class="active" href="pricing.html">Tarifs</a>
+      <a href="demo.html">Démo</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-<section class="container" style="margin-top:24px">
-  <div class="card">
-    <h2>Questions fréquentes</h2>
-    <div class="faq">
-      <details class="q"><summary>Puis-je annuler à tout moment ?</summary><div>Oui, depuis votre espace client en un clic.</div></details>
-      <details class="q"><summary>Offrez-vous un essai ?</summary><div>Oui, sur le plan Pro. Contactez-nous pour activer l’essai.</div></details>
-      <details class="q"><summary>Mes données sont-elles en Europe ?</summary><div>Nous privilégions l’hébergement UE ou équivalent avec clauses contractuelles types.</div></details>
-    </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="container cols">
-    <div><div class="brand"><img src="assets/logo.svg" alt="">Vaubia</div><p>Protégez l’essentiel. Fuites détectées, alertes en temps réel, conformité simplifiée.</p></div>
-    <div><strong>Produit</strong><br><a href="services.html">Fonctionnalités</a><br><a href="pricing.html">Tarifs</a><br><a href="demo.html">Démo</a></div>
-    <div><strong>Légal</strong><br><a href="mentions-legales.html">Mentions légales</a><br><a href="politique-confidentialite.html">Confidentialité</a><br><a href="cookies.html">Cookies</a></div>
-    <div><strong>Contact</strong><br><a href="contact.html">Nous écrire</a></div>
-  </div>
-  <div class="container" style="margin-top:14px; color:#9fb5c6">© 2025 Vaubia</div>
-</footer>
+  <main class="container">
+    <section class="hero">
+      <h1>Des offres qui s’adaptent à vos besoins</h1>
+      <p class="sub">Protégez l’essentiel avec une plateforme simple, sûre et efficace.</p>
 
-<div class="cookie-banner" role="dialog" aria-live="polite">
-  <p>Nous utilisons des cookies nécessaires et des cookies d’analyse optionnels. Vous décidez.</p>
-  <div class="cookie-actions">
-    <button class="btn" data-cookie="reject">Tout refuser</button>
-    <button class="btn" data-cookie="settings">Paramètres</button>
-    <button class="btn primary" data-cookie="accept">Tout accepter</button>
-  </div>
-</div>
-<div id="cookie-modal" class="cookie-modal" role="dialog" aria-modal="true" aria-label="Préférences cookies">
-  <div class="cookie-panel">
-    <header><h3>Préférences de confidentialité</h3><button class="btn ghost" data-cookie="close">Fermer</button></header>
-    <div class="switch"><div>Essentiels<br><small>Indispensables au site</small></div><input type="checkbox" class="toggle" checked disabled/></div>
-    <div class="switch"><div>Mesure d’audience<br><small>Améliorer le produit</small></div><input id="toggle-analytics" type="checkbox" class="toggle"/></div>
-    <div class="switch"><div>Marketing<br><small>Personnalisation</small></div><input id="toggle-marketing" type="checkbox" class="toggle"/></div>
-    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px"><button class="btn" id="save-preferences">Enregistrer</button></div>
-  </div>
-</div></body></html>
+      <div class="billing-toggle" role="group" aria-label="Choix de facturation">
+        <button class="billing-btn" data-mode="monthly" aria-pressed="true">Mensuel</button>
+        <button class="billing-btn" data-mode="yearly">
+          Annuel <span class="badge">-17%</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="carousel-wrap">
+      <button class="carousel-arrow left" aria-label="Précédent">‹</button>
+
+      <div class="carousel" id="carousel">
+        <!-- Slides (dupliqués via JS pour un carrousel infini) -->
+        <article class="plan" data-price-month="29">
+          <header>
+            <h3>Starter</h3>
+            <p>Idéal pour débuter en toute sécurité.</p>
+          </header>
+          <div class="price">
+            <span class="amount">29</span><span class="currency">€</span><span class="period">/mois</span>
+            <div class="save"></div>
+          </div>
+          <ul class="features">
+            <li>Surveillance d’un domaine</li>
+            <li>Alertes temps réel</li>
+            <li>Rapport hebdomadaire</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Souscrire</a>
+        </article>
+
+        <article class="plan plan-featured" data-price-month="59">
+          <header>
+            <h3>Pro</h3>
+            <p>Pour les équipes qui veulent aller vite.</p>
+          </header>
+          <div class="price">
+            <span class="amount">59</span><span class="currency">€</span><span class="period">/mois</span>
+            <div class="save"></div>
+          </div>
+          <ul class="features">
+            <li>Jusqu’à 5 domaines</li>
+            <li>Détection fuites + dark web</li>
+            <li>Journal d’audit & conformité</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Souscrire</a>
+        </article>
+
+        <article class="plan" data-price-month="99">
+          <header>
+            <h3>Business</h3>
+            <p>La sécurité complète pour grandir sereinement.</p>
+          </header>
+          <div class="price">
+            <span class="amount">99</span><span class="currency">€</span><span class="period">/mois</span>
+            <div class="save"></div>
+          </div>
+          <ul class="features">
+            <li>Illimité domaines & comptes</li>
+            <li>Playbooks d’intervention</li>
+            <li>Support prioritaire 24/7</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Souscrire</a>
+        </article>
+      </div>
+
+      <button class="carousel-arrow right" aria-label="Suivant">›</button>
+    </section>
+
+    <section class="faq">
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary>Puis-je changer d’offre à tout moment ?</summary>
+        <p>Oui, le changement d’offre est possible instantanément. La facturation est ajustée au prorata.</p>
+      </details>
+      <details>
+        <summary>Les prix sont-ils HT ou TTC ?</summary>
+        <p>Les prix affichés sont hors taxes (HT).</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Vaubia — Protégez l’essentiel</p>
+    <nav>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="cookies.html">Cookies</a>
+    </nav>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
