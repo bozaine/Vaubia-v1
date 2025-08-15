@@ -1,110 +1,51 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Contact • Vaubia</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"/>
-  <meta name="theme-color" content="#0D1B2A">
-</head>
-<body>
-<div class="ambient" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="rings"></div>
-  <canvas id="orbits" aria-hidden="true"></canvas>
-</div>
-<header class="site-header">
-  <a class="brand" href="index.html">
-    <img src="assets/logo.svg" width="28" height="28" alt="Vaubia"/>
-    <span>Vaubia</span>
-  </a>
-  <nav class="top-nav">
-    <a href="services.html">Fonctionnalités</a>
-    <a href="pricing.html">Tarifs</a>
-    <a href="demo.html">Démo</a>
-    <a href="contact.html">Contact</a>
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Contact · Vaubia</title>
+<meta name="description" content="Vaubia. Protégez l’essentiel."/>
+<link rel="icon" href="assets/logo.svg"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/><script defer src="app.js"></script>
+</head><body>
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="assets/logo.svg" alt="">Vaubia</a>
+  <nav class="nav">
+    <a href="services.html">Fonctionnalités</a><a href="pricing.html">Tarifs</a><a href="demo.html">Démo</a><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions</a>
   </nav>
-  <button class="burger" aria-label="Ouvrir le menu" aria-controls="drawer" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="burger" aria-label="Menu"><span></span></button>
 </header>
-<aside id="drawer" class="drawer" aria-hidden="true">
-  <a href="index.html">Accueil</a>
-  <a href="services.html">Fonctionnalités</a>
-  <a href="pricing.html">Tarifs</a>
-  <a href="demo.html">Démo</a>
-  <a href="contact.html">Contact</a>
-  <a href="legal.html">Mentions légales</a>
-  <a href="privacy.html">Politique de confidentialité</a>
-</aside>
-<main class="page">
-
-<section class="hero mini">
-  <h1>Contact</h1>
-  <p class="lead">Parlez-nous de vos besoins.</p>
-</section>
-<section class="contact panel">
-  <form class="form">
-    <label>Nom<input required type="text" placeholder="Votre nom"></label>
-    <label>Email<input required type="email" placeholder="vous@exemple.com"></label>
-    <label>Message<textarea rows="5" placeholder="Quelques lignes…"></textarea></label>
-    <button class="btn">Envoyer</button>
+<section class="page-hero"><h1>Contact</h1><p class="tagline">Réponse rapide sous 24 h ouvrées</p></section>
+<section class="container">
+  <form class="card" style="max-width:640px;margin:0 auto">
+    <label>Nom<br><input style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.05);color:var(--text)" required></label><br>
+    <label>Email<br><input type="email" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.05);color:var(--text)" required></label><br>
+    <label>Message<br><textarea rows="5" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.05);color:var(--text)"></textarea></label><br>
+    <button class="btn primary" type="submit">Envoyer</button>
   </form>
 </section>
-
-</main>
-<footer class="site-footer">
-  <div>© 2025 Vaubia — Protégez l’essentiel</div>
-  <nav>
-    <a href="legal.html">Mentions légales</a>
-    <a href="privacy.html">Confidentialité</a>
-  </nav>
+<footer class="footer">
+  <div class="container cols">
+    <div><div class="brand"><img src="assets/logo.svg" alt="">Vaubia</div><p>Protégez l’essentiel. Fuites détectées, alertes en temps réel, conformité simplifiée.</p></div>
+    <div><strong>Produit</strong><br><a href="services.html">Fonctionnalités</a><br><a href="pricing.html">Tarifs</a><br><a href="demo.html">Démo</a></div>
+    <div><strong>Légal</strong><br><a href="mentions-legales.html">Mentions légales</a><br><a href="politique-confidentialite.html">Confidentialité</a><br><a href="cookies.html">Cookies</a></div>
+    <div><strong>Contact</strong><br><a href="contact.html">Nous écrire</a></div>
+  </div>
+  <div class="container" style="margin-top:14px; color:#9fb5c6">© 2025 Vaubia</div>
 </footer>
 
-<!-- Cookies -->
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Bannière cookies">
-  <div class="cookie-content">
-    <h4>🍪 Cookies</h4>
-    <p>Nous utilisons des cookies essentiels pour faire fonctionner le site et des cookies de mesure d’audience optionnels.</p>
-    <div class="cookie-actions">
-      <button class="btn btn-ghost" data-cookie="settings">Paramètres</button>
-      <button class="btn btn-ghost" data-cookie="deny">Refuser</button>
-      <button class="btn" data-cookie="accept">Accepter</button>
-    </div>
+<div class="cookie-banner" role="dialog" aria-live="polite">
+  <p>Nous utilisons des cookies nécessaires et des cookies d’analyse optionnels. Vous décidez.</p>
+  <div class="cookie-actions">
+    <button class="btn" data-cookie="reject">Tout refuser</button>
+    <button class="btn" data-cookie="settings">Paramètres</button>
+    <button class="btn primary" data-cookie="accept">Tout accepter</button>
   </div>
 </div>
-
-<div id="cookie-modal" class="cookie-modal" aria-hidden="true" role="dialog" aria-label="Préférences cookies">
+<div id="cookie-modal" class="cookie-modal" role="dialog" aria-modal="true" aria-label="Préférences cookies">
   <div class="cookie-panel">
-    <header>
-      <h4>Préférences cookies</h4>
-      <button class="icon close" data-cookie="close" aria-label="Fermer">✕</button>
-    </header>
-    <div class="prefs">
-      <label class="switch">
-        <input type="checkbox" checked disabled>
-        <span>Essentiels (obligatoires)</span>
-      </label>
-      <label class="switch">
-        <input id="pref-analytics" type="checkbox">
-        <span>Mesure d’audience</span>
-      </label>
-      <label class="switch">
-        <input id="pref-improve" type="checkbox">
-        <span>Amélioration produit</span>
-      </label>
-    </div>
-    <footer class="panel-actions">
-      <button class="btn btn-ghost" data-cookie="save">Enregistrer</button>
-      <button class="btn" data-cookie="accept">Tout accepter</button>
-    </footer>
+    <header><h3>Préférences de confidentialité</h3><button class="btn ghost" data-cookie="close">Fermer</button></header>
+    <div class="switch"><div>Essentiels<br><small>Indispensables au site</small></div><input type="checkbox" class="toggle" checked disabled/></div>
+    <div class="switch"><div>Mesure d’audience<br><small>Améliorer le produit</small></div><input id="toggle-analytics" type="checkbox" class="toggle"/></div>
+    <div class="switch"><div>Marketing<br><small>Personnalisation</small></div><input id="toggle-marketing" type="checkbox" class="toggle"/></div>
+    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px"><button class="btn" id="save-preferences">Enregistrer</button></div>
   </div>
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+</div></body></html>
