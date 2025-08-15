@@ -1,122 +1,88 @@
-
-<!doctype html><html lang="fr"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vaubia — Protégez l’essentiel</title>
-<link rel="stylesheet" href="/styles.css">
-</head><body>
-
-<header>
-  <div class="container nav">
-    <a class="brand" href="/"><span class="dot"></span> Vaubia</a>
-    <nav class="nav-links">
-      <a href="/" class="active">Accueil</a>
-      <a href="/features.html">Fonctionnalités</a>
-      <a href="/pricing.html">Tarifs</a>
-      <a href="/demo.html">Démo</a>
-      <a href="/legal.html">Légal</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="btn secondary" href="/login.html">Se connecter</a>
-      <button class="burger" aria-label="menu"><span></span></button>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Accueil • Vaubia</title>
+  <meta name="description" content="Vaubia — Protégez l’essentiel. Sécurité numérique, conformité et alertes en temps réel.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-badge"></span> Vaubia
+      </a>
+      <div class="nav-links">
+        <a href="index.html" style="opacity:1">Accueil</a>
+        <a href="features.html">Fonctionnalités</a>
+        <a href="pricing.html">Tarifs</a>
+        <a href="demo.html">Démo</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="login.html">Se connecter</a>
+      </div>
+      <button class="hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+  <div class="mobile-drawer" id="drawer" onclick="toggleMenu()">
+    <div class="mobile-sheet" onclick="event.stopPropagation()">
+      <div class="logo" style="margin-bottom:8px"><span class="logo-badge"></span> Vaubia</div>
+      <a class="mobile-link" href="index.html">Accueil</a>
+      <a class="mobile-link" href="features.html">Fonctionnalités</a>
+      <a class="mobile-link" href="pricing.html">Tarifs</a>
+      <a class="mobile-link" href="demo.html">Démo</a>
+      <a class="mobile-link" href="contact.html">Contact</a>
+      <a class="mobile-link" href="legal.html">Mentions légales</a>
+      <a class="mobile-link" href="privacy.html">Politique de confidentialité</a>
+      <div style="margin-top:auto" class="small">© 2025 Vaubia — Protégez l’essentiel</div>
     </div>
   </div>
-</header>
-<div class="overlay"></div>
-<aside class="mobile-drawer" aria-hidden="true">
-  <header>
-    <div class="brand"><span class="dot"></span> Vaubia</div>
-    <button id="close-drawer" class="btn secondary" style="padding:.5rem .75rem">Fermer</button>
-  </header>
-  <nav>
-    <a href="/">Accueil</a>
-    <a href="/features.html">Fonctionnalités</a>
-    <a href="/pricing.html">Tarifs</a>
-    <a href="/demo.html">Démo</a>
-    <a href="/legal.html">Légal</a>
-    <a href="/contact.html">Contact</a>
-    <a class="btn" style="margin-top:.6rem" href="/signup.html">Essayer gratuitement</a>
-  </nav>
-</aside>
 
-<section class="hero">
-  <div class="container">
-    <span class="badge">Vaubia • Protégez l’essentiel</span>
-    <h1>Simulez, surveillez et sécurisez vos risques en quelques secondes</h1>
-    <p class="lead">Un tableau de bord unifié pour détecter les fuites, piloter la conformité et recevoir des alertes en temps réel — sans friction.</p>
-    <div class="hero-cta">
-      <a class="btn" href="/signup.html">Commencer</a>
-      <a class="btn secondary" href="/demo.html">Voir en action</a>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Vaubia • Protégez l’essentiel</span>
+      <h1>Simulez, surveillez et sécurisez <br>vos données en quelques secondes</h1>
+      <p>Pilotez votre sécurité numérique depuis un tableau de bord élégant : alertes en temps réel, rapports hebdomadaires, conformité RGPD — sans complexité.</p>
+      <div class="hero-cta">
+        <a class="btn" href="demo.html">Voir une démo</a>
+        <a class="btn secondary" href="pricing.html">Voir les tarifs</a>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="v">99.99%</div><div class="small">Uptime (Vercel)</div></div>
+        <div class="kpi"><div class="v">TLS</div><div class="small">Chiffrement de bout en bout</div></div>
+        <div class="kpi"><div class="v">RGPD</div><div class="small">Conformité & DPA</div></div>
+        <div class="kpi"><div class="v">Alertes</div><div class="small">Fuites & comptes compromis</div></div>
+      </div>
+      <img alt="aperçu du dashboard" src="assets/hero-placeholder.webp" style="width:100%;border:1px solid var(--border);border-radius:16px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.35)">
     </div>
-    <div class="mock">
-      <div class="bar"><div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="badge">aperçu</span></div>
-      <div class="screen">
-        <div class="dashboard">
-          <aside class="sidebar">
-            <h4>Surveillance</h4>
-            <div class="item active">Fuites de données</div>
-            <div class="item">Mots de passe</div>
-            <div class="item">Identités</div>
-            <h4>Conformité</h4>
-            <div class="item">RGPD</div>
-            <div class="item">Journal d’audit</div>
-          </aside>
-          <main class="main">
-            <div class="kpis">
-              <div class="card"><span class="badge">Fuites</span><h3 class="big">0</h3><div class="note">Cette semaine</div></div>
-              <div class="card"><span class="badge">Comptes suivis</span><h3 class="big">14</h3><div class="note">Actifs</div></div>
-              <div class="card"><span class="badge">Santé</span><h3 class="big">A+</h3><div class="note">Score global</div></div>
-              <div class="card"><span class="badge">Conformité</span><h3 class="big">95%</h3><div class="note">RGPD</div></div>
-            </div>
-            <div class="card" style="margin-top:12px">
-              <div class="chart"></div>
-            </div>
-          </main>
-        </div>
+  </section>
+  <section class="container">
+    <div class="grid-3">
+      <div class="card"><span class="badge">Détection</span><h3>Alertes en temps réel</h3><p class="small">Nous scannons les sources publiques pour détecter les fuites d’identifiants associées à votre e‑mail.</p></div>
+      <div class="card"><span class="badge">Prévention</span><h3>Audit automatique</h3><p class="small">Analyse de mots de passe, MFA, paramètres de confidentialité et recommandations concrètes.</p></div>
+      <div class="card"><span class="badge">Conformité</span><h3>Rapports & RGPD</h3><p class="small">Journal d’événements, export PDF, aide à la documentation et à la réponse aux demandes d’accès.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div>© 2025 Vaubia — Protégez l’essentiel</div>
+      <div style="display:flex;gap:14px">
+        <a href="legal.html">Mentions légales</a>
+        <a href="privacy.html">Confidentialité</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
-    <div class="logos">
-      <span class="badge">Confiance</span>
-      <span class="badge">Vercel</span>
-      <span class="badge">Cloudflare</span>
-      <span class="badge">Stripe</span>
-      <span class="badge">Posthog</span>
-    </div>
-    <div class="features">
-      <div class="feature"><h3>Alertes en temps réel</h3><p>Notifications immédiates en cas d’activité suspecte ou fuite détectée.</p></div>
-      <div class="feature"><h3>Rapports hebdomadaires</h3><p>Digest clair avec tendances, score et actions recommandées.</p></div>
-      <div class="feature"><h3>Conformité prête</h3><p>RGPD by‑design : consentement, registre, suppression & portabilité.</p></div>
+  </footer>
+
+  <div class="cookie-bar" id="cookieBar">
+    <p>Nous utilisons des cookies pour mesurer l’audience et améliorer votre expérience. <a href="privacy.html">En savoir plus</a>.</p>
+    <div class="cookie-actions">
+      <button class="btn" onclick="acceptCookies()">Accepter</button>
+      <button class="btn secondary" onclick="rejectCookies()">Refuser</button>
     </div>
   </div>
-</section>
-
-<footer>
-  <div class="container wrap">
-    <div>
-      <div class="brand"><span class="dot"></span> Vaubia</div>
-      <p class="note">Protégez l’essentiel. Veille de sécurité, conformité RGPD, alertes & rapports.</p>
-    </div>
-    <div>
-      <h4>Produit</h4>
-      <a href="/features.html">Fonctionnalités</a><br>
-      <a href="/pricing.html">Tarifs</a><br>
-      <a href="/demo.html">Démo</a>
-    </div>
-    <div>
-      <h4>Entreprise</h4>
-      <a href="/about.html">À propos</a><br>
-      <a href="/contact.html">Contact</a><br>
-      <a href="/careers.html">Carrières</a>
-    </div>
-    <div>
-      <h4>Légal</h4>
-      <a href="/legal.html#terms">CGU</a><br>
-      <a href="/legal.html#privacy">Confidentialité</a><br>
-      <a href="/legal.html#cookies">Cookies</a>
-    </div>
-  </div>
-  <div class="copy">© 2025 Vaubia — Protégez l’essentiel</div>
-</footer>
-
-<script src="/app.js"></script>
-</body></html>
+</body>
+</html>

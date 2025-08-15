@@ -1,139 +1,69 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mentions légales & politique – Vaubia</title>
+  <title>Mentions légales • Vaubia</title>
+  <meta name="description" content="Vaubia — Protégez l’essentiel. Sécurité numérique, conformité et alertes en temps réel.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="assets/favicon.svg">
+  <script defer src="app.js"></script>
 </head>
 <body>
-  <nav>
-    <a class="brand" href="index.html"><span class="dot"></span>Vaubia</a>
-    <div class="actions">
-      <a class="btn ghost" href="pricing.html">Tarifs</a>
-      <div class="burger" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-badge"></span> Vaubia
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="features.html">Fonctionnalités</a>
+        <a href="pricing.html">Tarifs</a>
+        <a href="demo.html">Démo</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="login.html">Se connecter</a>
+      </div>
+      <button class="hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">☰</button>
     </div>
   </nav>
-
-  <aside class="drawer" aria-hidden="true">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div class="brand"><span class="dot"></span>Vaubia</div>
-      <button class="btn ghost close-drawer">Fermer</button>
+  <div class="mobile-drawer" id="drawer" onclick="toggleMenu()">
+    <div class="mobile-sheet" onclick="event.stopPropagation()">
+      <div class="logo" style="margin-bottom:8px"><span class="logo-badge"></span> Vaubia</div>
+      <a class="mobile-link" href="index.html">Accueil</a>
+      <a class="mobile-link" href="features.html">Fonctionnalités</a>
+      <a class="mobile-link" href="pricing.html">Tarifs</a>
+      <a class="mobile-link" href="demo.html">Démo</a>
+      <a class="mobile-link" href="contact.html">Contact</a>
+      <a class="mobile-link" href="legal.html">Mentions légales</a>
+      <a class="mobile-link" href="privacy.html">Politique de confidentialité</a>
+      <div style="margin-top:auto" class="small">© 2025 Vaubia — Protégez l’essentiel</div>
     </div>
-    <a href="index.html">Accueil</a>
-    <a href="features.html">Fonctionnalités</a>
-    <a href="pricing.html">Tarifs</a>
-    <a href="demo.html">Démo</a>
-    <a href="legal.html">Légal</a>
-    <a href="contact.html">Contact</a>
-  </aside>
-
-  <main class="container legal">
-    <section class="hero">
-      <h1>Mentions légales & documents de conformité</h1>
-      <p class="p">Transparence, sécurité et conformité sont au cœur de notre service. Cette page regroupe nos Mentions légales, CGU, Politique de confidentialité et Politique Cookies.</p>
-    </section>
-
-    <section class="panel">
-      <h2>Mentions légales</h2>
-      <div class="kv">
-        <div>Éditeur</div><div><strong>Vaubia</strong> – <em>[Raison sociale / forme / capital]</em><br>SIREN : <em>[à compléter]</em> — Siège : <em>[adresse]</em><br>Contact : <a href="mailto:legal@vaubia.com">legal@vaubia.com</a></div>
-        <div>Directeur de publication</div><div><em>[Nom, fonction]</em></div>
-        <div>Hébergement</div><div>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA (hébergement applicatif).<br>Nom de domaine chez OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.</div>
-      </div>
-    </section>
-
-    <section class="panel" style="margin-top:18px">
-      <h2>Conditions Générales d’Utilisation (CGU)</h2>
-      <h3>Objet</h3>
-      <p>Vaubia fournit des services de surveillance et d’alerte (fuites de données, sécurité des comptes, conformité), accessibles via le site <em>vaubia.com</em>. L’utilisation implique l’acceptation des présentes CGU.</p>
-      <h3>Accès au service</h3>
-      <ul>
-        <li>Compte utilisateur requis. Vous vous engagez à fournir des informations exactes et à maintenir la confidentialité de vos identifiants.</li>
-        <li>Vaubia peut suspendre l’accès en cas d’usage abusif, frauduleux ou contraire à la loi.</li>
-      </ul>
-      <h3>Responsabilités</h3>
-      <ul>
-        <li>Vaubia fournit des alertes et recommandations à titre d’aide à la décision ; l’utilisateur reste responsable de ses actions et configurations de sécurité.</li>
-        <li>Nos obligations sont de moyens, pas de résultat. Nous visons une disponibilité élevée mais ne garantissons pas l’absence totale d’interruption.</li>
-      </ul>
-      <h3>Propriété intellectuelle</h3>
-      <p>Le site, sa charte graphique et les contenus sont protégés. Toute reproduction non autorisée est interdite.</p>
-      <h3>Durée et résiliation</h3>
-      <p>Les abonnements sont mensuels ou annuels, renouvelés tacitement, résiliables à tout moment depuis le compte (effet à l’échéance en cours).</p>
-      <h3>Droit applicable</h3>
-      <p>Droit français. En cas de litige, compétence des tribunaux du ressort du siège social, sous réserve des règles impératives applicables aux consommateurs.</p>
-    </section>
-
-    <section class="panel" style="margin-top:18px">
-      <h2>Politique de confidentialité (RGPD)</h2>
-      <h3>Responsable de traitement</h3>
-      <p><strong>Vaubia</strong> – <a href="mailto:dpo@vaubia.com">dpo@vaubia.com</a> — Délégué à la protection des données (DPO) : <em>[Nom à compléter]</em>.</p>
-      <h3>Données traitées & finalités</h3>
-      <ul>
-        <li><strong>Compte</strong> : identité, contact, authentification (ex. 2FA) – gestion du compte et sécurité.</li>
-        <li><strong>Surveillance</strong> : adresses e‑mail/domains fournis par l’utilisateur – détection d’exposition/fuites publiques.</li>
-        <li><strong>Facturation</strong> : adresse, pays, moyens de paiement (via prestataire) – gestion des abonnements.</li>
-        <li><strong>Support/analytics</strong> : journaux techniques pseudonymisés – amélioration du service, prévention fraude.</li>
-      </ul>
-      <h3>Bases légales</h3>
-      <ul>
-        <li>Exécution du contrat (art. 6‑1‑b) : création de compte, fourniture des fonctionnalités.</li>
-        <li>Intérêt légitime (art. 6‑1‑f) : sécurité, lutte contre l’abus, statistiques agrégées.</li>
-        <li>Consentement (art. 6‑1‑a) : cookies non essentiels, communications marketing.</li>
-      </ul>
-      <h3>Durées de conservation</h3>
-      <ul>
-        <li>Compte : durée de l’abonnement + 3 ans (prospection) puis archivage légal/effacement.</li>
-        <li>Logs : 12 mois max sauf obligations légales/gestion d’incidents.</li>
-        <li>Facturation : 10 ans (obligations comptables).</li>
-      </ul>
-      <h3>Destinataires & sous‑traitants</h3>
-      <ul>
-        <li>Hébergement : Vercel (USA) – clauses contractuelles types (CCT/SCC) + protections techniques.</li>
-        <li>DNS/nom de domaine : OVHcloud (UE).</li>
-        <li>Formulaires contact : Formspree/Getform (USA) si utilisé – CCT et consentement requis.</li>
-      </ul>
-      <h3>Transferts hors UE</h3>
-      <p>Le cas échéant, encadrés par CCT et mesures complémentaires (chiffrement, minimisation).</p>
-      <h3>Vos droits</h3>
-      <p>Accès, rectification, effacement, opposition, limitation, portabilité, directives post‑mortem : écrire à <a href="mailto:dpo@vaubia.com">dpo@vaubia.com</a>. Réclamation : CNIL.</p>
-      <h3>Sécurité</h3>
-      <ul>
-        <li>Chiffrement TLS en transit, chiffrement sélectif au repos pour secrets.</li>
-        <li>Gestion des accès par rôles, 2FA, rotation des clés, journalisation des événements sensibles.</li>
-        <li>Tests réguliers et correctifs de sécurité, sauvegardes chiffrées.</li>
-      </ul>
-    </section>
-
-    <section class="panel" style="margin-top:18px">
-      <h2>Politique Cookies</h2>
-      <p>Nous utilisons des cookies essentiels pour faire fonctionner le site et, avec votre consentement, des cookies d’analyse (mesure d’audience agrégée) et de marketing.</p>
-      <ul>
-        <li><strong>Essentiels</strong> : connexion, préférence de langue, bannière de consentement.</li>
-        <li><strong>Analytics</strong> (optionnel) : mesure de fréquentation anonyme/agrégée.</li>
-        <li><strong>Marketing</strong> (optionnel) : uniquement si vous l’acceptez.</li>
-      </ul>
-      <p>Vous pouvez modifier votre choix à tout moment via « Paramètres cookies » en bas de page.</p>
-    </section>
-
-    <footer>
-      © 2025 Vaubia — Protégez l’essentiel · <a href="legal.html">Légal</a>
-    </footer>
-  </main>
-
-  <div class="cookie-banner" role="dialog" aria-live="polite">
-    <div><strong>Cookies</strong> — nous utilisons des cookies essentiels, et avec votre accord, des cookies d’analyse. </div>
-    <div class="cookie-actions">
-      <button id="acceptAll" class="btn">Tout accepter</button>
-      <button id="declineAll" class="btn ghost">Essentiels uniquement</button>
-      <a href="legal.html" class="btn ghost">En savoir plus</a>
-    </div>
-    <div class="small">Vous pourrez revenir sur votre choix à tout moment.</div>
   </div>
 
-  <script src="app.js"></script>
+  <section class="container hero" style="padding-top:28px">
+    <h1>Mentions légales</h1>
+    <p class="small">Éditeur : Vaubia SAS – 10 rue Exemple, 75000 Paris – contact@vaubia.com • Directeur de la publication : B. Ozaine • Hébergement : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.</p>
+    <div class="card"><h3>Propriété intellectuelle</h3><p class="small">Le site et ses contenus sont protégés. Toute reproduction non autorisée est interdite.</p></div>
+    <div class="card"><h3>Responsabilité</h3><p class="small">Vaubia met tout en œuvre pour assurer l’exactitude des informations sans garantie d’exhaustivité.</p></div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div>© 2025 Vaubia — Protégez l’essentiel</div>
+      <div style="display:flex;gap:14px">
+        <a href="legal.html">Mentions légales</a>
+        <a href="privacy.html">Confidentialité</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-bar" id="cookieBar">
+    <p>Nous utilisons des cookies pour mesurer l’audience et améliorer votre expérience. <a href="privacy.html">En savoir plus</a>.</p>
+    <div class="cookie-actions">
+      <button class="btn" onclick="acceptCookies()">Accepter</button>
+      <button class="btn secondary" onclick="rejectCookies()">Refuser</button>
+    </div>
+  </div>
 </body>
 </html>
