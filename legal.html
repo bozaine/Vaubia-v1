@@ -1,70 +1,26 @@
-<!doctype html><html lang="fr"><head>  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="assets/img/logo.svg">
-<title>Mentions légales — Vaubia</title></head>
-<body><canvas id="bg"></canvas><header class="nav">
-  <a class="brand" href="index.html">
-    <img src="assets/img/logo.svg" alt="Vaubia" class="logo">
-    <span>Vaubia</span>
-  </a>
-  <nav class="desktop-only">
-    <a href="features.html">Fonctionnalités</a>
-    <a href="pricing.html">Tarifs</a>
-    <a href="demo.html">Démo</a>
-    <a href="contact.html">Contact</a>
-    <div class="menu-divider"></div>
-    <a class="btn ghost" href="login.html">Se connecter</a>
-    <a class="btn" href="pricing.html#plans">Essai gratuit</a>
-  </nav>
-  <button class="burger mobile-only" aria-label="Ouvrir le menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-<div id="mobileMenu" class="mobile-menu">
-  <a href="features.html">Fonctionnalités</a>
-  <a href="pricing.html">Tarifs</a>
-  <a href="demo.html">Démo</a>
-  <a href="contact.html">Contact</a>
-  <a href="legal.html">Mentions légales</a>
-  <a href="privacy.html">Vie privée</a>
-  <a href="cookies.html">Cookies</a>
-  <div class="menu-actions">
-    <a class="btn ghost w100" href="login.html">Se connecter</a>
-    <a class="btn w100" href="pricing.html#plans">Essai gratuit</a>
-  </div>
-</div>
-<main class="container narrow"><h1>Mentions légales</h1>
-<p><strong>Éditeur :</strong> Vaubia — Raison sociale / SIREN à compléter.</p>
-<p><strong>Hébergement :</strong> Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.</p>
-<p><strong>Contact :</strong> contact@vaubia.com</p>
-</main><footer class="footer">
-  <div class="grid">
-    <div>
-      <div class="brand mark">
-        <img src="assets/img/logo.svg" class="logo" alt="Vaubia"> Vaubia
-      </div>
-      <p class="muted">Protégez l’essentiel : surveillez vos identités, alertes en temps réel, conformité RGPD.</p>
-      <button class="link" onclick="openCookiePrefs()">Paramètres cookies</button>
-    </div>
-    <div>
-      <h4>Produit</h4>
-      <a href="features.html">Fonctionnalités</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="demo.html">Démo</a>
-    </div>
-    <div>
-      <h4>Entreprise</h4>
-      <a href="contact.html">Contact</a>
-      <a href="legal.html">Mentions légales</a>
-      <a href="privacy.html">Vie privée</a>
-    </div>
-  </div>
-  <p class="tiny muted">© 2025 Vaubia — Tous droits réservés.</p>
-</footer>
-<script src="assets/js/app.js"></script>
-</body></html>
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mentions légales — Vaubia</title><link rel="icon" href="/assets/logo.svg"/><link rel="stylesheet" href="/styles.css"/></head>
+<body>
+<header class="header"><div class="container"><nav class="nav">
+<a class="brand" href="/"><img src="/assets/logo.svg" alt=""><span>Vaubia</span></a>
+<a class="top-link" href="/services.html">Fonctionnalités</a>
+<a class="top-link" href="/pricing.html">Tarifs</a>
+<a class="top-link" href="/demo.html">Démo</a>
+<div class="nav-spacer"></div>
+<a class="top-link" href="/contact.html">Contact</a>
+<button class="hamburger" id="openDrawer" aria-label="Ouvrir le menu"><span></span></button>
+</nav></div></header>
+<div class="drawer" id="drawer"><div class="backdrop"></div><div class="panel">
+<a href="/">Accueil</a><a href="/services.html">Fonctionnalités</a><a href="/pricing.html">Tarifs</a><a href="/demo.html">Démo</a><a href="/legal.html">Mentions légales</a><a href="/privacy.html">Politique de confidentialité</a><a href="/contact.html">Contact</a></div></div>
+<main class="container" style="padding:34px 0 60px">
+<h1>Mentions légales</h1>
+<p style="color:var(--muted)">Éditeur : Vaubia — Bastien Ozaine<br/>
+Hébergement : Vercel Inc.<br/>
+Contact : contact@vaubia.com</p>
+</main>
+<footer class="footer"><div class="container">
+<span>© 2025 Vaubia</span>
+<div style="float:right"><a href="/legal.html">Mentions légales</a><a href="/privacy.html">Confidentialité</a></div>
+</div></footer>
+<script src="/app.js" defer></script></body></html>

@@ -1,69 +1,29 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="icon" href="/assets/logo.svg">
-<title>Démo — Vaubia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
-<script defer src="/app.js"></script>
-</head>
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Démo — Vaubia</title><link rel="icon" href="/assets/logo.svg"/><link rel="stylesheet" href="/styles.css"/></head>
 <body>
-<nav class="nav">
-  <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/logo.svg" alt="Vaubia"><strong>Vaubia</strong></a>
-    <div class="menu">
-      <a href="/services.html" >Services</a>
-      <a href="/pricing.html" >Tarifs</a>
-      <a href="/contact.html" >Contact</a>
-      <a href="/demo.html" class='active'>Démo</a>
-      <a href="/legal.html">Mentions</a>
-      <button class="btn neon cta" onclick="location.href='/contact.html#demo'">Essai gratuit</button>
-    </div>
-    <button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-  <div class="sheet">
-    <a href="/services.html">Services</a>
-    <a href="/pricing.html">Tarifs</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/demo.html">Démo</a>
-    <a href="/legal.html">Mentions</a>
-  </div>
-</nav>
-
-<header class="page-hero">
-  <h1>Démo interactive</h1>
-  <p class="lead">Aperçu statique du tableau de bord — pour se projeter avant l’essai.</p>
-</header>
-<section class="section">
-  <div class="wrap">
-    <div class="mock">
-      <div class="status">Tableau de bord</div>
-      <canvas id="dashboard"></canvas>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap grid">
-    <div>© 2025 Vaubia — Protégez l’essentiel</div>
-    <div style="text-align:right">
-      <a href="/privacy.html">Politique de confidentialité</a> ·
-      <a href="/cookies.html">Cookies</a>
-    </div>
-  </div>
-</footer>
-
-<div class="cookie" role="dialog" aria-live="polite">
-  <h4>🍪 Cookies</h4>
-  <p>Nous utilisons uniquement des cookies essentiels pour faire fonctionner le site et améliorer votre expérience.</p>
-  <div class="row">
-    <button class="btn" data-accept>Accepter</button>
-    <button class="btn ghost" data-prefs>Paramètres</button>
-  </div>
+<header class="header"><div class="container"><nav class="nav">
+<a class="brand" href="/"><img src="/assets/logo.svg" alt=""><span>Vaubia</span></a>
+<a class="top-link" href="/services.html">Fonctionnalités</a>
+<a class="top-link" href="/pricing.html">Tarifs</a>
+<a class="top-link" href="/demo.html">Démo</a>
+<div class="nav-spacer"></div>
+<a class="top-link" href="/contact.html">Contact</a>
+<button class="hamburger" id="openDrawer" aria-label="Ouvrir le menu"><span></span></button>
+</nav></div></header>
+<div class="drawer" id="drawer"><div class="backdrop"></div><div class="panel">
+<a href="/">Accueil</a><a href="/services.html">Fonctionnalités</a><a href="/pricing.html">Tarifs</a><a href="/demo.html">Démo</a><a href="/legal.html">Mentions légales</a><a href="/privacy.html">Politique de confidentialité</a><a href="/contact.html">Contact</a></div></div>
+<main class="container" style="padding:34px 0 60px">
+<h1>Démo interactive</h1>
+<p style="color:var(--muted)">Aperçu de l’interface et des alertes simulées.</p>
+<div class="visual" style="margin-top:16px">
+  <div class="blob teal"></div><div class="blob blue"></div><div class="blob purple"></div>
+  <div class="radar"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div></div>
 </div>
-</body></html>
-
+<p style="margin-top:16px; color:var(--muted)">Envie d’une visite guidée&nbsp;? <a href="/contact.html">Contactez‑nous</a>.</p>
+</main>
+<footer class="footer"><div class="container">
+<span>© 2025 Vaubia</span>
+<div style="float:right"><a href="/legal.html">Mentions légales</a><a href="/privacy.html">Confidentialité</a></div>
+</div></footer>
+<script src="/app.js" defer></script></body></html>

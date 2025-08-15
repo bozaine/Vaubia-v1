@@ -1,101 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="icon" href="/assets/logo.svg">
-<title>Tableau de bord cybersécurité — Vaubia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
-<script defer src="/app.js"></script>
+<title>Vaubia — Protégez l’essentiel</title>
+<meta name="description" content="Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit."/>
+<link rel="icon" href="/assets/logo.svg"/>
+<link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
-<nav class="nav">
-  <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/logo.svg" alt="Vaubia"><strong>Vaubia</strong></a>
-    <div class="menu">
-      <a href="/services.html" >Services</a>
-      <a href="/pricing.html" >Tarifs</a>
-      <a href="/contact.html" >Contact</a>
-      <a href="/demo.html" >Démo</a>
-      <a href="/legal.html">Mentions</a>
-      <button class="btn neon cta" onclick="location.href='/contact.html#demo'">Essai gratuit</button>
-    </div>
-    <button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-  <div class="sheet">
-    <a href="/services.html">Services</a>
-    <a href="/pricing.html">Tarifs</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/demo.html">Démo</a>
-    <a href="/legal.html">Mentions</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="canvas-wrap"></div>
-  <div class="wrap">
-    <div>
-      <div class="kicker"><span class="dot"></span> Vaubia • Protégez l’essentiel</div>
-      <h1>Simulez, détectez et <span style="background:linear-gradient(90deg,#22d3ee,#60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent">décidez en secondes</span>.</h1>
-      <p class="lead">Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit — simplement.</p>
-      <div class="actions">
-        <button class="btn" onclick="location.href='/contact.html#demo'">Commencer</button>
-        <button class="btn ghost" onclick="location.href='/demo.html'">Voir une démo</button>
-      </div>
-      <div class="marquee" aria-label="They trust us">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_Meta_Platforms.svg" alt="Meta">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/PayPal_Logo.svg" alt="PayPal">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
-      </div>
-    </div>
-    <aside class="mock">
-      <div class="status">Tableau de bord • <span style="color:var(--primary)">Sécurité en temps réel</span></div>
-      <canvas id="dashboard"></canvas>
-    </aside>
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/"><img src="/assets/logo.svg" alt=""><span>Vaubia</span></a>
+      <a class="top-link" href="/services.html">Fonctionnalités</a>
+      <a class="top-link" href="/pricing.html">Tarifs</a>
+      <a class="top-link" href="/demo.html">Démo</a>
+      <div class="nav-spacer"></div>
+      <a class="top-link" href="/contact.html">Contact</a>
+      <button class="btn btn-ghost" onclick="location.href='/login'">Se connecter</button>
+      <button class="hamburger" id="openDrawer" aria-label="Ouvrir le menu"><span></span></button>
+    </nav>
   </div>
 </header>
 
-<section class="section">
-  <div class="wrap">
-    <div class="cards">
-      <div class="card">
-        <h3>Alertes en temps réel</h3>
-        <p>Notifications immédiates en cas d’activité suspecte ou d’e-mail compromis.</p>
+<div class="drawer" id="drawer">
+  <div class="backdrop" aria-hidden="true"></div>
+  <div class="panel">
+    <a href="/">Accueil</a>
+    <a href="/services.html">Fonctionnalités</a>
+    <a href="/pricing.html">Tarifs</a>
+    <a href="/demo.html">Démo</a>
+    <a href="/legal.html">Mentions légales</a>
+    <a href="/privacy.html">Politique de confidentialité</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="h-eyebrow">Vaubia • Protégez l’essentiel</span>
+        <h1>Simulez, détectez et<br/> <span style="background: linear-gradient(180deg,#79f7ea,#74b7ff); -webkit-background-clip:text; background-clip:text; color:transparent">décidez en secondes.</span></h1>
+        <p>Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit — simplement.</p>
+        <div class="cta">
+          <button class="btn btn-primary" onclick="window.location='/signup'">Commencer</button>
+          <button class="btn btn-ghost" onclick="window.location='/demo.html'">Voir une démo</button>
+        </div>
+        <div class="badges" aria-hidden="true">
+          <span class="badge">Hébergement Vercel</span>
+          <span class="badge">Conformité RGPD</span>
+          <span class="badge">Chiffrement TLS</span>
+        </div>
       </div>
-      <div class="card">
-        <h3>Rapport hebdomadaire</h3>
-        <p>Un récap simple, livré dans votre boîte mail, pour suivre votre posture.</p>
-      </div>
-      <div class="card">
-        <h3>Conformité RGPD</h3>
-        <p>Journal d’audit, registre des traitements, et modèles de politiques prêts à l’emploi.</p>
+      <div class="visual" aria-hidden="true">
+        <div class="blob teal"></div>
+        <div class="blob blue"></div>
+        <div class="blob purple"></div>
+
+        <div class="radar">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+          <!-- Dynamic dots injected by JS for lively security vibe -->
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap grid">
-    <div>© 2025 Vaubia — Protégez l’essentiel</div>
-    <div style="text-align:right">
-      <a href="/privacy.html">Politique de confidentialité</a> ·
-      <a href="/cookies.html">Cookies</a>
+  <section class="container">
+    <div class="features">
+      <article class="card">
+        <div class="icon">🔔</div>
+        <h3>Alertes en temps réel</h3>
+        <p>Notifications immédiates en cas d’activité suspecte ou d’e‑mail compromis.</p>
+      </article>
+      <article class="card">
+        <div class="icon">📈</div>
+        <h3>Rapport hebdomadaire</h3>
+        <p>Un récap simple, livré dans votre boîte mail, pour suivre votre posture.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🛡️</div>
+        <h3>Conformité RGPD</h3>
+        <p>Journal d’audit, registre des traitements et modèles de politiques prêts à l’emploi.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>© 2025 Vaubia — Protégez l’essentiel</span>
+    <div style="float:right">
+      <a href="/legal.html">Mentions légales</a>
+      <a href="/privacy.html">Confidentialité</a>
+      <a href="/contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<div class="cookie" role="dialog" aria-live="polite">
-  <h4>🍪 Cookies</h4>
-  <p>Nous utilisons uniquement des cookies essentiels pour faire fonctionner le site et améliorer votre expérience.</p>
-  <div class="row">
-    <button class="btn" data-accept>Accepter</button>
-    <button class="btn ghost" data-prefs>Paramètres</button>
+<!-- Cookie banner -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Préférences cookies">
+  <div class="text">
+    Nous utilisons des cookies pour améliorer votre expérience, mesurer l’audience et sécuriser la plateforme.
+    <span class="cookie-link" id="openPrefs">Paramètres</span>
+  </div>
+  <div class="actions">
+    <button class="btn btn-ghost" id="declineCookies">Tout refuser</button>
+    <button class="btn btn-primary" id="acceptCookies">Tout accepter</button>
   </div>
 </div>
-</body></html>
 
+<div class="modal" id="prefsModal" aria-hidden="true" aria-label="Fenêtre des préférences cookies">
+  <div class="backdrop"></div>
+  <div class="dialog">
+    <h4>Paramètres des cookies</h4>
+    <div class="row"><span>Essentiels (obligatoires)</span><div class="switch active" aria-hidden="true"><div class="knob"></div></div></div>
+    <div class="row"><span>Mesure d’audience</span><div class="switch" id="toggleAnalytics"><div class="knob"></div></div></div>
+    <div class="row"><span>Améliorations produit</span><div class="switch" id="toggleImprove"><div class="knob"></div></div></div>
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px">
+      <button class="btn btn-ghost" id="closePrefs">Fermer</button>
+      <button class="btn btn-primary" id="savePrefs">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>
