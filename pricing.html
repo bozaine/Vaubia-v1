@@ -1,112 +1,140 @@
 
 <!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tarifs — Vaubia</title>
 <link rel="stylesheet" href="/styles.css">
 </head><body>
 
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="brand"><img src="/assets/logo.svg" alt="Vaubia" width="24" height="24"> Vaubia</a>
-    <span class="badge">Protégez l’essentiel</span>
-    <nav class="menu">
-      <div class="dropdown">
-        <a href="/services.html" onclick="return false" id="featuresBtn">Fonctionnalités ▾</a>
-        <div class="dropdown-menu">
-          <a href="/services.html#monitoring">Monitoring</a>
-          <a href="/services.html#alerts">Alertes</a>
-          <a href="/services.html#reports">Rapports</a>
-          <a href="/services.html#compliance">Conformité</a>
-        </div>
-      </div>
+<header>
+  <div class="container nav">
+    <a class="brand" href="/"><span class="dot"></span> Vaubia</a>
+    <nav class="nav-links">
+      <a href="/" class="active">Accueil</a>
+      <a href="/features.html">Fonctionnalités</a>
       <a href="/pricing.html">Tarifs</a>
-      <a href="/docs/legal.html">Mentions légales</a>
-      <a href="/docs/privacy-policy.html">Confidentialité</a>
+      <a href="/demo.html">Démo</a>
+      <a href="/legal.html">Légal</a>
       <a href="/contact.html">Contact</a>
-      <a href="#" class="pill">FAQ</a>
     </nav>
-    <div class="nav-spacer"></div>
-    <a class="btn small ghost" href="#">Se connecter</a>
-    <a class="btn small" href="#">Essai gratuit</a>
+    <div class="nav-actions">
+      <a class="btn secondary" href="/login.html">Se connecter</a>
+      <button class="burger" aria-label="menu"><span></span></button>
+    </div>
   </div>
 </header>
+<div class="overlay"></div>
+<aside class="mobile-drawer" aria-hidden="true">
+  <header>
+    <div class="brand"><span class="dot"></span> Vaubia</div>
+    <button id="close-drawer" class="btn secondary" style="padding:.5rem .75rem">Fermer</button>
+  </header>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/features.html">Fonctionnalités</a>
+    <a href="/pricing.html">Tarifs</a>
+    <a href="/demo.html">Démo</a>
+    <a href="/legal.html">Légal</a>
+    <a href="/contact.html">Contact</a>
+    <a class="btn" style="margin-top:.6rem" href="/signup.html">Essayer gratuitement</a>
+  </nav>
+</aside>
 
-<div class="container section">
-  <div class="pricing-hero">
+<section class="hero pricing">
+  <div class="container">
+    <span class="badge">Tarifs</span>
+    <h1>Des offres qui s’adaptent à vos besoins</h1>
+    <p class="lead">Facturation simple. Annulez à tout moment. -17% en annuel.</p>
+    <div class="hero-cta">
+      <div class="switch" role="tablist" aria-label="Période">
+        <button id="toggle-monthly" class="active" role="tab" aria-selected="true">Mensuel</button>
+        <button id="toggle-yearly" role="tab" aria-selected="false">Annuel -17%</button>
+      </div>
+      <a class="btn secondary" href="/contact.html">Parler à un expert</a>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="tier">
+        <div class="head">
+          <h3>Essential</h3>
+          <div><span class="price" data-monthly="9€" data-yearly="90€">9€</span><span class="period">/mois</span></div>
+        </div>
+        <p class="note">Pour démarrer et surveiller l’essentiel.</p>
+        <ul>
+          <li>Surveillance e‑mail & mots de passe</li>
+          <li>Alertes temps réel</li>
+          <li>Rapport hebdomadaire</li>
+          <li>Support e‑mail</li>
+        </ul>
+        <div class="hero-cta" style="margin-top:1rem"><a class="btn" href="/signup.html">Souscrire</a></div>
+      </div>
+
+      <div class="tier pop">
+        <div class="head">
+          <h3>Pro</h3>
+          <div><span class="price" data-monthly="19€" data-yearly="188€">19€</span><span class="period">/mois</span></div>
+        </div>
+        <p class="note">Le meilleur compromis sécurité + conformité.</p>
+        <ul>
+          <li>Toutes les fonctionnalités Essential</li>
+          <li>Score de santé & recommandations</li>
+          <li>Rapport CSV & webhooks</li>
+          <li>2FA assistant & coffre‑fort</li>
+        </ul>
+        <div class="hero-cta" style="margin-top:1rem"><a class="btn" href="/signup.html">Essayer</a></div>
+      </div>
+
+      <div class="tier">
+        <div class="head">
+          <h3>Entreprise</h3>
+          <div><span class="price" data-monthly="Sur devis" data-yearly="Sur devis">Sur devis</span></div>
+        </div>
+        <p class="note">SLA, SSO, audit, conformité avancée.</p>
+        <ul>
+          <li>Accès multi‑comptes & rôles</li>
+          <li>Exports signés, registre RGPD</li>
+          <li>SLA & support prioritaire</li>
+          <li>Onboarding assisté</li>
+        </ul>
+        <div class="hero-cta" style="margin-top:1rem"><a class="btn secondary" href="/contact.html">Demander un devis</a></div>
+      </div>
+    </div>
+
+    <div class="faq">
+      <h3>FAQ</h3>
+      <details><summary>Comment fonctionne l’essai gratuit ?</summary><p>Vous disposez de 14 jours sans carte. Annulez en un clic dans les paramètres.</p></details>
+      <details><summary>Puis‑je changer d’offre plus tard ?</summary><p>Oui, l’upgrade ou downgrade est immédiat et proratisé.</p></details>
+      <details><summary>Quelles méthodes de paiement ?</summary><p>Carte bancaire, SEPA. Facturation via Stripe.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container wrap">
     <div>
-      <h1>Des offres simples, sans surprise.</h1>
-      <p class="lead">Mensuel ou annuel — annulation à tout moment. Les analytiques sont optionnels (opt‑in).</p>
+      <div class="brand"><span class="dot"></span> Vaubia</div>
+      <p class="note">Protégez l’essentiel. Veille de sécurité, conformité RGPD, alertes & rapports.</p>
     </div>
-    <div class="toggle" role="tablist" aria-label="Périodicité">
-      <button id="btnM" class="active" aria-selected="true">Mensuel</button>
-      <button id="btnA">Annuel <span class="save">–17%</span></button>
+    <div>
+      <h4>Produit</h4>
+      <a href="/features.html">Fonctionnalités</a><br>
+      <a href="/pricing.html">Tarifs</a><br>
+      <a href="/demo.html">Démo</a>
     </div>
-  </div>
-  <div class="tiers">
-    <div class="price-card">
-      <h3>Starter</h3>
-      <div class="price"><span data-price-m="0€" data-price-a="0€">0€</span><small>/mois</small></div>
-      <p class="lead">Parfait pour démarrer</p>
-      <ul class="check">
-        <li>1 utilisateur</li>
-        <li>Alertes e‑mail</li>
-        <li>Rapport hebdomadaire</li>
-      </ul>
-      <a class="btn" href="#">S’inscrire</a>
+    <div>
+      <h4>Entreprise</h4>
+      <a href="/about.html">À propos</a><br>
+      <a href="/contact.html">Contact</a><br>
+      <a href="/careers.html">Carrières</a>
     </div>
-    <div class="price-card" style="border-color:rgba(58,209,183,.6)">
-      <h3>Pro</h3>
-      <div class="price"><span data-price-m="12€" data-price-a="10€">12€</span><small>/mois</small></div>
-      <p class="lead">Pour indépendants et PME</p>
-      <ul class="check">
-        <li>Jusqu’à 5 utilisateurs</li>
-        <li>Alertes temps réel</li>
-        <li>Export PDF du digest</li>
-      </ul>
-      <a class="btn" href="#">Essai gratuit</a>
-    </div>
-    <div class="price-card">
-      <h3>Entreprise</h3>
-      <div class="price"><span data-price-m="29€" data-price-a="24€">29€</span><small>/mois</small></div>
-      <p class="lead">Sécurité et conformité avancées</p>
-      <ul class="check">
-        <li>SSO & rôles</li>
-        <li>Journal d’audit</li>
-        <li>SLA & support prioritaire</li>
-      </ul>
-      <a class="btn" href="/contact.html">Nous contacter</a>
+    <div>
+      <h4>Légal</h4>
+      <a href="/legal.html#terms">CGU</a><br>
+      <a href="/legal.html#privacy">Confidentialité</a><br>
+      <a href="/legal.html#cookies">Cookies</a>
     </div>
   </div>
-</div>
-
-<footer class="footer">
-  <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-    <div>© 2025 Vaubia — Protégez l’essentiel</div>
-    <div class="list">
-      <a class="pill" href="/docs/privacy-policy.html">Confidentialité</a>
-      <a class="pill" href="/docs/legal.html">Mentions légales</a>
-      <a class="pill" href="/contact.html">Support</a>
-      <a class="pill" href="#" id="openConsent">Paramètres cookies</a>
-    </div>
-  </div>
+  <div class="copy">© 2025 Vaubia — Protégez l’essentiel</div>
 </footer>
-<script src="/consent.js"></script>
-<script>
-// Simple dropdown
-const dd = document.querySelector('.dropdown');
-const btn = document.getElementById('featuresBtn');
-if (btn && dd){ btn.addEventListener('click',()=> dd.classList.toggle('open')); }
-document.addEventListener('click', (e)=>{
-  if(!dd.contains(e.target)) dd.classList.remove('open');
-});
-// open cookie modal
-document.getElementById('openConsent')?.addEventListener('click', (e)=>{ e.preventDefault(); window.openConsent?.(); });
-</script>
 
-<script>
-const m = document.getElementById('btnM'), a = document.getElementById('btnA');
-const spans = document.querySelectorAll('[data-price-m]');
-m.onclick = ()=>{ m.classList.add('active'); a.classList.remove('active'); spans.forEach(s=> s.textContent = s.dataset.priceM); };
-a.onclick = ()=>{ a.classList.add('active'); m.classList.remove('active'); spans.forEach(s=> s.textContent = s.dataset.priceA); };
-</script>
+<script src="/app.js"></script>
 </body></html>
