@@ -1,47 +1,20 @@
 <!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Vaubia</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"/></head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="index.html"><span class="logo"></span> Vaubia</a>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div class="search">
-      <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="q" placeholder="Rechercher…" onfocus="expandSearch(true)" onblur="expandSearch(false)"/>
-    </div>
-    <button class="burger" onclick="toggleDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" fill="none"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-    </button>
-  </div>
-</div></header>
-<aside id="drawer" class="drawer">
-  <ul class="container">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="pricing.html">Tarifs</a></li>
-    <li><a href="services.html">Fonctionnalités</a></li>
-    <li><a href="demo.html">Démo</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="mentions-legales.html">Mentions légales</a></li>
-    <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
-    <li><a href="cookies.html">Cookies</a></li>
-  </ul>
-</aside>
-
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vaubia — Démo</title>
+<link rel="stylesheet" href="styles.css"/><script defer src="app.js"></script>
+</head><body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img class="brand-mark" src="assets/logo.svg" alt=""/><span class="brand-name">Vaubia</span></a>
+</header>
 <main class="container">
-  <h1>Démo (aperçu)</h1>
-  <p>Animation conceptuelle “réseau qui se protège” retirée pour une Hero statique sur la Home. Ici, courte démo guidée (captures / steps) peut être ajoutée plus tard.</p>
-  <div class="grid">
-    <div class="card" style="padding:18px"><h3>1. Connexion</h3><p>Connectez vos comptes.</p></div>
-    <div class="card" style="padding:18px"><h3>2. Détection</h3><p>Le moteur identifie les risques.</p></div>
-    <div class="card" style="padding:18px"><h3>3. Alerte</h3><p>Vous recevez des alertes actionnables.</p></div>
-    <div class="card" style="padding:18px"><h3>4. Rapport</h3><p>Suivez votre posture chaque semaine.</p></div>
-  </div>
+  <h1>Démo</h1>
+  <p>Courte démo guidée (captures/étapes) à insérer ici.</p>
+  <section class="features-3" style="grid-template-columns:1fr 1fr">
+    <article class="feature-card"><h3>1. Connexion</h3><p>Connectez vos comptes.</p></article>
+    <article class="feature-card"><h3>2. Détection</h3><p>Le moteur identifie les risques.</p></article>
+    <article class="feature-card"><h3>3. Alerte</h3><p>Vous recevez des alertes actionnables.</p></article>
+    <article class="feature-card"><h3>4. Rapport</h3><p>Suivez votre posture chaque semaine.</p></article>
+  </section>
 </main>
-
-<footer>
-  © 2025 Vaubia — Protégez l’essentiel
-</footer>
-<script src="app.js"></script>
+<footer class="site-footer"><p>© <span id="y"></span> Vaubia — Protégez l’essentiel</p></footer>
 </body></html>

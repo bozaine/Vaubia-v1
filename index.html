@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaubia — Protégez l'essentiel</title>
+  <title>Vaubia — Protégez l’essentiel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <script defer src="app.js"></script>
 </head>
 <body class="page-home">
-  <!-- Background shapes -->
   <div aria-hidden="true" class="bg-wrapper">
     <div class="bg-gradient"></div>
     <div class="blob blob-a"></div>
@@ -18,29 +17,20 @@
     <div class="mesh"></div>
   </div>
 
-  <!-- Header -->
   <header class="site-header">
-    <a class="brand" href="/">
+    <a class="brand" href="index.html">
       <img class="brand-mark" src="assets/logo.svg" alt="" />
       <span class="brand-name">Vaubia</span>
     </a>
-
-    <!-- Search (compact → expands on focus/hover) -->
     <div class="header-center">
       <form class="search compact" role="search" aria-label="Recherche">
         <button class="icon-btn" type="button" aria-label="Ouvrir la recherche" data-search-toggle>
-          <svg viewBox="0 0 24 24" class="icon"><path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
         </button>
         <input class="search-input" type="search" placeholder="Rechercher une fonctionnalité, une doc, un tarif…" />
       </form>
     </div>
-
-    <!-- Hamburger -->
-    <button class="icon-btn burger" aria-label="Ouvrir le menu" data-menu-toggle>
-      <span></span><span></span><span></span>
-    </button>
-
-    <!-- Drawer -->
+    <button class="icon-btn burger" aria-label="Ouvrir le menu" data-menu-toggle><span></span><span></span><span></span></button>
     <nav class="drawer" aria-label="Menu latéral" data-drawer>
       <div class="drawer-head">
         <span>Menu</span>
@@ -63,45 +53,31 @@
     <div class="drawer-backdrop" data-backdrop></div>
   </header>
 
-  <!-- Hero -->
   <main>
     <section class="hero">
-      <h1 class="hero-title">
-        Simulez, détectez et <span class="accent">décidez en secondes.</span>
-      </h1>
-      <p class="hero-sub">
-        Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit — simplement.
-      </p>
+      <h1 class="hero-title">Simulez, détectez et <span class="accent">décidez en secondes.</span></h1>
+      <p class="hero-sub">Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit — simplement.</p>
       <div class="hero-cta">
         <a href="pricing.html" class="btn btn-primary">Commencer</a>
         <a href="demo.html" class="btn btn-ghost">Voir une démo</a>
       </div>
     </section>
 
-    <!-- 3 cards: valeur / sécurité / conformité -->
     <section class="features-3">
       <article class="feature-card">
-        <div class="f-icon shield">
-          <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z" fill="currentColor" opacity=".2"/><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
+        <div class="f-icon shield"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
         <h3>Posture de sécurité</h3>
-        <p>Vue unifiée de vos risques, priorisation automatique et recommandations actionnables.</p>
+        <p>Vue unifiée des risques, priorisation et recommandations actionnables.</p>
       </article>
-
       <article class="feature-card">
-        <div class="f-icon radar">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 12l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
+        <div class="f-icon radar"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 12l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <h3>Alertes en temps réel</h3>
         <p>Détections précises, notifications instantanées et centre d’alertes intelligent.</p>
       </article>
-
       <article class="feature-card">
-        <div class="f-icon rgpd">
-          <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 9h8M8 13h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
+        <div class="f-icon rgpd"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 9h8M8 13h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <h3>Conformité & RGPD</h3>
-        <p>Journal d’audit, registre des traitements, modèles de politiques prêts à l’emploi.</p>
+        <p>Journal d’audit, registre des traitements, et modèles de politiques prêts à l’emploi.</p>
       </article>
     </section>
   </main>

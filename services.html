@@ -1,58 +1,19 @@
 <!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Vaubia</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"/></head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="index.html"><span class="logo"></span> Vaubia</a>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div class="search">
-      <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="q" placeholder="Rechercher…" onfocus="expandSearch(true)" onblur="expandSearch(false)"/>
-    </div>
-    <button class="burger" onclick="toggleDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" fill="none"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-    </button>
-  </div>
-</div></header>
-<aside id="drawer" class="drawer">
-  <ul class="container">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="pricing.html">Tarifs</a></li>
-    <li><a href="services.html">Fonctionnalités</a></li>
-    <li><a href="demo.html">Démo</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="mentions-legales.html">Mentions légales</a></li>
-    <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
-    <li><a href="cookies.html">Cookies</a></li>
-  </ul>
-</aside>
-
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vaubia — Fonctionnalités</title>
+<link rel="stylesheet" href="styles.css"/><script defer src="app.js"></script>
+</head><body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img class="brand-mark" src="assets/logo.svg" alt=""/><span class="brand-name">Vaubia</span></a>
+</header>
 <main class="container">
   <h1>Fonctionnalités</h1>
-  <div class="grid" style="margin-top:10px">
-    <article class="card" style="padding:20px">
-      <h2>Détections & alertes</h2>
-      <p>Notifications immédiates, corrélations d’événements et priorisation basée sur le risque.</p>
-    </article>
-    <article class="card" style="padding:20px">
-      <h2>Rapports</h2>
-      <p>Rapports hebdomadaires clairs, partageables, avec métriques clés et recommandations.</p>
-    </article>
-    <article class="card" style="padding:20px">
-      <h2>Conformité</h2>
-      <p>Registre des traitements, journal d’audit et modèles de politiques.</p>
-    </article>
-    <article class="card" style="padding:20px">
-      <h2>Intégrations</h2>
-      <p>Connexion simple à vos comptes et services majeurs, en quelques minutes.</p>
-    </article>
-  </div>
+  <section class="features-3" style="grid-template-columns:1fr 1fr">
+    <article class="feature-card"><h3>Détections & alertes</h3><p>Notifications immédiates, corrélations d’événements et priorisation.</p></article>
+    <article class="feature-card"><h3>Rapports</h3><p>Rapports hebdomadaires clairs, partageables, avec métriques clés.</p></article>
+    <article class="feature-card"><h3>Conformité</h3><p>Registre des traitements, journal d’audit, modèles RGPD.</p></article>
+    <article class="feature-card"><h3>Intégrations</h3><p>Connexion simple à vos comptes et services majeurs.</p></article>
+  </section>
 </main>
-
-<footer>
-  © 2025 Vaubia — Protégez l’essentiel
-</footer>
-<script src="app.js"></script>
+<footer class="site-footer"><p>© <span id="y"></span> Vaubia — Protégez l’essentiel</p></footer>
 </body></html>

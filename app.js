@@ -1,92 +1,81 @@
 
+// Year
+document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
+
 // Drawer
-const drawer = document.getElementById('drawer');
-function toggleDrawer(){ drawer.classList.toggle('open'); }
-document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') drawer.classList.remove('open'); });
-document.addEventListener('click', (e)=>{
-  if(!drawer.contains(e.target) && !e.target.closest('.burger')) drawer.classList.remove('open');
-});
+const drawer = document.querySelector('[data-drawer]');
+const backdrop = document.querySelector('[data-backdrop]');
+const toggles = document.querySelectorAll('[data-menu-toggle]');
+function drawerOpen(open){
+  if(!drawer || !backdrop) return;
+  if(open){ drawer.classList.add('open'); backdrop.classList.add('show'); document.body.style.overflow='hidden'; }
+  else { drawer.classList.remove('open'); backdrop.classList.remove('show'); document.body.style.overflow=''; }
+}
+toggles.forEach(btn=> btn.addEventListener('click', ()=> drawerOpen(!drawer.classList.contains('open'))));
+backdrop && backdrop.addEventListener('click', ()=> drawerOpen(false));
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') drawerOpen(false); });
 
-// Search expand on small icon
-const q = document.getElementById('q');
-function expandSearch(open){ if(!q) return; q.classList.toggle('open', open); }
-if(q){ q.addEventListener('focus', ()=>expandSearch(true)); q.addEventListener('blur', ()=>expandSearch(false)); }
+// Search expand/compact
+const search = document.querySelector('.search');
+const searchInput = document.querySelector('.search-input');
+const searchToggle = document.querySelector('[data-search-toggle]');
+function openSearch(){ if(!search) return; search.classList.remove('compact'); setTimeout(()=>searchInput&&searchInput.focus(),0); }
+function closeSearch(){ if(!search) return; searchInput&&(searchInput.value=''); search.classList.add('compact'); }
+searchToggle && searchToggle.addEventListener('click', ()=> search.classList.contains('compact') ? openSearch() : closeSearch());
+searchInput && searchInput.addEventListener('blur', ()=> { if(!searchInput.value.trim()) closeSearch(); });
 
-// Pricing carousel (infinite + swipe + annual toggle -17%)
-const basePlans = [
-  {name:'Essentiel', priceM:19, features:['Surveillance comptes','Alertes e‑mail','Rapport hebdo']},
-  {name:'Pro', priceM:39, features:['Tout Essentiel','Alertes temps réel','Registre RGPD']},
-  {name:'Business', priceM:79, features:['Tout Pro','SLA prioritaire','Export & Audit']}
-];
-function monthlyToAnnual(m){ return Math.round((m*12)*0.83); } // ~17% off
+// ===== Pricing page logic (only if elements present) =====
+const DISCOUNT = 0.17;
+const viewport = document.getElementById('viewport');
+const track = document.getElementById('track');
+const btnPrev = document.querySelector('.arrow.prev');
+const btnNext = document.querySelector('.arrow.next');
+const bills = Array.from(document.querySelectorAll('.bill'));
+if(viewport && track){
+  let cards = Array.from(track.children);
+  // clones for infinite
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone  = cards[cards.length-1].cloneNode(true);
+  track.prepend(lastClone); track.append(firstClone);
+  let slideW = 0, index = 1, anim=false;
+  function measure(){ const c = track.querySelector('.card'); slideW = c.getBoundingClientRect().width + 32; }
+  function setX(i, animate=true){
+    if(anim) return; anim=true;
+    track.style.transition = animate ? 'transform 300ms cubic-bezier(.2,.8,.2,1)' : 'none';
+    track.style.transform = `translateX(${-i*slideW}px)`;
+    setTimeout(()=>{
+      anim=false; index=i;
+      const total = track.children.length;
+      if(index===total-1){ track.style.transition='none'; index=1; track.style.transform=`translateX(${-index*slideW}px)`; }
+      else if(index===0){ track.style.transition='none'; index=total-2; track.style.transform=`translateX(${-index*slideW}px)`; }
+    }, animate?300:0);
+  }
+  function next(){ setX(index+1); } function prev(){ setX(index-1); }
+  // swipe (one gesture -> one card)
+  let downX=0, curX=0, dragging=false, t0=0; const TH=50, VMIN=0.35;
+  viewport.addEventListener('pointerdown', e=>{ dragging=true; downX=curX=e.clientX; t0=performance.now(); track.style.transition='none'; viewport.setPointerCapture(e.pointerId); });
+  viewport.addEventListener('pointermove', e=>{ if(!dragging) return; curX=e.clientX; const dx=curX-downX; const base=-index*slideW; track.style.transform=`translateX(${base+dx}px)`; });
+  function endSwipe(){ if(!dragging) return; dragging=false; const dx=curX-downX; const v=Math.abs(dx)/Math.max(1,performance.now()-t0); if(dx<-TH || (dx<0 && v>VMIN)) next(); else if(dx>TH || (dx>0 && v>VMIN)) prev(); else setX(index); }
+  viewport.addEventListener('pointerup', endSwipe); viewport.addEventListener('pointercancel', endSwipe); viewport.addEventListener('mouseleave', endSwipe);
+  btnPrev && btnPrev.addEventListener('click', prev); btnNext && btnNext.addEventListener('click', next);
+  window.addEventListener('load', ()=>{ measure(); setX(1,false); });
+  window.addEventListener('resize', ()=>{ measure(); setX(index,false); });
 
-function makeCard(p, isAnnual=false){
-  const price = isAnnual ? monthlyToAnnual(p.priceM) : p.priceM;
-  const unit = isAnnual ? '/an HT' : '/mois HT';
-  const wrap = document.createElement('article');
-  wrap.className = 'card price-card';
-  wrap.innerHTML = `
-    <div class="plan-h"><span class="badge">${p.name}</span></div>
-    <div class="price">${price}€ <span style="font-size:1rem;color:var(--muted)">${unit}</span></div>
-    <ul style="margin:12px 0 14px;padding-left:18px">${p.features.map(x=>`<li>${x}</li>`).join('')}</ul>
-    <div style="display:flex;gap:8px">
-      <a class="btn" href="contact.html">Souscrire</a>
-      <a class="btn ghost" href="demo.html">Voir une démo</a>
-    </div>`;
-  return wrap;
+  // billing toggle
+  function setBilling(mode){
+    document.querySelectorAll('.card').forEach(card=>{
+      const m = Number(card.getAttribute('data-month'));
+      const amount = card.querySelector('.amount');
+      const per = card.querySelector('.per');
+      if(mode==='yearly'){ const y = Math.round(m*12*(1-DISCOUNT)); amount.textContent=y; per.textContent='/an'; }
+      else { amount.textContent=m; per.textContent='/mois'; }
+    });
+    bills.forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.mode===mode)));
+    try{ localStorage.setItem('vaubia-billing', mode); }catch{}
+  }
+  bills.forEach(b=> b.addEventListener('click', ()=> setBilling(b.dataset.mode)));
+  setBilling(localStorage.getItem('vaubia-billing') || 'monthly');
 }
 
-function renderCarousel(mode='mensuel'){
-  const carousel = document.getElementById('carousel');
-  if(!carousel) return;
-  carousel.innerHTML = '';
-  const isAnnual = mode==='annuel';
-  // duplicate ends for smooth infinite feel
-  const plans = [...basePlans];
-  const seq = [plans[2],...plans,...plans.slice(0,2)];
-  seq.forEach(p=> carousel.appendChild(makeCard(p, isAnnual)));
-
-  // swipe (1 gesture = one card)
-  let startX=0, current=0, isDown=false;
-  const cardW = ()=> carousel.querySelector('.price-card').getBoundingClientRect().width + 16;
-  const snapTo = (idx)=> carousel.scrollTo({left: idx*cardW(), behavior:'smooth'});
-  function index(){ return Math.round(carousel.scrollLeft / cardW()); }
-
-  carousel.addEventListener('pointerdown', e=>{ isDown=true; startX=e.clientX; current=carousel.scrollLeft; carousel.setPointerCapture(e.pointerId); });
-  carousel.addEventListener('pointerup', e=>{
-    if(!isDown) return; isDown=false;
-    const dx = e.clientX - startX;
-    const i = index() + (dx<-30 ? 1 : dx>30 ? -1 : 0);
-    snapTo(Math.max(0, Math.min(i, carousel.children.length-1)));
-  });
-  // snap on resize
-  window.addEventListener('resize', ()=> snapTo(index()));
-}
-const toggle = document.getElementById('toggle');
-if(toggle){
-  toggle.addEventListener('click', (e)=>{
-    const btn = e.target.closest('button'); if(!btn) return;
-    toggle.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderCarousel(btn.dataset.mode);
-  });
-  renderCarousel('mensuel');
-}
-
-// Simple cookie banner
-(function(){
-  if(localStorage.getItem('cookie:consent')) return;
-  const bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;padding:12px;border-radius:12px;background:rgba(0,0,0,.75);color:#fff;backdrop-filter:blur(8px);display:flex;gap:8px;align-items:center;z-index:60';
-  bar.innerHTML = '<span style="flex:1">Nous utilisons des cookies pour améliorer votre expérience.</span>';
-  const ok = document.createElement('button'); ok.className='btn'; ok.textContent='Accepter';
-  const no = document.createElement('button'); no.className='btn ghost'; no.textContent='Refuser';
-  [ok,no].forEach(b=>{ b.style.padding='8px 10px'; b.style.boxShadow='none'; });
-  ok.onclick = ()=>{ localStorage.setItem('cookie:consent','yes'); bar.remove(); };
-  no.onclick = ()=>{ localStorage.setItem('cookie:consent','no'); bar.remove(); };
-  bar.append(ok,no); document.body.append(bar);
-})();
-
-function openCookieCenter(){
-  alert('Centre de préférences – version simple (peut être remplacé par votre CMP).');
-}
+// Cookie center placeholder
+function openCookieCenter(){ alert('Centre de préférences cookies — placeholder.'); }
