@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Vaubia — Inscription</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .wrap{max-width:720px;margin:0 auto;padding:28px 16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px}
+    label{display:block;margin:10px 0 6px;color:#cfe3f0}
+    input,select,textarea{width:100%; padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.06); color:#e6f2ff}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:700px){.row{grid-template-columns:1fr}}
+    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.1); text-decoration:none; color:#fff}
+    .btn.primary{background:linear-gradient(135deg, #22d3b6, #38bdf8); color:#062126; font-weight:800; border:none}
+    .muted{color:#9db7c7}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Vaubia"><span>Vaubia</span></a>
+  </header>
+  <main class="wrap">
+    <div class="card">
+      <h1>Inscription</h1>
+      <p class="muted">Remplissez ce formulaire. Nous vous enverrons vos identifiants par e‑mail une fois l’abonnement confirmé.</p>
+      <!-- Replace YOUR_EMAIL below with your real email for FormSubmit -->
+      <form action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+        <input type="hidden" name="_next" value="https://vaubia.com/thanks.html">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="row">
+          <div>
+            <label>Prénom</label>
+            <input name="firstname" required>
+          </div>
+          <div>
+            <label>Nom</label>
+            <input name="lastname" required>
+          </div>
+        </div>
+        <label>E‑mail</label>
+        <input type="email" name="email" required placeholder="vous@exemple.com">
+        <label>Offre choisie</label>
+        <select name="plan" required>
+          <option value="Essentiel">Essentiel</option>
+          <option value="Pro">Pro</option>
+          <option value="Entreprise">Entreprise</option>
+        </select>
+        <label>Commentaires (optionnel)</label>
+        <textarea name="notes" rows="4" placeholder="Contexte, besoins…"></textarea>
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn primary" type="submit">Envoyer ma demande</button>
+          <a class="btn" href="pricing.html">Retour aux tarifs</a>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">© 2025 Vaubia — Protégez l’essentiel</footer>
+</body>
+</html>
