@@ -1,0 +1,104 @@
+/* pricing.css */
+:root{
+  --bg:#0b1520;
+  --panel:#0f1e2a;
+  --panel-2:#132433;
+  --text:#e6f2ff;
+  --muted:#9db7c7;
+  --teal:#2dd4bf;
+  --sky:#38bdf8;
+  --ring: rgba(56,189,248,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background: radial-gradient(1200px 500px at 50% -10%, rgba(56,189,248,.25), transparent 60%),
+              radial-gradient(900px 400px at 10% 10%, rgba(45,212,191,.15), transparent 60%),
+              var(--bg);
+}
+.topbar{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px;
+  backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(180deg, rgba(11,21,32,.9), rgba(11,21,32,.55));
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{font-weight:800; letter-spacing:.5px; color:var(--text); text-decoration:none}
+.topnav a{color:var(--muted); margin-left:18px; text-decoration:none}
+.topnav a.active, .topnav a:hover{color:var(--text)}
+
+.wrap{max-width:1100px; margin:0 auto; padding:32px 16px}
+
+.hero{ text-align:center; padding:30px 0 10px}
+.hero h1{font-size: clamp(28px, 4vw, 44px); margin:0 0 8px}
+.sub{color:var(--muted); margin:0 0 18px}
+
+.billing-toggle{
+  display:inline-flex; gap:6px; padding:6px; border-radius:999px;
+  background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+}
+.bill-btn{
+  padding:10px 16px; border-radius:999px; border:none; cursor:pointer;
+  background:transparent; color:var(--muted); font-weight:600
+}
+.bill-btn.active{ background:linear-gradient(135deg, var(--teal), var(--sky)); color:#061018; }
+
+.carousel{ position:relative; margin-top:26px}
+.arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.1);
+  color:var(--text);
+  width:40px;height:40px;border-radius:999px; cursor:pointer;
+  display:none; /* masqué mobile, visible desktop via media */
+}
+.arrow.left{ left:-6px}
+.arrow.right{ right:-6px}
+@media(min-width:900px){ .arrow{display:inline-flex; align-items:center; justify-content:center} }
+
+.track{
+  display:flex; gap:18px; overflow:hidden; scroll-behavior:smooth;
+  padding:10px 2px;
+  -webkit-overflow-scrolling: touch;
+}
+.card{
+  flex:0 0 85%;
+  max-width: 520px;
+  background:linear-gradient(180deg, var(--panel), var(--panel-2));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px; padding:22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+@media(min-width:900px){ .card{flex:0 0 33.333%} }
+.card.highlight{ outline:2px solid var(--ring)}
+.card-header{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
+.logo{ width:44px; opacity:.9 }
+.price{ font-weight:800; font-size:28px; margin:6px 0 2px}
+.price small{ color:var(--muted); font-weight:600}
+.cta{
+  margin-top:6px;
+  background:rgba(255,255,255,.08);
+  color:var(--text); border:1px solid rgba(255,255,255,.12);
+  padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:700
+}
+.cta.primary{ background:linear-gradient(135deg, var(--teal), var(--sky)); color:#07131a; border:none}
+.divider{ height:1px; background:rgba(255,255,255,.08); margin:16px 0}
+.features{ list-style:none; padding:0; margin:0}
+.features li{ padding:8px 0; color:var(--muted)}
+
+.dots{ display:flex; gap:6px; justify-content:center; margin-top:12px}
+.dots button{
+  width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.25);
+  border:none
+}
+.dots button.active{ background:linear-gradient(135deg, var(--teal), var(--sky)); }
+
+.faq{ margin:40px 0 80px}
+details{
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; padding:12px 14px; margin-top:10px
+}
+summary{ cursor:pointer; font-weight:600}

@@ -1,62 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vaubia — Tarifs</title>
+  <link rel="stylesheet" href="pricing.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="app.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="index.html"><img class="brand-mark" src="assets/logo.svg" alt=""/><span class="brand-name">Vaubia</span></a>
-  <nav class="nav">
-    <a href="index.html">Accueil</a>
-    <a class="active" href="pricing.html">Tarifs</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header class="topbar">
+    <a class="brand" href="/">Vaubia</a>
+    <nav class="topnav">
+      <a href="/">Accueil</a>
+      <a class="active" href="#">Tarifs</a>
+      <a href="/services.html">Fonctionnalités</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
 
-<main class="container">
-  <section class="hero" style="padding-bottom:0">
-    <h1 class="hero-title">Des offres qui s’adaptent à vos besoins</h1>
-    <p class="hero-sub">Basculez entre <strong>Mensuel</strong> et <strong>Annuel (-17%)</strong>. Un swipe = 1 carte.</p>
-    <div class="billing" role="group" aria-label="Facturation" style="display:inline-flex;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:999px;padding:6px">
-      <button class="bill" data-mode="monthly" aria-pressed="true" style="border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700">Mensuel</button>
-      <button class="bill" data-mode="yearly" style="border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700">Annuel <span class="badge">-17%</span></button>
-    </div>
-  </section>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Des offres qui s’adaptent à vos besoins</h1>
+      <p class="sub">Choisissez une formule simple et transparente. Mensuel ou annuel (-17%).</p>
 
-  <section class="carousel-wrap" aria-label="Plans" style="display:flex;align-items:center;gap:10px;margin-top:18px">
-    <button class="arrow prev" aria-label="Précédent" style="width:42px;height:42px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;cursor:pointer">‹</button>
-    <div class="viewport" id="viewport" style="flex:1;overflow:hidden;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));touch-action: pan-y;">
-      <div class="track" id="track" style="display:flex;will-change:transform">
-        <article class="card" data-month="29" style="min-width:320px;max-width:320px;flex:0 0 320px;margin:16px;padding:18px;border-radius:16px;background:linear-gradient(180deg,var(--card),#0c1c28);border:1px solid var(--border)">
-          <header><h3 style="margin:0 0 6px;font-size:20px">Starter</h3><p class="hero-sub" style="margin:0">Pour démarrer sereinement</p></header>
-          <div class="price"><span class="amount" style="font-size:40px;font-weight:800;background:linear-gradient(90deg,#aee6ff,#18d0b2);-webkit-background-clip:text;background-clip:text;color:transparent">29</span><span class="cur" style="color:var(--muted);font-weight:600">€</span><span class="per" style="color:var(--muted);font-weight:600">/mois</span></div>
-          <ul class="feat" style="margin:10px 0 16px;color:#bcd1de"><li>Surveillance 1 domaine</li><li>Alertes temps réel</li><li>Rapport hebdomadaire</li></ul>
-          <a class="btn btn-primary" href="contact.html">Souscrire</a>
+      <div class="billing-toggle" role="group" aria-label="Fréquence de facturation">
+        <button class="bill-btn" data-mode="monthly" aria-pressed="true">Mensuel</button>
+        <button class="bill-btn active" data-mode="yearly">Annuel <span class="badge">-17%</span></button>
+      </div>
+    </section>
+
+    <section class="carousel" aria-label="Formules Vaubia">
+      <button class="arrow left" aria-label="Précédent">◀</button>
+      <div class="track" id="track">
+        <!-- Slides will be cloned for infinite loop via JS -->
+        <article class="card" data-plan="essentiel">
+          <div class="card-header">
+            <img src="assets/logo.svg" alt="" class="logo">
+            <h2>Essentiel</h2>
+            <p class="price"><span class="amount" data-month="19" data-year="190">190€</span> <small>/ an HT</small></p>
+            <button class="cta">Souscrire</button>
+          </div>
+          <div class="divider"></div>
+          <ul class="features">
+            <li>Surveillance d’e-mail et domaines</li>
+            <li>Alertes en temps réel</li>
+            <li>Rapport mensuel</li>
+          </ul>
         </article>
-        <article class="card hot" data-month="59" style="min-width:320px;max-width:320px;flex:0 0 320px;margin:16px;padding:18px;border-radius:16px;background:linear-gradient(180deg,var(--card),#0c1c28);border:1px solid var(--border);outline:2px solid var(--teal)">
-          <header><h3 style="margin:0 0 6px;font-size:20px">Pro</h3><p class="hero-sub" style="margin:0">Pour les équipes en croissance</p></header>
-          <div class="price"><span class="amount" style="font-size:40px;font-weight:800;background:linear-gradient(90deg,#aee6ff,#18d0b2);-webkit-background-clip:text;background-clip:text;color:transparent">59</span><span class="cur" style="color:var(--muted);font-weight:600">€</span><span class="per" style="color:var(--muted);font-weight:600">/mois</span></div>
-          <ul class="feat" style="margin:10px 0 16px;color:#bcd1de"><li>+ Détection fuites avancée</li><li>Journal d’audit</li><li>Exports & conformité</li></ul>
-          <a class="btn btn-primary" href="contact.html">Souscrire</a>
+
+        <article class="card highlight" data-plan="pro">
+          <div class="card-header">
+            <img src="assets/logo.svg" alt="" class="logo">
+            <h2>Pro</h2>
+            <p class="price"><span class="amount" data-month="49" data-year="490">490€</span> <small>/ an HT</small></p>
+            <button class="cta primary">Souscrire</button>
+          </div>
+          <div class="divider"></div>
+          <ul class="features">
+            <li>Toutes les fonctions Essentiel</li>
+            <li>Audit & conformité RGPD</li>
+            <li>Rapport hebdomadaire</li>
+            <li>Support prioritaire</li>
+          </ul>
         </article>
-        <article class="card" data-month="99" style="min-width:320px;max-width:320px;flex:0 0 320px;margin:16px;padding:18px;border-radius:16px;background:linear-gradient(180deg,var(--card),#0c1c28);border:1px solid var(--border)">
-          <header><h3 style="margin:0 0 6px;font-size:20px">Business</h3><p class="hero-sub" style="margin:0">Pour grandir sereinement</p></header>
-          <div class="price"><span class="amount" style="font-size:40px;font-weight:800;background:linear-gradient(90deg,#aee6ff,#18d0b2);-webkit-background-clip:text;background-clip:text;color:transparent">99</span><span class="cur" style="color:var(--muted);font-weight:600">€</span><span class="per" style="color:var(--muted);font-weight:600">/mois</span></div>
-          <ul class="feat" style="margin:10px 0 16px;color:#bcd1de"><li>Toutes les fonctions Pro</li><li>Playbooks & SSO</li><li>Support prioritaire</li></ul>
-          <a class="btn btn-primary" href="contact.html">Souscrire</a>
+
+        <article class="card" data-plan="entreprise">
+          <div class="card-header">
+            <img src="assets/logo.svg" alt="" class="logo">
+            <h2>Entreprise</h2>
+            <p class="price"><span class="amount" data-month="99" data-year="990">990€</span> <small>/ an HT</small></p>
+            <button class="cta">Nous contacter</button>
+          </div>
+          <div class="divider"></div>
+          <ul class="features">
+            <li>Intégrations avancées</li>
+            <li>SLA & onboarding</li>
+            <li>Politiques & modèles juridiques</li>
+            <li>Gestion multi-entités</li>
+          </ul>
         </article>
       </div>
-    </div>
-    <button class="arrow next" aria-label="Suivant" style="width:42px;height:42px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;cursor:pointer">›</button>
-  </section>
-</main>
-<footer class="site-footer"><p>© <span id="y"></span> Vaubia — Protégez l’essentiel</p></footer>
+      <button class="arrow right" aria-label="Suivant">▶</button>
+      <div class="dots" aria-hidden="true"></div>
+    </section>
+
+    <section class="faq">
+      <h3>FAQ</h3>
+      <details>
+        <summary>Puis-je changer d’offre ?</summary>
+        <p>Oui, vous pouvez passer d’une offre à l’autre à tout moment.</p>
+      </details>
+      <details>
+        <summary>Y a-t-il un essai gratuit ?</summary>
+        <p>Nous proposons une démo et un onboarding rapide pour valider l’adéquation.</p>
+      </details>
+    </section>
+  </main>
+
+  <script src="pricing.js" defer></script>
 </body>
 </html>
