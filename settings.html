@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr" data-auth="required">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Réglages — Vaubia</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <meta name="theme-color" content="#0e1b25"/>
+  
+<script>
+window.LOGO_SVG = `<svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16e0b8"/>
+      <stop offset="100%" stop-color="#3fd3ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="22" fill="url(#g1)" opacity=".85"/>
+  <path d="M24 12c6 6 12 6 12 12s-6 12-12 12-12-6-12-12 6-6 12-12z" fill="#08141c" opacity=".35"/>
+  <circle cx="24" cy="24" r="6" fill="#08141c" opacity=".7"/>
+</svg>`;
+</script>
+
+</head>
+<body>
+  <header id="header-slot"></header>
+  <main>
+<section class="container">
+  <h1>Réglages</h1>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Préférences</h3>
+      <div style="display:flex;align-items:center;gap:10px;margin:8px 0">
+        <label for="dark">Mode sombre</label>
+        <input id="dark" class="toggle" type="checkbox" checked>
+      </div>
+      <div class="input">
+        <label>Langue</label>
+        <select id="lang" style="padding:10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--text)">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Profil</h3>
+      <div id="profile"></div>
+    </div>
+    <div class="card">
+      <h3>Notifications</h3>
+      <label style="display:flex;gap:10px;align-items:center"><input type="checkbox" checked> E-mail critiques</label><br/>
+      <label style="display:flex;gap:10px;align-items:center"><input type="checkbox" checked> Rapport hebdomadaire</label><br/>
+      <label style="display:flex;gap:10px;align-items:center"><input type="checkbox"> SMS (bientôt)</label>
+    </div>
+  </div>
+</section>
+<script>
+  const p = Auth.user;
+  document.getElementById('profile').innerHTML = p? `<b>${p.name}</b><br/><span style="color:#9bb3bf">${p.email}</span><br/>Offre: ${p.plan}` : 'Non connecté';
+  const lang = document.getElementById('lang'); lang.value = i18n.lang;
+  lang.addEventListener('change', e=> i18n.lang = e.target.value);
+  const dark = document.getElementById('dark');
+  dark.checked = localStorage.getItem('vaubia_theme')!=='light';
+  function applyTheme(){ const light = !dark.checked; document.documentElement.style.setProperty('--bg', light?'#f5fbff':'#0e1b25'); localStorage.setItem('vaubia_theme', light?'light':'dark'); }
+  dark.addEventListener('change', applyTheme); applyTheme();
+</script>
+</main>
+
+  <div class="cookie hidden">
+    <div class="inner">
+      <p>Nous utilisons des cookies pour améliorer l’expérience. Vous pouvez refuser l’analyse.</p>
+      <div class="actions">
+        <button id="cookie-deny" class="btn ghost">Refuser</button>
+        <button id="cookie-accept" class="btn primary">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer-slot"></footer>
+  <script src="app.js"></script>
+  <script>mountCommon('settings');</script>
+</body>
+</html>

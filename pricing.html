@@ -1,103 +1,125 @@
 <!doctype html>
-<html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vaubia — Tarifs</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"/><link rel="stylesheet" href="pricing.css"/>
-</head><body>
-<header class="site-header">
-  <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Vaubia"><span>Vaubia</span></a>
-  <div class="header-actions">
-    <button class="search-toggle" aria-label="Rechercher">
-      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
-    </button>
-    <form class="search-form" role="search" aria-hidden="true"><input type="search" placeholder="Rechercher…" aria-label="Rechercher"></form>
-    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="drawer">
-      <a href="index.html">Accueil</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="services.html">Services</a>
-      <a href="demo.html">Démo</a>
-      <a href="contact.html">Contact</a>
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="politique-confidentialite.html">Confidentialité</a>
-      <a href="cookies.html">Cookies</a>
-    </nav>
-  </div>
-</header>
-<main class="wrap">
-  <section class="heroP">
-    <h1>Des offres qui s’adaptent à vos besoins</h1>
-    <p class="subP">Choisissez une formule simple et transparente. Mensuel ou annuel (-17%).</p>
-    <div class="billing-toggle" role="group" aria-label="Fréquence de facturation">
-      <button class="bill-btn" data-mode="monthly" aria-pressed="true">Mensuel</button>
-      <button class="bill-btn active" data-mode="yearly">Annuel <span class="badge">-17%</span></button>
-    </div>
-  </section>
+<html lang="fr" >
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Tarifs — Vaubia</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <meta name="theme-color" content="#0e1b25"/>
+  
+<script>
+window.LOGO_SVG = `<svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16e0b8"/>
+      <stop offset="100%" stop-color="#3fd3ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="22" fill="url(#g1)" opacity=".85"/>
+  <path d="M24 12c6 6 12 6 12 12s-6 12-12 12-12-6-12-12 6-6 12-12z" fill="#08141c" opacity=".35"/>
+  <circle cx="24" cy="24" r="6" fill="#08141c" opacity=".7"/>
+</svg>`;
+</script>
 
-  <section class="carouselP" aria-label="Formules Vaubia">
-    <button class="arrow left" aria-label="Précédent">◀</button>
-    <div class="viewport" id="viewport">
-      <div class="trackP" id="trackP">
-        <article class="cardP" data-month="19"><h3>Essentiel</h3><div class="priceP"><span class="amount">189</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Surveillance e-mail & domaines</li><li>Alertes en temps réel</li><li>Rapport mensuel</li></ul><a class="btn primary" href="contact.html">Souscrire</a></article>
-        <article class="cardP hot" data-month="49"><h3>Pro</h3><div class="priceP"><span class="amount">489</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Toutes les fonctions Essentiel</li><li>Audit & conformité</li><li>Rapport hebdomadaire</li><li>Support prioritaire</li></ul><a class="btn primary" href="contact.html">Souscrire</a></article>
-        <article class="cardP" data-month="99"><h3>Entreprise</h3><div class="priceP"><span class="amount">989</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Intégrations avancées</li><li>SLA & onboarding</li><li>Politiques & modèles</li><li>Gestion multi-entités</li></ul><a class="btn" href="contact.html">Nous contacter</a></article>
+</head>
+<body>
+  <header id="header-slot"></header>
+  <main>
+<section class="container">
+  <h1>Des offres qui s’adaptent à vos besoins</h1>
+  <div style="display:flex;gap:10px;margin:10px 0 22px">
+    <span class="badge">Mensuel</span>
+    <span class="badge" style="background:rgba(22,224,184,.16);border-color:rgba(22,224,184,.4)">Annuel • -17%</span>
+  </div>
+  <div class="carousel" id="pricing-carousel">
+    <div class="carousel-track">
+      <div class="card price-card">
+        <h3>Essentiel</h3>
+        <p class="lead">Pour démarrer en toute simplicité.</p>
+        <h2 style="margin:10px 0">19€<small style="font-size:14px;color:#9bb3bf">/mois</small></h2>
+        <ul>
+          <li>Score de sécurité</li>
+          <li>Alertes e-mail</li>
+          <li>Rapport mensuel</li>
+        </ul>
+        <button class="btn primary" onclick="selectPlan('essentiel')">Souscrire</button>
+      </div>
+      <div class="card price-card" style="border:2px solid rgba(22,224,184,.5)">
+        <h3>Pro</h3>
+        <p class="lead">Pour les équipes ambitieuses.</p>
+        <h2 style="margin:10px 0">49€<small style="font-size:14px;color:#9bb3bf">/mois</small></h2>
+        <ul>
+          <li>Tout Essentiel</li>
+          <li>Détection phishing avancée</li>
+          <li>Rapports hebdomadaires</li>
+        </ul>
+        <button class="btn primary" onclick="selectPlan('pro')">Souscrire</button>
+      </div>
+      <div class="card price-card">
+        <h3>Entreprise</h3>
+        <p class="lead">Sécurité à grande échelle.</p>
+        <h2 style="margin:10px 0">—<small style="font-size:14px;color:#9bb3bf">sur devis</small></h2>
+        <ul>
+          <li>SSO, RBAC</li>
+          <li>Support prioritaire</li>
+          <li>Accords DPA</li>
+        </ul>
+        <a class="btn ghost" href="contact.html">Nous contacter</a>
+      </div>
+      <!-- duplicates for infinite feel -->
+      <div class="card price-card">
+        <h3>Essentiel</h3>
+        <p class="lead">Pour démarrer en toute simplicité.</p>
+        <h2 style="margin:10px 0">19€<small style="font-size:14px;color:#9bb3bf">/mois</small></h2>
+        <ul>
+          <li>Score de sécurité</li>
+          <li>Alertes e-mail</li>
+          <li>Rapport mensuel</li>
+        </ul>
+        <button class="btn primary" onclick="selectPlan('essentiel')">Souscrire</button>
+      </div>
+      <div class="card price-card" style="border:2px solid rgba(22,224,184,.5)">
+        <h3>Pro</h3>
+        <p class="lead">Pour les équipes ambitieuses.</p>
+        <h2 style="margin:10px 0">49€<small style="font-size:14px;color:#9bb3bf">/mois</small></h2>
+        <ul>
+          <li>Tout Essentiel</li>
+          <li>Détection phishing avancée</li>
+          <li>Rapports hebdomadaires</li>
+        </ul>
+        <button class="btn primary" onclick="selectPlan('pro')">Souscrire</button>
       </div>
     </div>
-    <button class="arrow right" aria-label="Suivant">▶</button>
-  </section>
-</main>
-<footer class="site-footer">© 2025 Vaubia — Protégez l’essentiel</footer>
-<script src="app.js"></script>
+    <div class="nav">
+      <button class="arrow left">◀</button>
+      <button class="arrow right">▶</button>
+    </div>
+  </div>
+</section>
 <script>
-const DISCOUNT = 0.17;
-const viewport = document.getElementById('viewport');
-const trackP = document.getElementById('trackP');
-const btnPrev = document.querySelector('.arrow.left');
-const btnNext = document.querySelector('.arrow.right');
-const bills = Array.from(document.querySelectorAll('.bill-btn'));
-if(viewport && trackP){
-  let cards = Array.from(trackP.children);
-  const firstClone = cards[0].cloneNode(true);
-  const lastClone  = cards[cards.length-1].cloneNode(true);
-  trackP.prepend(lastClone); trackP.append(firstClone);
-  let slideW = 0, index = 1, anim=false;
-  function measure(){ const c = trackP.querySelector('.cardP'); slideW = c.getBoundingClientRect().width + 32; }
-  function setX(i, animate=true){
-    if(anim) return; anim=true;
-    trackP.style.transition = animate ? 'transform 300ms cubic-bezier(.2,.8,.2,1)' : 'none';
-    trackP.style.transform = 'translateX(' + (-i*slideW) + 'px)';
-    setTimeout(function(){
-      anim=false; index=i;
-      const total = trackP.children.length;
-      if(index===total-1){ trackP.style.transition='none'; index=1; trackP.style.transform='translateX(' + (-index*slideW) + 'px)'; }
-      else if(index===0){ trackP.style.transition='none'; index=total-2; trackP.style.transform='translateX(' + (-index*slideW) + 'px)'; }
-    }, animate?300:0);
+  initCarousel('#pricing-carousel');
+  function selectPlan(plan){
+    localStorage.setItem('vaubia_plan', plan);
+    // If signup pending, auto-complete
+    const pending = localStorage.getItem('vaubia_pending');
+    if(pending){ Auth.completeSubscription(plan); location.href='dashboard.html'; }
+    else{ location.href='signup.html?plan='+plan; }
   }
-  function next(){ setX(index+1); } function prev(){ setX(index-1); }
-  let downX=0, curX=0, dragging=false, t0=0; const TH=50, VMIN=0.35;
-  viewport.addEventListener('pointerdown', function(e){ dragging=true; downX=curX=e.clientX; t0=performance.now(); trackP.style.transition='none'; viewport.setPointerCapture(e.pointerId); });
-  viewport.addEventListener('pointermove', function(e){ if(!dragging) return; curX=e.clientX; const dx=curX-downX; const base=-index*slideW; trackP.style.transform='translateX(' + (base+dx) + 'px)'; });
-  function endSwipe(){ if(!dragging) return; dragging=false; const dx=curX-downX; const v=Math.abs(dx)/Math.max(1,performance.now()-t0); if(dx<-TH || (dx<0 && v>VMIN)) next(); else if(dx>TH || (dx>0 && v>VMIN)) prev(); else setX(index); }
-  viewport.addEventListener('pointerup', endSwipe); viewport.addEventListener('pointercancel', endSwipe); viewport.addEventListener('mouseleave', endSwipe);
-  btnPrev && btnPrev.addEventListener('click', prev); btnNext && btnNext.addEventListener('click', next);
-  window.addEventListener('load', function(){ measure(); setX(1,false); });
-  window.addEventListener('resize', function(){ measure(); setX(index,false); });
-
-  function setBilling(mode){
-    document.querySelectorAll('.cardP').forEach(function(card){
-      const m = Number(card.getAttribute('data-month'));
-      const amount = card.querySelector('.amount');
-      const per = card.querySelector('.per');
-      if(mode==='yearly'){ const y = Math.round(m*12*(1-DISCOUNT)); amount.textContent=y; per.textContent='/an'; }
-      else { amount.textContent=m; per.textContent='/mois'; }
-    });
-    bills.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.mode===mode)); });
-  }
-  bills.forEach(function(b){ b.addEventListener('click', function(){ setBilling(b.dataset.mode); }); });
-  setBilling('yearly');
-}
 </script>
-<script src="consent.js"></script>
-</body></html>
+</main>
+
+  <div class="cookie hidden">
+    <div class="inner">
+      <p>Nous utilisons des cookies pour améliorer l’expérience. Vous pouvez refuser l’analyse.</p>
+      <div class="actions">
+        <button id="cookie-deny" class="btn ghost">Refuser</button>
+        <button id="cookie-accept" class="btn primary">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer-slot"></footer>
+  <script src="app.js"></script>
+  <script>mountCommon('pricing');</script>
+</body>
+</html>

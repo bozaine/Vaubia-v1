@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr" data-auth="required">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Tableau de bord — Vaubia</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <meta name="theme-color" content="#0e1b25"/>
+  
+<script>
+window.LOGO_SVG = `<svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16e0b8"/>
+      <stop offset="100%" stop-color="#3fd3ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="22" fill="url(#g1)" opacity=".85"/>
+  <path d="M24 12c6 6 12 6 12 12s-6 12-12 12-12-6-12-12 6-6 12-12z" fill="#08141c" opacity=".35"/>
+  <circle cx="24" cy="24" r="6" fill="#08141c" opacity=".7"/>
+</svg>`;
+</script>
+
+</head>
+<body>
+  <header id="header-slot"></header>
+  <main>
+<section class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <h1>Tableau de bord</h1>
+    <div>
+      <a class="btn ghost" href="settings.html">Réglages</a>
+      <button class="btn" onclick="Auth.logout(); location.href='index.html'">Se déconnecter</button>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-top:8px">
+    <div class="kpi"><h4>Score sécurité</h4><div class="big" id="kpi-score">—</div><div style="color:#9bb3bf">Plus c’est élevé, mieux c’est.</div></div>
+    <div class="kpi"><h4>Tentatives (24h)</h4><div class="big" id="kpi-attempts">—</div><div style="color:#9bb3bf">Activités détectées</div></div>
+    <div class="kpi"><h4>Bloquées</h4><div class="big" id="kpi-blocked">—</div><div style="color:#9bb3bf">Neutralisées automatiquement</div></div>
+    <div class="kpi"><h4>Taux de blocage</h4><div class="big" id="kpi-rate">—</div><div style="color:#9bb3bf">D’après les dernières 24h</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <canvas id="chart" class="chart"></canvas>
+  </div>
+
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card">
+      <h3>Alertes récentes</h3>
+      <table class="table" id="alerts">
+        <thead><tr><th>Heure</th><th>Type</th><th>Statut</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Conformité</h3>
+      <ul>
+        <li>Journal d’audit actif</li>
+        <li>Registre de traitements à jour</li>
+        <li>Politique de mots de passe conforme</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Conseils</h3>
+      <ul>
+        <li>Activez le 2FA pour tous les comptes administrateurs.</li>
+        <li>Planifiez un test de phishing interne.</li>
+        <li>Revoyez les accès inactifs trimestriellement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<script type="module" src="dashboard.js"></script>
+<script>
+  // mock alerts
+  const types = ['Phishing','Connexion suspecte','Malware'];
+  const statuses = ['Bloquée','Surveillée','Résolue'];
+  const tbody = document.querySelector('#alerts tbody');
+  for(let i=0;i<6;i++){
+    const tr = document.createElement('tr');
+    const t = new Date(Date.now()-i*3600e3).toLocaleTimeString('fr-FR',{hour:'2-digit', minute:'2-digit'});
+    tr.innerHTML = `<td>${t}</td><td>${types[i%types.length]}</td><td>${statuses[i%statuses.length]}</td>`;
+    tbody.appendChild(tr);
+  }
+</script>
+</main>
+
+  <div class="cookie hidden">
+    <div class="inner">
+      <p>Nous utilisons des cookies pour améliorer l’expérience. Vous pouvez refuser l’analyse.</p>
+      <div class="actions">
+        <button id="cookie-deny" class="btn ghost">Refuser</button>
+        <button id="cookie-accept" class="btn primary">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer-slot"></footer>
+  <script src="app.js"></script>
+  <script>mountCommon('dashboard');</script>
+</body>
+</html>

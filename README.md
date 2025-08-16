@@ -1,28 +1,27 @@
-# Vaubia • Dashboard (React + Vite + Tailwind + Chart.js)
 
-Dashboard moderne, sombre et "SaaS friendly" pour visualiser les métriques de sécurité : score, phishing, attaques bloquées, activité récente, etc.
+# Vaubia — bundle drag & drop (v3)
 
-## Lancer en local
+**Ce dossier est directement déployable sur Vercel par simple glisser‑déposer.**  
+Multi‑pages statiques + JS partagé (pas de build).
 
-```bash
-npm install
-npm run dev
-```
+## Pages
+- `index.html` (Home + search pill + 3 topics)
+- `pricing.html` (**carrousel tactile** infini avec swipe)
+- `login.html`, `signup.html` (inscription -> tarifs, connexion -> dashboard)
+- `dashboard.html` (**protégé** : redirige vers Login si non connecté)
+- `settings.html` (mode sombre/clair, langue, préférences)
+- `services.html`, `contact.html`
+- `legal/…` (mentions, confidentialité, cookies)
+- `vercel.json` (headers sécurité)
 
-Puis ouvre l'URL affichée par Vite (généralement http://localhost:5173).
+## Auth simulée
+- Inscription → enregistre un *pending signup* → Tarifs → `Souscrire` crée un *plan* + session.
+- Connexion → crée une session mock (`localStorage`) → accès au `dashboard.html`.
 
-## Build de prod
+## Déploiement
+1. Aller sur **vercel.com → New Project → Upload**.
+2. Glisser tout le dossier **ou** le ZIP ci‑joint.
+3. C’est en ligne ✔️
 
-```bash
-npm run build
-npm run preview
-```
+> Pour repartir de zéro : `localStorage.clear()` (dans la console) ou “Se déconnecter”.
 
-## Tech
-
-- React 18, Vite
-- TailwindCSS (thème teal/bleu, cartes glassmorphism)
-- Chart.js + react-chartjs-2 (courbe remplie, donut, barres)
-- lucide-react pour les icônes
-
-Le design et les couleurs correspondent à la charte Vaubia.
