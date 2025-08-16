@@ -1,59 +1,51 @@
-// Vaubia refined home v2
-(function(){
-  const burger = document.querySelector('.burger');
-  if (burger){
-    burger.addEventListener('click', ()=>{
-      const nav = document.querySelector('.main-nav');
-      const open = nav.style.display === 'flex';
-      nav.style.display = open ? 'none' : 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.gap = '12px';
-      burger.setAttribute('aria-expanded', String(!open));
-    });
-  }
+// Burger menu
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+if (burger && menu){
+  burger.addEventListener('click', ()=>{
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+}
 
-  // Search pill -> bar toggle
-  const pill = document.getElementById('searchPill');
-  const bar = document.getElementById('searchBar');
-  if (pill && bar){
-    const show = () => { bar.classList.add('show'); bar.setAttribute('aria-hidden','false'); bar.querySelector('input').focus(); };
-    pill.addEventListener('click', show);
-  }
+// Recherche : n’afficher la barre QUE si hover/tap sur la loupe
+const trigger = document.getElementById('searchTrigger');
+const form = document.getElementById('searchForm');
+const zone = document.getElementById('searchZone');
 
-  // Carousel controls + swipe
-  function setupCarousel(id){
-    const el = document.getElementById(id);
-    if (!el) return;
-    const prev = document.querySelector(`.nav.prev[data-target="${id}"]`);
-    const next = document.querySelector(`.nav.next[data-target="${id}"]`);
+function openSearch(){ form.classList.add('open'); }
+function closeSearch(){ form.classList.remove('open'); }
 
-    const cardWidth = () => el.querySelector('.card')?.getBoundingClientRect().width + 18 || 340;
-    const slide = (dir)=> el.scrollBy({left: dir*cardWidth(), behavior:'smooth'});
+if (trigger && form){
+  // Desktop : hover
+  trigger.addEventListener('mouseenter', openSearch);
+  zone.addEventListener('mouseleave', closeSearch);
 
-    prev?.addEventListener('click', ()=>slide(-1));
-    next?.addEventListener('click', ()=>slide(1));
+  // Mobile / click
+  trigger.addEventListener('click', (e)=>{
+    e.preventDefault();
+    form.classList.toggle('open');
+    if (form.classList.contains('open')) form.querySelector('input')?.focus();
+  });
 
-    // Touch/Mouse swipe
-    let startX = 0, scrollStart = 0, dragging = false;
-    const start = (x)=>{ dragging = true; startX = x; scrollStart = el.scrollLeft; };
-    const move  = (x)=>{
-      if(!dragging) return;
-      const dx = x - startX;
-      el.scrollLeft = scrollStart - dx;
-    };
-    const end = (x)=>{
-      if(!dragging) return;
-      dragging = false;
-      const dx = x - startX;
-      if (Math.abs(dx) > 40){
-        slide(dx<0 ? 1 : -1);
-      }
-    };
+  // Escape to close
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeSearch();
+  });
+}
 
-    el.addEventListener('pointerdown', (e)=>{ el.setPointerCapture(e.pointerId); start(e.clientX); });
-    el.addEventListener('pointermove', (e)=> move(e.clientX));
-    el.addEventListener('pointerup',   (e)=> end(e.clientX));
-    el.addEventListener('pointercancel', ()=> dragging=false);
-  }
-  setupCarousel('topicsCarousel');
-})();
+// Drag-to-scroll pour desktop (en plus du swipe natif mobile)
+const row = document.getElementById('cardsRow');
+if (row){
+  let isDown=false, startX=0, scrollLeft=0;
+  row.addEventListener('pointerdown', (e)=>{
+    isDown=true; row.setPointerCapture(e.pointerId);
+    startX = e.clientX; scrollLeft = row.scrollLeft;
+  });
+  row.addEventListener('pointermove', (e)=>{
+    if(!isDown) return;
+    const dx = e.clientX - startX;
+    row.scrollLeft = scrollLeft - dx;
+  });
+  ['pointerup','pointercancel','mouseleave'].forEach(ev=>row.addEventListener(ev, ()=>{isDown=false;}));
+}
