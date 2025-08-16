@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#12d6b6"/><stop offset="1" stop-color="#24a3ff"/></linearGradient></defs>
-  <circle cx="32" cy="32" r="28" fill="url(#g)"/>
-  <circle cx="32" cy="32" r="18" fill="rgba(0,16,24,.45)"/>
-  <circle cx="32" cy="32" r="6" fill="#001018"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#5ca6ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="22" fill="url(#g)"/>
+  <circle cx="24" cy="24" r="10" fill="#071a18"/>
 </svg>
