@@ -11,7 +11,7 @@ export default {
           200: '#99ead9',
           300: '#67d6c3',
           400: '#36bca9',
-          500: '#1fa48f', /* teal prim */
+          500: '#1fa48f',
           600: '#168274',
           700: '#11675e',
           800: '#0f524d',
@@ -25,9 +25,6 @@ export default {
       },
       boxShadow: {
         soft: '0 10px 30px -10px rgba(0,0,0,0.4)'
-      },
-      backdropBlur: {
-        xs: '2px'
       }
     },
   },

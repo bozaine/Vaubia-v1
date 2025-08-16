@@ -1,74 +1,16 @@
 <!doctype html>
-<html lang="fr" >
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Accueil — Vaubia</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <meta name="theme-color" content="#0e1b25"/>
-  
-<script>
-window.LOGO_SVG = `<svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#16e0b8"/>
-      <stop offset="100%" stop-color="#3fd3ff"/>
-    </linearGradient>
-  </defs>
-  <circle cx="24" cy="24" r="22" fill="url(#g1)" opacity=".85"/>
-  <path d="M24 12c6 6 12 6 12 12s-6 12-12 12-12-6-12-12 6-6 12-12z" fill="#08141c" opacity=".35"/>
-  <circle cx="24" cy="24" r="6" fill="#08141c" opacity=".7"/>
-</svg>`;
-</script>
-
-</head>
-<body>
-  <header id="header-slot"></header>
-  <main>
-<section class="hero">
-  <div class="container">
-    <span class="badge">Vaubia • Protégez l’essentiel</span>
-    <h1>Simulez, détectez et décidez en quelques secondes.</h1>
-    <p class="lead">Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité en un seul endroit — simplement.</p>
-    <div class="cta">
-      <a class="btn primary" href="signup.html">Commencer</a>
-      <a class="btn ghost" href="demo.html">Voir une démo</a>
-    </div>
-    <div class="wave"></div>
-
-    <div class="grid-3">
-      <div class="card">
-        <div class="badge">Valeur</div>
-        <h3>Visibilité claire</h3>
-        <p>Un score de sécurité unifié et des rapports compréhensibles pour toute l’équipe.</p>
-      </div>
-      <div class="card">
-        <div class="badge">Sécurité</div>
-        <h3>Attaques bloquées</h3>
-        <p>Détection des tentatives & phishing avec neutralisation automatique.</p>
-      </div>
-      <div class="card">
-        <div class="badge">Conformité</div>
-        <h3>RGPD sans effort</h3>
-        <p>Journal d’audit, registres & modèles prêts à l’emploi.</p>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-
-  <div class="cookie hidden">
-    <div class="inner">
-      <p>Nous utilisons des cookies pour améliorer l’expérience. Vous pouvez refuser l’analyse.</p>
-      <div class="actions">
-        <button id="cookie-deny" class="btn ghost">Refuser</button>
-        <button id="cookie-accept" class="btn primary">Accepter</button>
-      </div>
-    </div>
-  </div>
-
-  <footer id="footer-slot"></footer>
-  <script src="app.js"></script>
-  <script>mountCommon('home');</script>
-</body>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vaubia • SaaS Starter</title>
+    <meta name="description" content="Vaubia — Protégez l'essentiel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
