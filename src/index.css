@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(31,164,143,0.35), transparent 60%),
+              radial-gradient(1200px 600px at -10% 20%, rgba(59,130,246,0.25), transparent 60%),
+              linear-gradient(180deg, #0b1220 0%, #0e1626 50%, #121b2f 100%);
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-soft rounded-2xl;
+}
+
+.card {
+  @apply glass p-5;
+}
+
+.kpi-title {
+  @apply text-slate-300 text-sm;
+}
+.kpi-value {
+  @apply text-white text-2xl font-semibold;
+}
+.badge {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs;
+}
+.badge.up { @apply bg-emerald-500/15 text-emerald-300; }
+.badge.down { @apply bg-rose-500/15 text-rose-300; }
