@@ -1,41 +1,31 @@
-import React, { useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth.js'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { auth } from '../mocks/auth'
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 export default function Signup(){
-  const { signupPending } = useAuth()
-  const [email,setEmail]=useState('')
-  const [org,setOrg]=useState('')
-  const [loading,setLoading]=useState(false)
-  const [qs] = useSearchParams()
-  const nav=useNavigate()
-
-  async function onSubmit(e){
+  const [email, setEmail] = useState(''); const [pwd, setPwd] = useState(''); const [ok,setOk]=useState(false); const [err,setErr]=useState('')
+  const nav = useNavigate()
+  const submit = (e)=>{
     e.preventDefault()
-    setLoading(true)
-    await new Promise(r=>setTimeout(r, 400))
-    signupPending(email, org)
-    const plan = qs.get('plan') || 'essentiel'
-    nav(`/pricing?plan=${plan}`)
+    try{ auth.signup(email,pwd); setOk(true); setTimeout(()=>nav('/login'), 700) } catch(e){ setErr('Ce mail existe déjà (démo).') }
   }
-
   return (
-    <div className="container py-10">
-      <header className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Inscription</h1>
-        <Link to="/" className="btn">Accueil</Link>
-      </header>
-      <form onSubmit={onSubmit} className="max-w-md space-y-3">
-        <label className="label" htmlFor="email">E‑mail</label>
-        <input id="email" className="input" type="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
-        <label className="label" htmlFor="org">Organisation</label>
-        <input id="org" className="input" value={org} onChange={e=>setOrg(e.target.value)} required/>
-        <div className="flex gap-2 pt-2">
-          <button className="btn primary" disabled={loading}>{loading?'Envoi…':'Continuer'}</button>
-          <Link className="btn" to="/pricing">Voir les offres</Link>
-        </div>
-      </form>
-      <p className="text-slate-300 mt-3 text-sm">Après paiement (plus tard), vous recevrez automatiquement vos identifiants par e‑mail.</p>
+    <div>
+      <Header />
+      <main className="container">
+        <h1>Inscription</h1>
+        <form onSubmit={submit} className="card" style={{display:'grid', gap:12, maxWidth:420}}>
+          {ok && <div className="badge">Compte créé ! Vérifiez vos emails (démo).</div>}
+          {err && <div className="badge" role="alert">{err}</div>}
+          <label>Email<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label>
+          <label>Mot de passe<input type="password" value={pwd} onChange={e=>setPwd(e.target.value)} required/></label>
+          <button className="btn primary">Créer le compte</button>
+          <small>Déjà un compte ? <Link to="/login">Se connecter</Link></small>
+        </form>
+      </main>
+      <Footer />
     </div>
   )
 }

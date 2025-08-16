@@ -1,34 +1,29 @@
-# Vaubia • React SaaS Starter (no external services)
+# Vaubia — Machine de guerre (React + Vite)
 
-Implémente tout ce qui était demandé **sans outil tiers** (pas de backend/DB) :
+Design sombre teal/bleu, landing *Runway-like* (fond dégradé + loupe qui révèle la recherche au survol),
+menu hamburger, topics horizontaux, page **Pricing** avec carrousel *swipe* d’un geste,
+auth mock (localStorage), **routing**, **zones protégées** (dashboard/settings), bannière cookies, i18n FR/EN.
 
-- ✅ **Routing** (react-router) : `/`, `/pricing`, `/login`, `/signup`, `/dashboard`, `/settings`, `/components`
-- ✅ **Zones protégées** via `ProtectedRoute` + session mock (localStorage)
-- ✅ **Login / Signup** réalistes (validations, loaders, erreurs)
-- ✅ **Settings** (profil local, mode sombre/clair, langue FR/EN, préférences)
-- ✅ **Accessibilité** (ARIA, focus, labels) + **Responsive** + **Skeleton**
-- ✅ **États vides/erreur** (alertes, graph)
-- ✅ **Mocks de données** + bouton **Rafraîchir**
-- ✅ **i18n maison** (FR/EN)
-- ✅ **Tests** (Vitest) + **ESLint/Prettier**
-- ✅ **Docs** `/components` (storybook light)
-
-## Démarrer
-
+## Lancer en local
 ```bash
-npm install
+npm i
 npm run dev
 ```
 
-Visite http://localhost:5173
+## Déployer sur Vercel (ZIP)
+1. Compressez ce dossier (ou prenez le .zip fourni).
+2. Vercel → **New Project** → **Upload**.
+3. Framework détecté: *Vite*.
+   - Build command: `npm run build`
+   - Output: `dist`
+4. Déployez.
 
-## Build
+## Pages
+- `/` : Landing minimaliste avec gradient + search-icon qui se déploie.
+- `/pricing` : Carrousel tactile (mensuel/annuel/entreprise).
+- `/login` / `/signup` : Auth mock (localStorage).
+- `/dashboard` (protégée) : métriques simulées.
+- `/settings` (protégée) : langue, apparence (démo).
+- `/services`, `/contact`, `/mentions-legales`, `/politique-confidentialite`, `/cookies`.
 
-```bash
-npm run build
-npm run preview
-```
-
-## Notes
-- Sessions & données sont **mockées** (localStorage). Remplacez par une vraie API quand vous serez prêt.
-- Pour reset : ouvrir la console → `localStorage.clear()`.
+> A brancher plus tard sur un vrai backend & Stripe.

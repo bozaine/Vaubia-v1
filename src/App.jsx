@@ -1,44 +1,41 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import Home from './pages/Home.jsx'
-import Pricing from './pages/Pricing.jsx'
-import Login from './pages/Login.jsx'
-import Signup from './pages/Signup.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-import Settings from './pages/Settings.jsx'
-import Components from './pages/Components.jsx'
-import ProtectedLayout from './ProtectedLayout.jsx'
-import { getUser } from './hooks/useAuth.js'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import Home from './pages/Home'
+import Pricing from './pages/Pricing'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Dashboard from './pages/Dashboard'
+import Settings from './pages/Settings'
+import Mentions from './pages/Legal/Mentions'
+import Confidentialite from './pages/Legal/Confidentialite'
+import CookiesPage from './pages/Legal/Cookies'
+import { LocaleProvider } from './mocks/i18n'
+import { auth } from './mocks/auth'
 
-function ProtectedRoute({children}){
-  const user = getUser()
-  const location = useLocation()
-  if(!user){
-    return <Navigate to={`/login?next=${encodeURIComponent(location.pathname)}`} replace />
-  }
+function Protected({ children }){
+  const loc = useLocation()
+  if(!auth.isAuthed()) return <Navigate to="/login" state={{ from: loc }} replace />
   return children
 }
 
 export default function App(){
   return (
-    <BrowserRouter>
+    <LocaleProvider>
       <Routes>
-        {/* Public */}
         <Route path="/" element={<Home/>} />
         <Route path="/pricing" element={<Pricing/>} />
+        <Route path="/services" element={<Services/>} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
-        <Route path="/components" element={<Components/>} />
-
-        {/* Protected */}
-        <Route element={<ProtectedLayout/>}>
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
-          <Route path="/settings" element={<ProtectedRoute><Settings/></ProtectedRoute>} />
-        </Route>
-
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/dashboard" element={<Protected><Dashboard/></Protected>} />
+        <Route path="/settings" element={<Protected><Settings/></Protected>} />
+        <Route path="/mentions-legales" element={<Mentions/>} />
+        <Route path="/politique-confidentialite" element={<Confidentialite/>} />
+        <Route path="/cookies" element={<CookiesPage/>} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </BrowserRouter>
+    </LocaleProvider>
   )
 }

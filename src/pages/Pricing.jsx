@@ -1,58 +1,41 @@
-import React, { useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth.js'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Carousel from '../components/Carousel'
 
 export default function Pricing(){
-  const nav = useNavigate()
-  const { completePlan } = useAuth()
-  const rootRef = useRef(null); const trackRef = useRef(null)
-  useEffect(()=>{
-    const root = rootRef.current, track = trackRef.current; if(!root||!track) return
-    let pos=0, startX=0, lastX=0, vel=0, isDown=false, raf
-    const max = ()=> Math.max(0, track.scrollWidth - root.clientWidth)
-    const setPos = x => { pos = Math.max(0, Math.min(max(), x)); track.style.transform = `translateX(${-pos}px)` }
-    const momentum = ()=>{ pos += vel; vel*=0.95; setPos(pos); if(Math.abs(vel)>0.5) raf=requestAnimationFrame(momentum) }
-    const down = x => { isDown=true; startX=x; lastX=x; vel=0; cancelAnimationFrame(raf) }
-    const move = x => { if(!isDown) return; const dx = x - lastX; setPos(pos - dx); vel = (x-lastX); lastX=x }
-    const up = ()=>{ isDown=false; raf=requestAnimationFrame(momentum) }
-    root.addEventListener('pointerdown', e=>down(e.clientX))
-    window.addEventListener('pointermove', e=>move(e.clientX))
-    window.addEventListener('pointerup', up)
-    root.addEventListener('wheel', e=> setPos(pos + e.deltaY + e.deltaX))
-    return ()=>{ window.removeEventListener('pointermove',e=>move(e.clientX)); window.removeEventListener('pointerup', up) }
-  }, [])
+  const Plan = ({ title, price, note, features }) => (
+    <article className="plan" role="group" aria-label={title}>
+      <span className="badge">{note}</span>
+      <h3>{title}</h3>
+      <div className="price">{price}</div>
+      <ul>
+        {features.map((f,i)=>(<li key={i} style={{marginBottom:8, color:'#9fb0c7'}}>✓ {f}</li>))}
+      </ul>
+      <div style={{display:'flex', gap:10}}>
+        <a className="btn primary" href="/signup">Souscrire</a>
+        <a className="btn ghost" href="/contact">Contact</a>
+      </div>
+    </article>
+  )
 
-  function selectPlan(plan){
-    localStorage.setItem('vaubia_plan', plan)
-    const pending = localStorage.getItem('vaubia_pending')
-    if(pending){ completePlan(plan); nav('/dashboard') }
-    else { nav(`/signup?plan=${plan}`) }
-  }
+  const plans = [
+    { title:'Mensuel', price:'29 € / mois', note:'Annulable à tout moment', features:['Monitoring multi-comptes','Alertes temps réel','Rapport hebdo'] },
+    { title:'Annuel', price:'24 € / mois', note:'-17% • Facturé 288 €', features:['Tout du mensuel','Priorité support','Politique & docs inclus'] },
+    { title:'Entreprise', price:'Sur devis', note:'Support dédié', features:['SLA & SSO','Accès API','Intégrations avancées'] },
+  ]
 
   return (
-    <div className="container py-10">
-      <header className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Tarifs</h1>
-        <Link to="/" className="btn">Accueil</Link>
-      </header>
-      <div ref={rootRef} className="relative overflow-hidden">
-        <div ref={trackRef} className="flex gap-4 transition-transform">
-          {['Essentiel','Pro','Entreprise','Essentiel','Pro'].map((name,i)=> (
-            <div key={i} className="card min-w-[320px] max-w-[360px]">
-              <h3 className="text-xl font-semibold">{name}</h3>
-              <p className="text-slate-300">Offre {name.toLowerCase()} pour {name==='Entreprise'?'les grandes structures':'bien démarrer'}.</p>
-              <h2 className="mt-2 text-2xl font-bold">{name==='Entreprise'?'—':'19€'} <small className="text-slate-400 text-sm">{name==='Entreprise'?'sur devis':'/mois'}</small></h2>
-              <ul className="text-slate-300 mt-2 list-disc pl-5">
-                <li>Score de sécurité</li>
-                <li>Alertes e‑mail</li>
-                <li>Rapport {name==='Essentiel'?'mensuel':'hebdomadaire'}</li>
-              </ul>
-              {name==='Entreprise' ? <Link className="btn mt-3" to="/contact">Nous contacter</Link> :
-                <button className="btn primary mt-3" onClick={()=>selectPlan(name.toLowerCase())}>Souscrire</button>}
-            </div>
-          ))}
-        </div>
-      </div>
+    <div>
+      <Header />
+      <main className="container">
+        <h1>Tarifs</h1>
+        <p style={{color:'#9fb0c7'}}>Faites glisser d’un geste pour explorer les offres.</p>
+        <Carousel>
+          {plans.map((p,i)=>(<Plan key={i} {...p} />))}
+        </Carousel>
+        <div style={{height:20}}/>
+      </main>
+      <Footer />
     </div>
   )
 }

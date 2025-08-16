@@ -1,48 +1,30 @@
-import React, { useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth.js'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { auth } from '../mocks/auth'
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 export default function Login(){
-  const { login } = useAuth()
-  const [email,setEmail]=useState('')
-  const [pass,setPass]=useState('')
-  const [loading,setLoading]=useState(false)
-  const [err,setErr]=useState('')
-  const nav=useNavigate()
-  const [qs] = useSearchParams()
-
-  async function onSubmit(e){
+  const [email, setEmail] = useState(''); const [pwd, setPwd] = useState(''); const [err,setErr]=useState('')
+  const nav = useNavigate()
+  const submit = (e)=>{
     e.preventDefault()
-    try{
-      setErr(''); setLoading(true)
-      await new Promise(r=>setTimeout(r, 400))
-      login(email, pass)
-      const next = qs.get('next') || '/dashboard'
-      nav(next)
-    }catch(e){
-      setErr(e.message || 'Erreur de connexion')
-    }finally{
-      setLoading(false)
-    }
+    try{ auth.login(email, pwd); nav('/dashboard') } catch(e){ setErr('Identifiants invalides (démo).') }
   }
-
   return (
-    <div className="container py-10">
-      <header className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Connexion</h1>
-        <Link to="/" className="btn">Accueil</Link>
-      </header>
-      <form onSubmit={onSubmit} className="max-w-md space-y-3">
-        {err && <div role="alert" className="text-rose-300">{err}</div>}
-        <label className="label" htmlFor="email">E‑mail</label>
-        <input id="email" className="input" type="email" value={email} onChange={e=>setEmail(e.target.value)} required aria-required="true"/>
-        <label className="label" htmlFor="pass">Mot de passe</label>
-        <input id="pass" className="input" type="password" value={pass} onChange={e=>setPass(e.target.value)} required aria-required="true"/>
-        <div className="flex gap-2 pt-2">
-          <button className="btn primary" disabled={loading} aria-busy={loading}>{loading?'Connexion…':'Se connecter'}</button>
-          <Link className="btn" to="/signup">Créer un compte</Link>
-        </div>
-      </form>
+    <div>
+      <Header />
+      <main className="container">
+        <h1>Connexion</h1>
+        <form onSubmit={submit} className="card" style={{display:'grid', gap:12, maxWidth:420}}>
+          {err && <div className="badge" role="alert">{err}</div>}
+          <label>Email<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label>
+          <label>Mot de passe<input type="password" value={pwd} onChange={e=>setPwd(e.target.value)} required/></label>
+          <button className="btn primary">Se connecter</button>
+          <small>Pas de compte ? <Link to="/signup">Créer un compte</Link></small>
+        </form>
+      </main>
+      <Footer />
     </div>
   )
 }
