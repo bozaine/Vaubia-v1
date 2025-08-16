@@ -1,67 +1,51 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaubia — Tarifs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-<header class="site-header">
-  <a class="brand" href="index.html"><span class="dot"></span> Vaubia</a>
-  <nav class="nav">
-    <a href="index.html">Accueil</a>
-    <a href="services.html">Services</a>
-    <a class="active" href="pricing.html">Tarifs</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Vaubia</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/></head><body>
+<header class="header"><div class="container nav">
+  <a class="brand" href="index.html"><span class="logo"></span> Vaubia</a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="search">
+      <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="q" placeholder="Rechercher…" onfocus="expandSearch(true)" onblur="expandSearch(false)"/>
+    </div>
+    <button class="burger" onclick="toggleDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" fill="none"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+</div></header>
+<aside id="drawer" class="drawer">
+  <ul class="container">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="pricing.html">Tarifs</a></li>
+    <li><a href="services.html">Fonctionnalités</a></li>
+    <li><a href="demo.html">Démo</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="mentions-legales.html">Mentions légales</a></li>
+    <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+    <li><a href="cookies.html">Cookies</a></li>
+  </ul>
+</aside>
 
 <main class="container">
-  <section class="hero">
-    <h1>Des offres qui s’adaptent à vos besoins</h1>
-    <p class="sub">Basculez entre <strong>Mensuel</strong> et <strong>Annuel (-17%)</strong>. Un swipe = 1 carte.</p>
-    <div class="billing" role="group" aria-label="Facturation">
-      <button class="bill" data-mode="monthly" aria-pressed="true">Mensuel</button>
-      <button class="bill" data-mode="yearly">Annuel <span class="badge">-17%</span></button>
+  <section class="plan-h">
+    <h1 style="margin-right:auto">Tarifs</h1>
+    <div class="toggle" id="toggle">
+      <button data-mode="mensuel" class="active">Mensuel</button>
+      <button data-mode="annuel">Annuel <span class="badge">-17%</span></button>
     </div>
   </section>
 
-  <section class="carousel-wrap" aria-label="Plans">
-    <button class="arrow prev" aria-label="Précédent">‹</button>
-    <div class="viewport" id="viewport">
-      <div class="track" id="track">
-        <article class="card" data-month="29">
-          <header><h3>Starter</h3><p>Pour démarrer sereinement</p></header>
-          <div class="price"><span class="amount">29</span><span class="cur">€</span><span class="per">/mois</span></div>
-          <ul class="feat"><li>Surveillance 1 domaine</li><li>Alertes temps réel</li><li>Rapport hebdomadaire</li></ul>
-          <a class="btn" href="contact.html">Souscrire</a>
-        </article>
-
-        <article class="card hot" data-month="59">
-          <header><h3>Pro</h3><p>Pour les équipes en croissance</p></header>
-          <div class="price"><span class="amount">59</span><span class="cur">€</span><span class="per">/mois</span></div>
-          <ul class="feat"><li>+ Détection fuites avancée</li><li>Journal d’audit</li><li>Exports & conformité</li></ul>
-          <a class="btn primary" href="contact.html">Souscrire</a>
-        </article>
-
-        <article class="card" data-month="99">
-          <header><h3>Business</h3><p>Pour grandir sereinement</p></header>
-          <div class="price"><span class="amount">99</span><span class="cur">€</span><span class="per">/mois</span></div>
-          <ul class="feat"><li>Toutes les fonctions Pro</li><li>Playbooks & SSO</li><li>Support prioritaire</li></ul>
-          <a class="btn" href="contact.html">Souscrire</a>
-        </article>
-      </div>
-    </div>
-    <button class="arrow next" aria-label="Suivant">›</button>
-  </section>
-
-  <p class="hint">Astuce : un <strong>simple swipe</strong> fait défiler d’une <strong>carte</strong> à la fois. Le carrousel boucle à l’infini.</p>
+  <div id="carousel" class="carousel">
+    <!-- Cards will be populated by JS to enable true infinite loop -->
+  </div>
+  <p style="text-align:center;color:var(--muted)">Glissez horizontalement pour parcourir les offres.</p>
 </main>
 
+<footer>
+  © 2025 Vaubia — Protégez l’essentiel
+</footer>
 <script src="app.js"></script>
-</body>
-</html>
+</body></html>

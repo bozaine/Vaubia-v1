@@ -1,92 +1,92 @@
-/* Vaubia pricing v3 — swipe->one card, infinite, monthly/yearly (-17%) */
-const DISCOUNT = 0.17;
-const viewport = document.getElementById('viewport');
-const track = document.getElementById('track');
-const cards = Array.from(track.children);
-const btnPrev = document.querySelector('.arrow.prev');
-const btnNext = document.querySelector('.arrow.next');
-const bills = Array.from(document.querySelectorAll('.bill'));
-let slideW = 0, index = 1, anim = false;
 
-// ---- Build infinity (clone ends) ----
-const firstClone = cards[0].cloneNode(true);
-const lastClone  = cards[cards.length-1].cloneNode(true);
-track.prepend(lastClone);
-track.append(firstClone);
-
-function measure(){ const c = track.querySelector('.card'); slideW = c.getBoundingClientRect().width + 32; }
-function setX(i, animate=true){
-  if(anim) return;
-  anim = true;
-  track.style.transition = animate ? 'transform 300ms cubic-bezier(.2,.8,.2,1)' : 'none';
-  track.style.transform = `translateX(${-i*slideW}px)`;
-  setTimeout(()=>{
-    anim = false; index = i;
-    const total = track.children.length;
-    if(index === total-1){ // passed last (firstClone)
-      track.style.transition='none'; index = 1;
-      track.style.transform = `translateX(${-index*slideW}px)`;
-    } else if(index === 0){ // passed first (lastClone)
-      track.style.transition='none'; index = total-2;
-      track.style.transform = `translateX(${-index*slideW}px)`;
-    }
-  }, animate? 300 : 0);
-}
-function next(){ setX(index+1); }
-function prev(){ setX(index-1); }
-
-// ---- Swipe: one gesture -> exactly one card
-let downX=0, curX=0, dragging=false, startTime=0;
-const THRESHOLD = 50;     // pixels to trigger
-const MIN_VEL = 0.35;     // px/ms for fling
-viewport.addEventListener('pointerdown', e=>{
-  dragging=true; downX=curX=e.clientX; startTime=performance.now();
-  track.style.transition='none'; viewport.setPointerCapture(e.pointerId);
+// Drawer
+const drawer = document.getElementById('drawer');
+function toggleDrawer(){ drawer.classList.toggle('open'); }
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') drawer.classList.remove('open'); });
+document.addEventListener('click', (e)=>{
+  if(!drawer.contains(e.target) && !e.target.closest('.burger')) drawer.classList.remove('open');
 });
-viewport.addEventListener('pointermove', e=>{
-  if(!dragging) return;
-  curX=e.clientX;
-  const dx = curX - downX;
-  const base = -index*slideW;
-  track.style.transform = `translateX(${base + dx}px)`;
-});
-function endSwipe(){
-  if(!dragging) return;
-  dragging=false;
-  const dx = curX - downX;
-  const dt = Math.max(1, performance.now()-startTime);
-  const v = Math.abs(dx)/dt;
-  if(dx < -THRESHOLD || (dx < 0 && v > MIN_VEL)){ next(); }
-  else if(dx > THRESHOLD || (dx > 0 && v > MIN_VEL)){ prev(); }
-  else { setX(index); }
+
+// Search expand on small icon
+const q = document.getElementById('q');
+function expandSearch(open){ if(!q) return; q.classList.toggle('open', open); }
+if(q){ q.addEventListener('focus', ()=>expandSearch(true)); q.addEventListener('blur', ()=>expandSearch(false)); }
+
+// Pricing carousel (infinite + swipe + annual toggle -17%)
+const basePlans = [
+  {name:'Essentiel', priceM:19, features:['Surveillance comptes','Alertes e‑mail','Rapport hebdo']},
+  {name:'Pro', priceM:39, features:['Tout Essentiel','Alertes temps réel','Registre RGPD']},
+  {name:'Business', priceM:79, features:['Tout Pro','SLA prioritaire','Export & Audit']}
+];
+function monthlyToAnnual(m){ return Math.round((m*12)*0.83); } // ~17% off
+
+function makeCard(p, isAnnual=false){
+  const price = isAnnual ? monthlyToAnnual(p.priceM) : p.priceM;
+  const unit = isAnnual ? '/an HT' : '/mois HT';
+  const wrap = document.createElement('article');
+  wrap.className = 'card price-card';
+  wrap.innerHTML = `
+    <div class="plan-h"><span class="badge">${p.name}</span></div>
+    <div class="price">${price}€ <span style="font-size:1rem;color:var(--muted)">${unit}</span></div>
+    <ul style="margin:12px 0 14px;padding-left:18px">${p.features.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <div style="display:flex;gap:8px">
+      <a class="btn" href="contact.html">Souscrire</a>
+      <a class="btn ghost" href="demo.html">Voir une démo</a>
+    </div>`;
+  return wrap;
 }
-viewport.addEventListener('pointerup', endSwipe);
-viewport.addEventListener('pointercancel', endSwipe);
-viewport.addEventListener('mouseleave', endSwipe);
 
-// arrows
-btnPrev.addEventListener('click', prev);
-btnNext.addEventListener('click', next);
+function renderCarousel(mode='mensuel'){
+  const carousel = document.getElementById('carousel');
+  if(!carousel) return;
+  carousel.innerHTML = '';
+  const isAnnual = mode==='annuel';
+  // duplicate ends for smooth infinite feel
+  const plans = [...basePlans];
+  const seq = [plans[2],...plans,...plans.slice(0,2)];
+  seq.forEach(p=> carousel.appendChild(makeCard(p, isAnnual)));
 
-// ---- Billing toggle
-function setBilling(mode){
-  document.querySelectorAll('.card').forEach(card=>{
-    const m = Number(card.getAttribute('data-month'));
-    const amount = card.querySelector('.amount');
-    const per = card.querySelector('.per');
-    if(mode==='yearly'){
-      const y = Math.round(m*12*(1-DISCOUNT));
-      amount.textContent = y; per.textContent='/an';
-    } else {
-      amount.textContent = m; per.textContent='/mois';
-    }
+  // swipe (1 gesture = one card)
+  let startX=0, current=0, isDown=false;
+  const cardW = ()=> carousel.querySelector('.price-card').getBoundingClientRect().width + 16;
+  const snapTo = (idx)=> carousel.scrollTo({left: idx*cardW(), behavior:'smooth'});
+  function index(){ return Math.round(carousel.scrollLeft / cardW()); }
+
+  carousel.addEventListener('pointerdown', e=>{ isDown=true; startX=e.clientX; current=carousel.scrollLeft; carousel.setPointerCapture(e.pointerId); });
+  carousel.addEventListener('pointerup', e=>{
+    if(!isDown) return; isDown=false;
+    const dx = e.clientX - startX;
+    const i = index() + (dx<-30 ? 1 : dx>30 ? -1 : 0);
+    snapTo(Math.max(0, Math.min(i, carousel.children.length-1)));
   });
-  bills.forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.mode===mode)));
-  try{ localStorage.setItem('vaubia-billing', mode); }catch{}
+  // snap on resize
+  window.addEventListener('resize', ()=> snapTo(index()));
 }
-bills.forEach(b=> b.addEventListener('click', ()=> setBilling(b.dataset.mode)));
-setBilling(localStorage.getItem('vaubia-billing') || 'monthly');
+const toggle = document.getElementById('toggle');
+if(toggle){
+  toggle.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button'); if(!btn) return;
+    toggle.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCarousel(btn.dataset.mode);
+  });
+  renderCarousel('mensuel');
+}
 
-// init
-window.addEventListener('load', ()=>{ measure(); setX(1,false); });
-window.addEventListener('resize', ()=>{ measure(); setX(index,false); });
+// Simple cookie banner
+(function(){
+  if(localStorage.getItem('cookie:consent')) return;
+  const bar = document.createElement('div');
+  bar.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;padding:12px;border-radius:12px;background:rgba(0,0,0,.75);color:#fff;backdrop-filter:blur(8px);display:flex;gap:8px;align-items:center;z-index:60';
+  bar.innerHTML = '<span style="flex:1">Nous utilisons des cookies pour améliorer votre expérience.</span>';
+  const ok = document.createElement('button'); ok.className='btn'; ok.textContent='Accepter';
+  const no = document.createElement('button'); no.className='btn ghost'; no.textContent='Refuser';
+  [ok,no].forEach(b=>{ b.style.padding='8px 10px'; b.style.boxShadow='none'; });
+  ok.onclick = ()=>{ localStorage.setItem('cookie:consent','yes'); bar.remove(); };
+  no.onclick = ()=>{ localStorage.setItem('cookie:consent','no'); bar.remove(); };
+  bar.append(ok,no); document.body.append(bar);
+})();
+
+function openCookieCenter(){
+  alert('Centre de préférences – version simple (peut être remplacé par votre CMP).');
+}
