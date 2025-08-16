@@ -1,102 +1,72 @@
 <!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaubia — Protégez l’essentiel</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="theme-dark">
-  <!-- Header: identique à l’ancien esprit, juste affiné -->
-  <header class="site-header glass">
-    <div class="container header-inner">
-      <a class="brand" href="/">
-        <img src="assets/logo.svg" alt="Vaubia" height="28" />
-        <span>Vaubia</span>
-      </a>
-
-      <nav class="main-nav" aria-label="Navigation principale">
-        <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">
-          <span></span><span></span><span></span>
-        </button>
-        <ul id="menu" class="menu">
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="pricing.html">Tarifs</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="mentions-legales.html">Légal</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero avec fond shapes/wave + recherche centrée -->
+<html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vaubia — Protégez l’essentiel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/>
+</head><body>
+<header class="site-header">
+  <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Vaubia"><span>Vaubia</span></a>
+  <div class="header-actions">
+    <button class="search-toggle" aria-label="Rechercher">
+      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <form class="search-form" role="search" aria-hidden="true"><input type="search" placeholder="Rechercher…" aria-label="Rechercher"></form>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="drawer">
+      <a href="index.html">Accueil</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="services.html">Services</a>
+      <a href="demo.html">Démo</a>
+      <a href="contact.html">Contact</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="cookies.html">Cookies</a>
+    </nav>
+  </div>
+</header>
+<main>
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="assets/bg-wave.svg" alt="" />
+    <div class="wave" aria-hidden="true">
+      <img src="assets/bg-wave.svg" alt="" style="position:absolute;inset:auto 0 0; width:130%; left:50%; transform:translateX(-50%); filter:drop-shadow(0 20px 60px rgba(0,0,0,.5))">
     </div>
-
-    <div class="container hero-inner">
-      <!-- Pilule recherche : N’AFFICHE PAS la barre tant qu’on n’a pas passé la souris sur la loupe (ou tap) -->
-      <div class="search-zone" id="searchZone">
-        <button class="search-trigger" id="searchTrigger" aria-label="Rechercher">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
-            <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-          </svg>
-        </button>
-        <form class="search-form" id="searchForm" role="search" aria-label="Recherche sur Vaubia">
-          <input type="search" placeholder="Rechercher une fonctionnalité, un sujet…" aria-label="Rechercher" />
-          <button type="submit">Rechercher</button>
-        </form>
-      </div>
-
-      <h1 class="hero-title gradient">
-        Simulez, détectez et décidez en secondes.
-      </h1>
-      <p class="hero-sub">
-        Surveillez vos comptes, détectez les fuites, recevez des alertes, et suivez votre conformité — simplement.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="demo.html">Voir une démo</a>
-        <a class="btn ghost" href="pricing.html">Voir les tarifs</a>
-      </div>
-    </div>
+    <h1>Simulez, détectez et décidez en quelques secondes.</h1>
+    <p class="sub">Surveillez vos comptes, détectez les fuites, recevez des alertes et suivez votre conformité dans un seul endroit.</p>
+    <div class="cta"><a class="btn primary" href="pricing.html">Commencer</a><a class="btn ghost" href="demo.html">Voir une démo</a></div>
   </section>
 
-  <!-- Topics : 3 cards, alignés côte à côte, swipe pour mobile, PAS de flèches -->
   <section class="topics">
-    <div class="container">
-      <div class="cards-row" id="cardsRow">
-        <article class="card">
-          <img src="assets/shield.svg" alt="" class="icon" />
-          <h3>Sécurité en continu</h3>
-          <p>Détection des menaces, blocage des attaques et surveillance 24/7.</p>
-        </article>
-
-        <article class="card">
-          <img src="assets/audit.svg" alt="" class="icon" />
-          <h3>Conformité RGPD</h3>
-          <p>Journal d’audit, registre des traitements et modèles prêts à l’emploi.</p>
-        </article>
-
-        <article class="card">
-          <img src="assets/report.svg" alt="" class="icon" />
-          <h3>Valeur &amp; rapports</h3>
-          <p>Rapports clairs, posture consolidée, insights activables pour vos décisions.</p>
-        </article>
-      </div>
+    <div class="topics-track">
+      <article class="topic-card"><img src="assets/icon-valeur.svg" alt="" class="topic-ico"><h3>Valeur immédiate</h3><p>Dashboards clairs, résultats en minutes, pas en mois.</p></article>
+      <article class="topic-card"><img src="assets/icon-securite.svg" alt="" class="topic-ico"><h3>Sécurité</h3><p>Détection, alertes, chiffrement et bonnes pratiques par défaut.</p></article>
+      <article class="topic-card"><img src="assets/icon-conformite.svg" alt="" class="topic-ico"><h3>Conformité</h3><p>Journal d’audit, registre des traitements et modèles RGPD prêts.</p></article>
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© 2025 Vaubia — Protégez l’essentiel</small>
+  <section class="brands" aria-label="Ils nous font confiance">
+    <div class="strip">
+      <img class="logo" src="assets/brand-1.svg" alt="Nova">
+      <img class="logo" src="assets/brand-2.svg" alt="Helio">
+      <img class="logo" src="assets/brand-3.svg" alt="Clerks">
+      <img class="logo" src="assets/brand-4.svg" alt="Modula">
+      <img class="logo" src="assets/brand-5.svg" alt="Orbital">
+      <img class="logo" src="assets/brand-6.svg" alt="Zetta">
     </div>
-  </footer>
+  </section>
 
-  <script src="app.js"></script>
-</body>
-</html>
+  <section class="testimonials" aria-label="Témoignages">
+    <div class="testi-grid">
+      <article class="testi"><p>“En une semaine, nous avons identifié et corrigé des risques que l’on traînait depuis des mois.”</p><div class="who">— Camille D., COO</div></article>
+      <article class="testi"><p>“Le rapport hebdo est ultra clair. On sait quoi faire, et quand.”</p><div class="who">— Idriss K., Head of IT</div></article>
+      <article class="testi"><p>“Onboard en 30 minutes, alertes pertinentes, zéro bruit.”</p><div class="who">— Léa P., PM</div></article>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">© 2025 Vaubia — Protégez l’essentiel</footer>
+<script src="app.js"></script>
+<script src="consent.js"></script>
+<!-- Optional analytics (blocked until consent) -->
+<script type="text/plain" data-consent="analytics">console.log('analytics init');</script>
+</body></html>

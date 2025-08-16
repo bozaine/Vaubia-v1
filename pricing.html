@@ -1,104 +1,103 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaubia — Tarifs</title>
-  <link rel="stylesheet" href="pricing.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="/">Vaubia</a>
-    <nav class="topnav">
-      <a href="/">Accueil</a>
-      <a class="active" href="#">Tarifs</a>
-      <a href="/services.html">Fonctionnalités</a>
-      <a href="/contact.html">Contact</a>
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vaubia — Tarifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/><link rel="stylesheet" href="pricing.css"/>
+</head><body>
+<header class="site-header">
+  <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Vaubia"><span>Vaubia</span></a>
+  <div class="header-actions">
+    <button class="search-toggle" aria-label="Rechercher">
+      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <form class="search-form" role="search" aria-hidden="true"><input type="search" placeholder="Rechercher…" aria-label="Rechercher"></form>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="drawer">
+      <a href="index.html">Accueil</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="services.html">Services</a>
+      <a href="demo.html">Démo</a>
+      <a href="contact.html">Contact</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="cookies.html">Cookies</a>
     </nav>
-  </header>
+  </div>
+</header>
+<main class="wrap">
+  <section class="heroP">
+    <h1>Des offres qui s’adaptent à vos besoins</h1>
+    <p class="subP">Choisissez une formule simple et transparente. Mensuel ou annuel (-17%).</p>
+    <div class="billing-toggle" role="group" aria-label="Fréquence de facturation">
+      <button class="bill-btn" data-mode="monthly" aria-pressed="true">Mensuel</button>
+      <button class="bill-btn active" data-mode="yearly">Annuel <span class="badge">-17%</span></button>
+    </div>
+  </section>
 
-  <main class="wrap">
-    <section class="hero">
-      <h1>Des offres qui s’adaptent à vos besoins</h1>
-      <p class="sub">Choisissez une formule simple et transparente. Mensuel ou annuel (-17%).</p>
-
-      <div class="billing-toggle" role="group" aria-label="Fréquence de facturation">
-        <button class="bill-btn" data-mode="monthly" aria-pressed="true">Mensuel</button>
-        <button class="bill-btn active" data-mode="yearly">Annuel <span class="badge">-17%</span></button>
+  <section class="carouselP" aria-label="Formules Vaubia">
+    <button class="arrow left" aria-label="Précédent">◀</button>
+    <div class="viewport" id="viewport">
+      <div class="trackP" id="trackP">
+        <article class="cardP" data-month="19"><h3>Essentiel</h3><div class="priceP"><span class="amount">189</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Surveillance e-mail & domaines</li><li>Alertes en temps réel</li><li>Rapport mensuel</li></ul><a class="btn primary" href="contact.html">Souscrire</a></article>
+        <article class="cardP hot" data-month="49"><h3>Pro</h3><div class="priceP"><span class="amount">489</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Toutes les fonctions Essentiel</li><li>Audit & conformité</li><li>Rapport hebdomadaire</li><li>Support prioritaire</li></ul><a class="btn primary" href="contact.html">Souscrire</a></article>
+        <article class="cardP" data-month="99"><h3>Entreprise</h3><div class="priceP"><span class="amount">989</span><span class="cur">€</span><span class="per">/an</span></div><ul><li>Intégrations avancées</li><li>SLA & onboarding</li><li>Politiques & modèles</li><li>Gestion multi-entités</li></ul><a class="btn" href="contact.html">Nous contacter</a></article>
       </div>
-    </section>
+    </div>
+    <button class="arrow right" aria-label="Suivant">▶</button>
+  </section>
+</main>
+<footer class="site-footer">© 2025 Vaubia — Protégez l’essentiel</footer>
+<script src="app.js"></script>
+<script>
+const DISCOUNT = 0.17;
+const viewport = document.getElementById('viewport');
+const trackP = document.getElementById('trackP');
+const btnPrev = document.querySelector('.arrow.left');
+const btnNext = document.querySelector('.arrow.right');
+const bills = Array.from(document.querySelectorAll('.bill-btn'));
+if(viewport && trackP){
+  let cards = Array.from(trackP.children);
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone  = cards[cards.length-1].cloneNode(true);
+  trackP.prepend(lastClone); trackP.append(firstClone);
+  let slideW = 0, index = 1, anim=false;
+  function measure(){ const c = trackP.querySelector('.cardP'); slideW = c.getBoundingClientRect().width + 32; }
+  function setX(i, animate=true){
+    if(anim) return; anim=true;
+    trackP.style.transition = animate ? 'transform 300ms cubic-bezier(.2,.8,.2,1)' : 'none';
+    trackP.style.transform = 'translateX(' + (-i*slideW) + 'px)';
+    setTimeout(function(){
+      anim=false; index=i;
+      const total = trackP.children.length;
+      if(index===total-1){ trackP.style.transition='none'; index=1; trackP.style.transform='translateX(' + (-index*slideW) + 'px)'; }
+      else if(index===0){ trackP.style.transition='none'; index=total-2; trackP.style.transform='translateX(' + (-index*slideW) + 'px)'; }
+    }, animate?300:0);
+  }
+  function next(){ setX(index+1); } function prev(){ setX(index-1); }
+  let downX=0, curX=0, dragging=false, t0=0; const TH=50, VMIN=0.35;
+  viewport.addEventListener('pointerdown', function(e){ dragging=true; downX=curX=e.clientX; t0=performance.now(); trackP.style.transition='none'; viewport.setPointerCapture(e.pointerId); });
+  viewport.addEventListener('pointermove', function(e){ if(!dragging) return; curX=e.clientX; const dx=curX-downX; const base=-index*slideW; trackP.style.transform='translateX(' + (base+dx) + 'px)'; });
+  function endSwipe(){ if(!dragging) return; dragging=false; const dx=curX-downX; const v=Math.abs(dx)/Math.max(1,performance.now()-t0); if(dx<-TH || (dx<0 && v>VMIN)) next(); else if(dx>TH || (dx>0 && v>VMIN)) prev(); else setX(index); }
+  viewport.addEventListener('pointerup', endSwipe); viewport.addEventListener('pointercancel', endSwipe); viewport.addEventListener('mouseleave', endSwipe);
+  btnPrev && btnPrev.addEventListener('click', prev); btnNext && btnNext.addEventListener('click', next);
+  window.addEventListener('load', function(){ measure(); setX(1,false); });
+  window.addEventListener('resize', function(){ measure(); setX(index,false); });
 
-    <section class="carousel" aria-label="Formules Vaubia">
-      <button class="arrow left" aria-label="Précédent">◀</button>
-      <div class="track" id="track">
-        <!-- Slides will be cloned for infinite loop via JS -->
-        <article class="card" data-plan="essentiel">
-          <div class="card-header">
-            <img src="assets/logo.svg" alt="" class="logo">
-            <h2>Essentiel</h2>
-            <p class="price"><span class="amount" data-month="19" data-year="190">190€</span> <small>/ an HT</small></p>
-            <button class="cta">Souscrire</button>
-          </div>
-          <div class="divider"></div>
-          <ul class="features">
-            <li>Surveillance d’e-mail et domaines</li>
-            <li>Alertes en temps réel</li>
-            <li>Rapport mensuel</li>
-          </ul>
-        </article>
-
-        <article class="card highlight" data-plan="pro">
-          <div class="card-header">
-            <img src="assets/logo.svg" alt="" class="logo">
-            <h2>Pro</h2>
-            <p class="price"><span class="amount" data-month="49" data-year="490">490€</span> <small>/ an HT</small></p>
-            <button class="cta primary">Souscrire</button>
-          </div>
-          <div class="divider"></div>
-          <ul class="features">
-            <li>Toutes les fonctions Essentiel</li>
-            <li>Audit & conformité RGPD</li>
-            <li>Rapport hebdomadaire</li>
-            <li>Support prioritaire</li>
-          </ul>
-        </article>
-
-        <article class="card" data-plan="entreprise">
-          <div class="card-header">
-            <img src="assets/logo.svg" alt="" class="logo">
-            <h2>Entreprise</h2>
-            <p class="price"><span class="amount" data-month="99" data-year="990">990€</span> <small>/ an HT</small></p>
-            <button class="cta">Nous contacter</button>
-          </div>
-          <div class="divider"></div>
-          <ul class="features">
-            <li>Intégrations avancées</li>
-            <li>SLA & onboarding</li>
-            <li>Politiques & modèles juridiques</li>
-            <li>Gestion multi-entités</li>
-          </ul>
-        </article>
-      </div>
-      <button class="arrow right" aria-label="Suivant">▶</button>
-      <div class="dots" aria-hidden="true"></div>
-    </section>
-
-    <section class="faq">
-      <h3>FAQ</h3>
-      <details>
-        <summary>Puis-je changer d’offre ?</summary>
-        <p>Oui, vous pouvez passer d’une offre à l’autre à tout moment.</p>
-      </details>
-      <details>
-        <summary>Y a-t-il un essai gratuit ?</summary>
-        <p>Nous proposons une démo et un onboarding rapide pour valider l’adéquation.</p>
-      </details>
-    </section>
-  </main>
-
-  <script src="pricing.js" defer></script>
-</body>
-</html>
+  function setBilling(mode){
+    document.querySelectorAll('.cardP').forEach(function(card){
+      const m = Number(card.getAttribute('data-month'));
+      const amount = card.querySelector('.amount');
+      const per = card.querySelector('.per');
+      if(mode==='yearly'){ const y = Math.round(m*12*(1-DISCOUNT)); amount.textContent=y; per.textContent='/an'; }
+      else { amount.textContent=m; per.textContent='/mois'; }
+    });
+    bills.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.mode===mode)); });
+  }
+  bills.forEach(function(b){ b.addEventListener('click', function(){ setBilling(b.dataset.mode); }); });
+  setBilling('yearly');
+}
+</script>
+<script src="consent.js"></script>
+</body></html>

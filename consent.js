@@ -1,61 +1,89 @@
-
+/*! Vaubia Consent v1 */
 (function(){
-  const KEY='vaubia-consent-v1';
-  const state = JSON.parse(localStorage.getItem(KEY) || '{"necessary":true,"analytics":false}');
-  function save(){ localStorage.setItem(KEY,JSON.stringify(state)); }
-  function style(){
-    const s=document.createElement('style');
-    s.textContent=`
-      .cc-wrap{position:fixed;inset:auto 12px 12px 12px;background:#121f31;border:1px solid rgba(255,255,255,.08);color:#e9f0f7;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);padding:16px;z-index:9999;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-      .cc-wrap .cc-actions{margin-left:auto;display:flex;gap:8px}
-      .cc-btn{background:#3ad1b7;color:#052825;border:none;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer}
-      .cc-btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e9f0f7}
-      .cc-modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;place-items:center;z-index:10000}
-      .cc-panel{background:#121f31;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;max-width:520px;width:92%}
-      .row{display:flex;align-items:center;justify-content:space-between;margin:10px 0;color:#b6c6d8}
-      input[type=checkbox]{transform:scale(1.2)}
-    `;
-    document.head.appendChild(s);
+  const LS_KEY = "vaubia-consent-v1";
+  const defaults = { essential: true, analytics: false, marketing: false, timestamp: null };
+
+  function read(){
+    try{ const d = JSON.parse(localStorage.getItem(LS_KEY)); if(d && typeof d==='object') return d; }catch(e){}
+    return null;
   }
-  function banner(){
-    if(localStorage.getItem(KEY)) return; // already set
-    const b=document.createElement('div'); b.className='cc-wrap';
-    b.innerHTML=`<strong>Cookies</strong><span>Nous utilisons des cookies nécessaires. Les analytiques sont <u>désactivés par défaut</u>.</span>
-      <div class="cc-actions">
-        <button class="cc-btn ghost" id="cc-settings">Paramètres</button>
-        <button class="cc-btn" id="cc-accept">Tout accepter</button>
-        <button class="cc-btn ghost" id="cc-reject">Tout refuser</button>
-      </div>`;
-    document.body.appendChild(b);
-    document.getElementById('cc-accept').onclick=()=>{state.analytics=true;save();b.remove();maybeLoadAnalytics();};
-    document.getElementById('cc-reject').onclick=()=>{state.analytics=false;save();b.remove();};
-    document.getElementById('cc-settings').onclick=()=>{openConsent(); b.remove();};
+  function save(prefs){
+    prefs.timestamp = new Date().toISOString();
+    localStorage.setItem(LS_KEY, JSON.stringify(prefs));
+    apply(prefs);
   }
-  function modal(){
-    const m=document.createElement('div'); m.className='cc-modal'; m.innerHTML=`
-      <div class="cc-panel">
-        <h3>Préférences de confidentialité</h3>
-        <div class="row"><span>Nécessaires</span><input type="checkbox" checked disabled></div>
-        <div class="row"><span>Analytiques</span><input id="cc-analytics" type="checkbox" ${state.analytics?'checked':''}></div>
-        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-          <button class="cc-btn ghost" id="cc-close">Fermer</button>
-          <button class="cc-btn" id="cc-save">Enregistrer</button>
-        </div>
-      </div>`;
-    document.body.appendChild(m);
-    return m;
+  function apply(prefs){
+    window.vaubiaConsent = Object.freeze({ ...prefs });
+    // Enable any scripts tagged with data-consent="analytics|marketing"
+    document.querySelectorAll('script[type="text/plain"][data-consent]').forEach(function(sc){
+      const cat = sc.getAttribute('data-consent');
+      const allowed = !!prefs[cat];
+      const loaded = sc.dataset.loaded === "1";
+      if (allowed && !loaded){
+        const s = document.createElement('script');
+        if (sc.src) s.src = sc.src;
+        s.text = sc.text;
+        s.async = sc.async;
+        s.defer = sc.defer;
+        document.head.appendChild(s);
+        sc.dataset.loaded = "1";
+      }
+    });
   }
-  function maybeLoadAnalytics(){
-    if(!state.analytics) return;
-    // placeholder for Plausible/Matomo; safe by default
-    // Example: const s=document.createElement('script'); s.defer=true; s.src='https://plausible.io/js/script.js'; s.setAttribute('data-domain','vaubia.com'); document.head.appendChild(s);
+
+  function ensureUI(){
+    if (document.getElementById('cc-banner')) return;
+    const banner = document.createElement('div');
+    banner.className = 'cc-banner'; banner.id = 'cc-banner';
+    banner.innerHTML = ''
+      + '<div class="cc-title">Nous respectons votre vie privée</div>'
+      + '<p class="cc-text">Nous utilisons des cookies essentiels pour faire fonctionner le site et, avec votre accord, des cookies d\\'analyse et marketing.</p>'
+      + '<div class="cc-actions">'
+      + '  <button class="cc-btn ghost" id="cc-reject">Tout refuser</button>'
+      + '  <button class="cc-btn" id="cc-customize">Personnaliser</button>'
+      + '  <button class="cc-btn primary" id="cc-accept">Tout accepter</button>'
+      + '</div>';
+    document.body.appendChild(banner);
+
+    const backdrop = document.createElement('div'); backdrop.className='cc-modal-backdrop'; backdrop.id='cc-backdrop';
+    const modal = document.createElement('div'); modal.className='cc-modal'; modal.id='cc-modal';
+    modal.innerHTML = ''
+      + '<h3 style="margin:0 0 8px">Préférences de confidentialité</h3>'
+      + '<p class="cc-text">Choisissez les catégories que vous souhaitez autoriser. Vous pouvez modifier ces préférences à tout moment.</p>'
+      + '<div class="cc-row"><div><strong>Essentiel</strong> <span class="cc-badge">Toujours actif</span><div class="cc-text">Nécessaire pour le fonctionnement du site.</div></div><div class="cc-lock">🔒</div></div>'
+      + '<div class="cc-row"><div><strong>Analytics</strong><div class="cc-text">Mesure d\\'audience anonyme.</div></div><div><label><input type="checkbox" id="cc-analytics" class="cc-toggle"></label></div></div>'
+      + '<div class="cc-row"><div><strong>Marketing</strong><div class="cc-text">Personnalisation et publicités.</div></div><div><label><input type="checkbox" id="cc-marketing" class="cc-toggle"></label></div></div>'
+      + '<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px">'
+      + '  <button class="cc-btn ghost" id="cc-cancel">Annuler</button>'
+      + '  <button class="cc-btn" id="cc-save">Enregistrer</button>'
+      + '</div>';
+    document.body.appendChild(backdrop); document.body.appendChild(modal);
+
+    const btnAccept = banner.querySelector('#cc-accept');
+    const btnReject = banner.querySelector('#cc-reject');
+    const btnCustom = banner.querySelector('#cc-customize');
+    const btnSave = modal.querySelector('#cc-save');
+    const btnCancel = modal.querySelector('#cc-cancel');
+    const toggleAnalytics = modal.querySelector('#cc-analytics');
+    const toggleMarketing = modal.querySelector('#cc-marketing');
+
+    function showBanner(){ banner.classList.add('show'); }
+    function hideBanner(){ banner.classList.remove('show'); }
+    function showModal(){ backdrop.classList.add('show'); modal.classList.add('show'); }
+    function hideModal(){ backdrop.classList.remove('show'); modal.classList.remove('show'); }
+
+    btnAccept.addEventListener('click', function(){ hideBanner(); save({ essential:true, analytics:true, marketing:true }); });
+    btnReject.addEventListener('click', function(){ hideBanner(); save({ essential:true, analytics:false, marketing:false }); });
+    btnCustom.addEventListener('click', function(){ hideBanner(); const cur = read() || defaults; toggleAnalytics.checked = !!cur.analytics; toggleMarketing.checked = !!cur.marketing; showModal(); });
+    btnSave.addEventListener('click', function(){ hideModal(); save({ essential:true, analytics:toggleAnalytics.checked, marketing:toggleMarketing.checked }); });
+    btnCancel.addEventListener('click', function(){ hideModal(); showBanner(); });
+
+    window.openCookieCenter = function(){ const cur = read() || defaults; toggleAnalytics.checked = !!cur.analytics; toggleMarketing.checked = !!cur.marketing; showModal(); };
   }
-  style();
-  const m = modal();
-  window.openConsent = function(){ m.style.display='grid'; }
-  m.addEventListener('click', (e)=>{ if(e.target===m) m.style.display='none'; });
-  m.querySelector('#cc-close').onclick=()=> m.style.display='none';
-  m.querySelector('#cc-save').onclick=()=>{ state.analytics = m.querySelector('#cc-analytics').checked; save(); m.style.display='none'; maybeLoadAnalytics(); };
-  banner();
-  maybeLoadAnalytics();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    const prefs = read();
+    ensureUI();
+    if (prefs){ apply(prefs); } else { document.getElementById('cc-banner').classList.add('show'); }
+  });
 })();

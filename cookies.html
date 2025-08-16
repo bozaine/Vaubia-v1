@@ -1,15 +1,34 @@
 <!doctype html><html lang="fr"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Vaubia — Cookies</title>
-<link rel="stylesheet" href="styles.css"/><script defer src="app.js"></script>
-</head><body>
+<link rel="stylesheet" href="styles.css"/></head><body>
 <header class="site-header">
-  <a class="brand" href="index.html"><img class="brand-mark" src="assets/logo.svg" alt=""/><span class="brand-name">Vaubia</span></a>
+  <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Vaubia"><span>Vaubia</span></a>
+  <div class="header-actions">
+    <button class="search-toggle" aria-label="Rechercher">
+      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <form class="search-form" role="search" aria-hidden="true"><input type="search" placeholder="Rechercher…" aria-label="Rechercher"></form>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="drawer">
+      <a href="index.html">Accueil</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="services.html">Services</a>
+      <a href="demo.html">Démo</a>
+      <a href="contact.html">Contact</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="cookies.html">Cookies</a>
+    </nav>
+  </div>
 </header>
-<main class="container">
-  <h1>Cookies</h1>
-  <p>Gérez vos préférences ci-dessous.</p>
-  <button class="btn btn-ghost" onclick="openCookieCenter()">Ouvrir les préférences</button>
+<main style="max-width:1000px;margin:0 auto;padding:28px 16px">
+
+<h1>Cookies</h1>
+<p>Ce site utilise uniquement des cookies essentiels par défaut. Les cookies d’analytics et de marketing sont <strong>désactivés</strong> tant que vous ne les acceptez pas.</p>
+<p><button class="btn" onclick="openCookieCenter()">Gérer mes préférences</button></p>
+
 </main>
-<footer class="site-footer"><p>© <span id="y"></span> Vaubia — Protégez l’essentiel</p></footer>
+<footer class="site-footer">© 2025 Vaubia — Protégez l’essentiel</footer>
+<script src="app.js"></script><script src="consent.js"></script>
 </body></html>
